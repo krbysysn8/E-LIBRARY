@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Login Dashboard | Pedro Guevara Elementary School E-Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-bg">
+    <header class="transparent-header">
+        <div class="logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="#4a5f9d"/>
+                <path d="M50 20 L50 50 L70 65" stroke="white" stroke-width="3" fill="none"/>
+                <circle cx="50" cy="50" r="5" fill="white"/>
+            </svg>
+        </div>
+        <div class="header-text">
+            <h1>Republic of the Philippines</h1>
+            <h2>Pedro Guevara Elementary School E-Library</h2>
+            <p>San Nicolas, Manila</p>
+        </div>
+    </header>
+    <nav class="transparent-nav">
+        <ul>
+            <li><a href="homepage.html">HOMEPAGE</a></li>
+            <li><a href="#about">ABOUT US ▾</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="dashboard-container">
+            <a class="login-card student" href="student-login.html">
+                <img src="student.png" alt="Student Logo" style="width:110px;height:110px;border-radius:2rem;box-shadow:0 2px 12px rgba(74,95,157,0.18);object-fit:cover;">
+                <span>STUDENT</span>
+            </a>
+            <a class="login-card faculty" href="faculty-login.html">
+                <img src="faculty.png" alt="Faculty Logo" style="width:110px;height:110px;border-radius:2rem;box-shadow:0 2px 12px rgba(74,95,157,0.18);object-fit:cover;">
+                <span>FACULTY</span>
+            </a>
+            <a class="login-card admin" href="admin-login.html">
+                <img src="admin.png" alt="Admin Logo" style="width:110px;height:110px;border-radius:2rem;box-shadow:0 2px 12px rgba(74,95,157,0.18);object-fit:cover;">
+                <span>ADMIN</span>
+            </a>
+        </div>
+        <div class="dashboard-note">
+            <p>NOTE: Choose the right Credentials to avoid a locked account</p>
+        </div>
+    </main>
+    <footer class="transparent-footer">
+        <div>
+            <p>2025 PGES All right reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Use</a>
+            <a href="#sitemap">Sitemap</a>
+        </div>
+        <div class="social-icons">
+            <a href="#facebook" title="Facebook" aria-label="Facebook">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="12" fill="#4267B2"/>
+                    <path d="M15.5 8.5H13.5V7.5C13.5 7.22 13.72 7 14 7H15V5H13.5C12.12 5 11 6.12 11 7.5V8.5H9V10.5H11V17H13.5V10.5H15L15.5 8.5Z" fill="white"/>
+                </svg>
+            </a>
+            <a href="#instagram" title="Instagram" aria-label="Instagram">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <radialGradient id="insta-gradient" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+                        <stop offset="0%" stop-color="#f9ce34"/>
+                        <stop offset="50%" stop-color="#ee2a7b"/>
+                        <stop offset="100%" stop-color="#6228d7"/>
+                    </radialGradient>
+                    <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#insta-gradient)"/>
+                    <circle cx="12" cy="12" r="5" fill="white" fill-opacity="0.7"/>
+                    <circle cx="12" cy="12" r="3.5" fill="none" stroke="white" stroke-width="1.5"/>
+                    <circle cx="16.5" cy="7.5" r="1" fill="white"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
