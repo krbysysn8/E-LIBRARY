@@ -229,32 +229,30 @@ footer {
     transform: scale(1.1);
 }
 
-/* Dashboard background (transparent, ready for custom image) */
 .dashboard-bg {
     background: transparent;
     min-height: 100vh;
     font-family: 'Fredoka', Arial, sans-serif;
 }
 
-/* Transparent header, nav, footer for dashboard */
+
 .transparent-header,
 .transparent-nav,
 .transparent-footer {
-    background: rgba(74, 95, 157, 0.85); /* blue with slight transparency */
+    background: rgba(74, 95, 157, 0.85); 
     box-shadow: none;
 }
 
-/* Dashboard container layout */
 .dashboard-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: 5rem; /* Larger gap between login cards */
-    margin: 8rem auto 2rem auto; /* Increased top margin to move login cards lower */
+    gap: 5rem; 
+    margin: 8rem auto 2rem auto; 
     min-height: 50vh;
     position: relative;
-    top: 2rem; /* Move login cards further down without affecting body structure */
+    top: 2rem; 
 }
 
 .login-card {
@@ -262,12 +260,12 @@ footer {
     color: #fff;
     border-radius: 2.5rem;
     box-shadow: 0 2px 24px rgba(74,95,157,0.18);
-    padding: 3rem 2.2rem 2.5rem 2.2rem; /* Increased padding for larger area */
+    padding: 3rem 2.2rem 2.5rem 2.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 320px; /* Increased width for larger card */
-    font-size: 1.4rem; /* Slightly larger font */
+    width: 320px; 
+    font-size: 1.4rem;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -332,7 +330,7 @@ footer {
         flex-direction: column;
         align-items: center;
         gap: 2.5rem;
-        margin-top: 12rem; /* Increased for mobile fit, moves cards lower */
+        margin-top: 12rem; 
     }
     .login-card {
         width: 90vw;
@@ -530,22 +528,20 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 .login-flex {
     display: flex;
-    width: 100%;
-    max-width: 900px;
-    min-height: 420px;
-    background: none;
     align-items: center;
-    justify-content: flex-start; /* Move card left, image right */
-    gap: 0;
-    padding-left: 10vw; /* Move login card further to the right */
-    padding-right: 2rem;
+    justify-content: flex-start;
+    gap: 3rem;
+    width: auto;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .login-card-form {
     background: #fff;
-    border-radius: 2rem;
+    border-radius: 24px 0 0 24px;
     box-shadow: 0 2px 24px rgba(74,95,157,0.18);
     padding: 2.5rem 2rem;
     max-width: 400px;
@@ -553,8 +549,54 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: auto; /* Ensure left alignment */
-    margin-right: auto;
+    margin-left: 0;
+    padding-left: 0;
+    min-height: 540px;
+    height: auto;
+}
+.login-image {
+    display: flex;
+    align-items: stretch;
+    width: 58vw;
+    max-width: 600px;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    min-height: 0;
+}
+.login-image img {
+    width: 250%;
+    margin-left: 355px;
+    height: 740px;
+    max-height: 700px;
+    min-height: 520px;
+    object-fit: cover;
+    border-radius: 0 24px 24px 0;
+    box-shadow: none;
+}
+@media (max-width: 900px) {
+    .login-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2rem;
+        max-width: 95vw;
+    }
+    .login-card-form, .login-image {
+        margin: 0 auto;
+        min-width: 220px;
+        max-width: 95vw;
+    }
+    .login-image {
+        width: 100%;
+        max-width: 95vw;
+        height: 220px;
+    }
+    .login-image img {
+        max-width: 100%;
+        max-height: 220px;
+        min-height: 120px;
+        height: 220px;
+    }
 }
 .login-card-form h3 {
     text-align: left;
@@ -628,32 +670,15 @@ footer {
     text-decoration: underline;
     font-size: 0.95rem;
 }
-.login-image {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 320px;
-    min-height: 320px;
-    height: 100%;
-    background: none;
-    margin-left: auto;
-    margin-right: 0;
-}
-.login-image img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 1.5rem;
-    object-fit: cover;
-    box-shadow: 0 2px 24px rgba(74,95,157,0.18);
-}
 @media (max-width: 900px) {
     .login-flex {
         flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding-left: 0;
-        padding-right: 0;
+        align-items: stretch;
+        padding-left: 0 !important;
+    }
+    .login-card-form {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
     }
     .login-card-form, .login-image {
         margin: 0 auto;
