@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Forgot Password | Pedro Guevara Elementary School E-Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+    <a href="homepage.html" aria-label="Go to Homepage">
+            <img src="images/school/logo.png" alt="PGES Logo"/>
+        </a>
+        </div>
+        <div class="header-text">
+            <h1>Republic of the Philippines</h1>
+            <h2>Pedro Guevara Elementary School E-Library</h2>
+            <p>San Nicolas, Manila</p>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">HOMEPAGE</a></li>
+            <li><a href="#about">ABOUT US</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+    <main class="login-main">
+        <div class="login-flex">
+            <div class="login-card-form">
+                <h3>Reset Your Password</h3>
+                <form onsubmit="return showSuccessPopup(event)">
+                    <label for="admin-id">Admin ID Number</label>
+                    <div class="input-icon">
+                        <span class="icon">
+                            <img src="images/school/person.png" alt="Person Icon" />
+                        </span>
+                        <input id="admin-id" type="text" placeholder="Enter your Admin ID Number" required>
+                    </div>
+                    <label for="new-password">New Password</label>
+                    <div class="input-icon">
+                        <span class="icon">
+                            <img src="images/school/lock.png" alt="Lock Icon" />
+                        </span>
+                        <input id="new-password" type="password" placeholder="Enter new password" required>
+                        <button type="button" class="show-btn" onclick="togglePassword('new-password', this)">Show</button>
+                    </div>
+                    <label for="confirm-password">Confirm New Password</label>
+                    <div class="input-icon">
+                        <span class="icon">
+                            <img src="images/school/lock.png" alt="Lock Icon" />
+                        </span>
+                        <input id="confirm-password" type="password" placeholder="Confirm new password" required>
+                        <button type="button" class="show-btn" onclick="togglePassword('confirm-password', this)">Show</button>
+                    </div>
+                    <button type="submit" class="login-btn">Reset Password</button>
+                </form>
+                <div class="forgot-link">
+                    <a href="admin-login.html">Back to Login</a>
+                </div>
+            </div>
+            <div class="login-image">
+                <img src="images/school/school.jpg" alt="Pedro Guevara Elementary School" />
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <p>2025 PGES All right reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Use</a>
+
+        </div>
+        <div class="social-icons">
+            <a href="#facebook" title="Facebook" aria-label="Facebook">
+                <img src="images/school/fb.png" alt="Facebook"/>
+            </a>
+            <a href="#instagram" title="Instagram" aria-label="Instagram">
+                <img src="images/school/ig.png" alt="Instagram"/>
+            </a>
+        </div>
+    </footer>
+    <script>
+    function togglePassword(id, btn) {
+        var input = document.getElementById(id);
+        if (input.type === 'password') {
+            input.type = 'text';
+            btn.textContent = 'Hide';
+        } else {
+            input.type = 'password';
+            btn.textContent = 'Show';
+        }
+    }
+    function showSuccessPopup(e) {
+        e.preventDefault();
+        alert('Password successfully changed.');
+        window.location.href = 'admin-login.html';
+        return false;
+    }
+    </script>
+</body>
+</html>
