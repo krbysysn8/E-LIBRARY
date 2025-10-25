@@ -10,7 +10,9 @@
 <body>
     <header>
         <div class="logo">
-            <img src="admin.png" alt="Admin Logo" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+            <a href="homepage.html" aria-label="Go to Homepage">
+                <img src="images/school/logo.png" alt="PGES Logo"/>
+            </a>
         </div>
         <div class="header-text">
             <h1>Republic of the Philippines</h1>
@@ -21,80 +23,66 @@
     <nav>
         <ul>
             <li><a href="homepage.html">HOMEPAGE</a></li>
-            <li><a href="#about">ABOUT US ▾</a></li>
+            <li><a href="#about">ABOUT US</a></li>
             <li><a href="#faq">FAQ</a></li>
         </ul>
     </nav>
     <main class="login-main">
         <div class="login-flex">
-            <div class="login-card-form">
-                <h3>Login using your admin ID number and password.</h3>
-                <form>
-                    <label for="admin-username">Username</label>
-                    <div class="input-icon">
-                        <span class="icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="8" r="4" fill="#4a5f9d"/>
-                                <rect x="4" y="16" width="16" height="6" rx="3" fill="#4a5f9d"/>
-                            </svg>
-                        </span>
-                        <input id="admin-username" type="text" placeholder="Admin ID">
+            <div class="login-card-form-wrapper admin">
+                <a href="log-in dashboard.html" class="back-btn-standalone creative-back-btn">
+                    <span class="back-icon">&#8592;</span>
+                    <span class="back-text">Back</span>
+                </a>
+                <div class="login-card-form">
+                    <h3>Login using your admin ID number and password.</h3>
+                    <form>
+                        <label for="admin-username">Username</label>
+                        <div class="input-icon">
+                            <span class="icon">
+                                <img src="images/school/person.png" alt="Person Icon" />
+                            </span>
+                            <input id="admin-username" type="text" placeholder="Admin ID Number">
+                        </div>
+                        <label for="admin-password">Password</label>
+                        <div class="input-icon">
+                            <span class="icon">
+                                <img src="images/school/lock.png" alt="Lock Icon" />
+                            </span>
+                            <input id="admin-password" type="password" placeholder="Password">
+                            <button type="button" class="show-btn" onclick="togglePassword('admin-password', this)">Show</button>
+                        </div>
+                        <button type="submit" class="login-btn">Sign-in</button>
+                    </form>
+                    <div class="forgot-link">
+                        <a href="forgot.html">Forgot your password? Click here</a>
                     </div>
-                    <label for="admin-password">Password</label>
-                    <div class="input-icon">
-                        <span class="icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="6" y="10" width="12" height="10" rx="2" fill="#4a5f9d"/>
-                                <rect x="9" y="14" width="6" height="4" rx="2" fill="#fff"/>
-                                <circle cx="12" cy="13" r="1.5" fill="#fff"/>
-                            </svg>
-                        </span>
-                        <input id="admin-password" type="password" placeholder="Password">
-                        <button type="button" class="show-btn" onclick="togglePassword('admin-password', this)">Show</button>
-                    </div>
-                    <button type="submit" class="login-btn">Sign-in</button>
-                </form>
-                <div class="forgot-link">
-                    <a href="#">Forgot your password? Click here</a>
                 </div>
             </div>
             <div class="login-image">
-                <img src="school.jpg" alt="Pedro Guevara Elementary School" />
+                <img src="images/school/school.jpg" alt="Pedro Guevara Elementary School" />
             </div>
         </div>
     </main>
-    <footer>
+     <footer>
         <div>
             <p>2025 PGES All right reserved.</p>
         </div>
         <div class="footer-links">
             <a href="#privacy">Privacy Policy</a>
             <a href="#terms">Terms of Use</a>
-            <a href="#sitemap">Sitemap</a>
+
         </div>
         <div class="social-icons">
             <a href="#facebook" title="Facebook" aria-label="Facebook">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="12" fill="#4267B2"/>
-                    <path d="M15.5 8.5H13.5V7.5C13.5 7.22 13.72 7 14 7H15V5H13.5C12.12 5 11 6.12 11 7.5V8.5H9V10.5H11V17H13.5V10.5H15L15.5 8.5Z" fill="white"/>
-                </svg>
+                <img src="images/school/fb.png" alt="Facebook"/>
             </a>
             <a href="#instagram" title="Instagram" aria-label="Instagram">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <radialGradient id="insta-gradient" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
-                        <stop offset="0%" stop-color="#f9ce34"/>
-                        <stop offset="50%" stop-color="#ee2a7b"/>
-                        <stop offset="100%" stop-color="#6228d7"/>
-                    </radialGradient>
-                    <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#insta-gradient)"/>
-                    <circle cx="12" cy="12" r="5" fill="white" fill-opacity="0.7"/>
-                    <circle cx="12" cy="12" r="3.5" fill="none" stroke="white" stroke-width="1.5"/>
-                    <circle cx="16.5" cy="7.5" r="1" fill="white"/>
-                </svg>
+                <img src="images/school/ig.png" alt="Instagram"/>
             </a>
         </div>
     </footer>
-    <script>
+<script>
     function togglePassword(id, btn) {
         var input = document.getElementById(id);
         if (input.type === 'password') {
