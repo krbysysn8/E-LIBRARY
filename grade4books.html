@@ -11,7 +11,6 @@
             background: #f8f9fa;
             position: relative;
         }
-        
         body::before {
             content: '';
             position: fixed;
@@ -25,7 +24,6 @@
             z-index: 0;
             pointer-events: none;
         }
-
         main {
             position: relative;
             z-index: 1;
@@ -33,15 +31,65 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-        
-    .category-tabs {
+
+        .back-button-container {
+            position: relative;
+            margin-left: 31.5px;
+            margin-top: 20px;
+            margin-bottom: 0;
+            z-index: 1;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 15px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(74, 95, 157, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 95, 157, 0.4);
+        }
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-top: 0;
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            color: #4a5f9d;
+            font-family: 'Fredoka', Arial, sans-serif;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(74, 95, 157, 0.1);
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+
+        .category-tabs {
             display: flex;
             justify-content: center;
             gap: 12px;
             margin-bottom: 40px;
             flex-wrap: wrap;
         }
-
         .tab-btn {
             padding: 12px 28px;
             background: white;
@@ -54,12 +102,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .tab-btn:hover {
             background: #e8f0ff;
             transform: translateY(-2px);
         }
-
         .tab-btn.active {
             background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
             color: white;
@@ -69,22 +115,25 @@
         .category-section {
             display: none;
         }
-
         .category-section.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-header {
             text-align: center;
             margin-bottom: 32px;
         }
-
         .section-header h2 {
             font-size: 2rem;
             color: #4a5f9d;
@@ -92,7 +141,6 @@
             font-weight: 700;
             margin-bottom: 8px;
         }
-
         .section-header p {
             font-size: 1rem;
             color: #666;
@@ -101,23 +149,23 @@
 
         .books-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 32px;
             margin-bottom: 40px;
+            max-width: 1400px;
         }
-
         @media (max-width: 1200px) {
             .books-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 24px;
             }
         }
-
         @media (max-width: 900px) {
             .books-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
         }
-
         @media (max-width: 600px) {
             .books-grid {
                 grid-template-columns: 1fr;
@@ -134,7 +182,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .book-card::before {
             content: '';
             position: absolute;
@@ -146,13 +193,11 @@
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
-
         .book-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 32px rgba(74, 95, 157, 0.2);
             border-color: #4a5f9d;
         }
-
         .book-card:hover::before {
             transform: scaleX(1);
         }
@@ -169,13 +214,11 @@
             overflow: hidden;
             position: relative;
         }
-
         .book-cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .book-cover svg {
             width: 80px;
             height: 80px;
@@ -194,12 +237,10 @@
             font-family: 'Open Sans', Arial, sans-serif;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
-
         .availability-badge.available {
             background: #2ecc71;
             color: white;
         }
-
         .availability-badge.borrowed {
             background: #e74c3c;
             color: white;
@@ -208,7 +249,6 @@
         .book-info {
             margin-bottom: 20px;
         }
-
         .book-title {
             font-size: 1.4rem;
             color: #4a5f9d;
@@ -217,14 +257,12 @@
             font-weight: 700;
             line-height: 1.3;
         }
-
         .book-author {
             font-size: 1rem;
             color: #666;
             font-family: 'Open Sans', Arial, sans-serif;
             margin-bottom: 4px;
         }
-
         .book-author svg {
             width: 16px;
             height: 16px;
@@ -238,7 +276,6 @@
             gap: 8px;
             flex-wrap: wrap;
         }
-
         .btn {
             flex: 1;
             min-width: 80px;
@@ -255,166 +292,285 @@
             justify-content: center;
             gap: 6px;
         }
-
         .btn svg {
             width: 16px;
             height: 16px;
         }
-
         .btn-view {
             background: #3498db;
             color: white;
         }
-
         .btn-view:hover {
             background: #2980b9;
             transform: translateY(-2px);
         }
-
         .btn-borrow {
             background: #2ecc71;
             color: white;
         }
-
         .btn-borrow:hover {
             background: #27ae60;
             transform: translateY(-2px);
         }
-
         .btn-borrow:disabled {
             background: #bdc3c7;
             cursor: not-allowed;
             transform: none;
         }
-
         .btn-read {
             background: #9b59b6;
             color: white;
         }
-
         .btn-read:hover {
             background: #8e44ad;
             transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .modal-header {
+            padding: 30px;
+            border-bottom: 2px solid #e8f0ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+        }
+        .modal-header h2 {
+            font-family: 'Fredoka', sans-serif;
+            color: #4a5f9d;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .close-btn:hover {
+            color: #333;
+            background: #f0f0f0;
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        .book-details {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .book-thumbnail {
+            background: linear-gradient(135deg, #e8f0ff 0%, #f0f4ff 100%);
+            border-radius: 12px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(74, 95, 157, 0.15);
+        }
+        .book-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .book-thumbnail svg {
+            width: 100px;
+            height: 100px;
+            fill: #4a5f9d;
+            opacity: 0.3;
+        }
+        .book-meta h3 {
+            font-family: 'Fredoka', sans-serif;
+            color: #4a5f9d;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .book-meta .author {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .book-meta .author svg {
+            width: 18px;
+            height: 18px;
+            fill: #666;
+        }
+        .book-meta .status {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .book-meta .status.borrowed {
+            background: #e74c3c;
+        }
+        .book-meta .info-row {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1rem;
+        }
+        .book-meta .info-row strong {
+            color: #333;
+            font-weight: 700;
+        }
+
+        .overview-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e8f0ff;
+        }
+        .overview-section h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: #4a5f9d;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        .overview-section p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .modal-actions {
+            padding: 25px 30px;
+            border-top: 2px solid #e8f0ff;
+            display: flex;
+            gap: 15px;
+            background: #f8faff;
+        }
+        .modal-actions .btn {
+            padding: 14px 30px;
+            font-size: 1rem;
         }
 
         @media (max-width: 768px) {
             .page-header h1 {
                 font-size: 2rem;
             }
-
             .category-tabs {
                 gap: 8px;
             }
-
             .tab-btn {
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
-
             .book-cover {
                 height: 240px;
             }
-
             body::before {
                 width: 400px;
                 height: 400px;
             }
-
             .back-button-container {
                 margin-left: 0;
             }
-
             .book-actions {
                 flex-direction: column;
             }
-
             .btn {
                 width: 100%;
             }
-        }
-        .page-header {
-            text-align: center;
-            margin-bottom: 32px;
-            padding-top: 0;
+            .book-details {
+                grid-template-columns: 1fr;
+            }
+            .book-thumbnail {
+                height: 280px;
+            }
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            .modal-header,
+            .modal-body,
+            .modal-actions {
+                padding: 20px;
+            }
+            .modal-actions {
+                flex-direction: column;
+            }
+            .modal-actions .btn {
+                width: 100%;
+            }
         }
 
-        .page-header h1 {
-            font-size: 3rem;
-            color: #4a5f9d;
-            font-family: 'Fredoka', Arial, sans-serif;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-shadow: 2px 2px 4px rgba(74, 95, 157, 0.1);
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            color: #666;
-            font-family: 'Open Sans', Arial, sans-serif;
-        }
-
-        .back-button-container {
+        .dropdown {
             position: relative;
-            margin-left: 31.5px;
-            margin-top: 20px;
-            margin-bottom: 0;
-            z-index: 1;
         }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
-            color: white;
-            padding: 15px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(74, 95, 157, 0.3);
-            transition: all 0.3s ease;
+        .dropdown-menu {
+            position: absolute;
+            z-index: 100;
         }
-
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(74, 95, 157, 0.4);
-        }
-
-        .back-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-        }
-
-
-        
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <a href="homepage.html" aria-label="Go to Homepage">
-                <img src="images/school/logo.png" alt="PGES Logo"/>
-            </a>
-        </div>
+        <div class="logo"><a href="homepage.html" aria-label="Go to Homepage"><img src="images/school/logo.png" alt="PGES Logo"/></a></div>
         <div class="header-text">
             <h1>Republic of the Philippines</h1>
             <h2>Pedro Guevara Elementary School E-Library</h2>
             <p>San Nicolas, Manila</p>
         </div>
     </header>
-
     <nav>
         <ul>
             <li><a href="homepage.html">HOMEPAGE</a></li>
-            <li><a href="studentdashboard.html">DASHBOARD</a></li>
+            <li><a href="javascript:void(0)" onclick="goToDashboard()">DASHBOARD</a></li>            
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" role="button" aria-expanded="false" onclick="toggleDropdown(event)">
-                    BOOKS
-                    <span class="arrow">▼</span>
-                </a>
+                <a class="dropdown-toggle" onclick="toggleDropdown()">BOOKS <span class="arrow">▼</span></a>
                 <div class="dropdown-menu" id="booksMenu">
                     <a href="grade1books.html">Grade 1</a>
                     <a href="grade2books.html">Grade 2</a>
@@ -427,22 +583,14 @@
             </li>
         </ul>
     </nav>
-
     <div class="back-button-container">
-        <a href="studentdashboard.html" class="back-btn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-            </svg>
+        <a href="javascript:void(0)" onclick="goToDashboard()" class="back-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
             Back to Dashboard
         </a>
     </div>
-
     <main>
-        <div class="page-header">
-            <h1>Grade 4 Books</h1>
-            <p>Browse all books by category</p>
-        </div>
-
+        <div class="page-header"><h1>Grade 4 Books</h1><p>Browse all books by category</p></div>
         <div class="category-tabs">
             <button class="tab-btn active" onclick="showCategory('filipino')">Filipino</button>
             <button class="tab-btn" onclick="showCategory('english')">English</button>
@@ -453,283 +601,272 @@
             <button class="tab-btn" onclick="showCategory('epp')">EPP</button>
             <button class="tab-btn" onclick="showCategory('gmrc')">GMRC</button>
         </div>
-
-        <!-- Filipino Books -->
         <div class="category-section active" id="filipino-section">
-            <div class="section-header">
-                <h2>Filipino Books</h2>
-                <p>Wikang Filipino at panitikan</p>
-            </div>
+            <div class="section-header"><h2>Filipino Books</h2><p>Wikang Filipino at panitikan</p></div>
             <div class="books-grid" id="filipino-books"></div>
         </div>
-
-        <!-- English Books -->
         <div class="category-section" id="english-section">
-            <div class="section-header">
-                <h2>English Books</h2>
-                <p>English language and literature</p>
-            </div>
+            <div class="section-header"><h2>English Books</h2><p>English language and literature</p></div>
             <div class="books-grid" id="english-books"></div>
         </div>
-
-        <!-- Mathematics Books -->
         <div class="category-section" id="mathematics-section">
-            <div class="section-header">
-                <h2>Mathematics Books</h2>
-                <p>Advanced math concepts and problem solving</p>
-            </div>
+            <div class="section-header"><h2>Mathematics Books</h2><p>Advanced math concepts and problem solving</p></div>
             <div class="books-grid" id="mathematics-books"></div>
         </div>
-
-        <!-- Science Books -->
         <div class="category-section" id="science-section">
-            <div class="section-header">
-                <h2>Science Books</h2>
-                <p>Exploring the natural world</p>
-            </div>
+            <div class="section-header"><h2>Science Books</h2><p>Exploring the natural world</p></div>
             <div class="books-grid" id="science-books"></div>
         </div>
-
-        <!-- AP Books -->
         <div class="category-section" id="ap-section">
-            <div class="section-header">
-                <h2>Araling Panlipunan Books</h2>
-                <p>Philippine history, geography and culture</p>
-            </div>
+            <div class="section-header"><h2>Araling Panlipunan Books</h2><p>Philippine history, geography and culture</p></div>
             <div class="books-grid" id="ap-books"></div>
         </div>
-
-        <!-- MAPEH Books -->
         <div class="category-section" id="mapeh-section">
-            <div class="section-header">
-                <h2>MAPEH Books</h2>
-                <p>Music, Arts, Physical Education and Health</p>
-            </div>
+            <div class="section-header"><h2>MAPEH Books</h2><p>Music, Arts, Physical Education and Health</p></div>
             <div class="books-grid" id="mapeh-books"></div>
         </div>
-
-        <!-- EPP Books -->
         <div class="category-section" id="epp-section">
-            <div class="section-header">
-                <h2>EPP Books</h2>
-                <p>Edukasyon sa Pagpapakatao at Pamumuhay</p>
-            </div>
+            <div class="section-header"><h2>EPP Books</h2><p>Edukasyon sa Pagpapakatao at Pamumuhay</p></div>
             <div class="books-grid" id="epp-books"></div>
         </div>
-
-        <!-- GMRC Books -->
         <div class="category-section" id="gmrc-section">
-            <div class="section-header">
-                <h2>GMRC Books</h2>
-                <p>Good manners and right conduct</p>
-            </div>
+            <div class="section-header"><h2>GMRC Books</h2><p>Good manners and right conduct</p></div>
             <div class="books-grid" id="gmrc-books"></div>
         </div>
     </main>
-
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2>Book Details</h2><button class="close-btn" onclick="closeModal()">&times;</button></div>
+            <div class="modal-body">
+                <div class="book-details">
+                    <div class="book-thumbnail" id="modalThumbnail">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                    </div>
+                    <div class="book-meta">
+                        <h3 id="modalBookTitle">Book Title</h3>
+                        <div class="author">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            <span id="modalAuthor">Author Name</span>
+                        </div>
+                        <span class="status" id="modalStatus">Available</span>
+                        <div class="info-row"><strong>Category:</strong> <span id="modalCategory">Category</span></div>
+                        <div class="info-row"><strong>Grade Level:</strong> <span id="modalGrade">Grade 4</span></div>
+                        <div class="info-row"><strong>ISBN:</strong> <span id="modalISBN">N/A</span></div>
+                    </div>
+                </div>
+                <div class="overview-section"><h4>Overview</h4><p id="modalOverview">Book overview will be displayed here.</p></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-borrow" id="modalBorrowBtn" onclick="borrowFromModal()">Borrow This Book</button>
+                <button class="btn btn-read" onclick="readFromModal()">Read Online</button>
+            </div>
+        </div>
+    </div>
     <footer>
-        <div>
-            <p>2025 PGES All rights reserved.</p>
-        </div>
-        <div class="footer-links">
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Use</a>
-        </div>
+        <div><p>2025 PGES All rights reserved.</p></div>
+        <div class="footer-links"><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Use</a></div>
         <div class="social-icons">
-            <a href="#facebook" title="Facebook">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-            </a>
-            <a href="#instagram" title="Instagram">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-            </a>
+            <a href="#facebook" title="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#instagram" title="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
         </div>
     </footer>
-
-    <script>
-        // Complete books database for Grade 4
+    <script>  
+        document.addEventListener('DOMContentLoaded', function() {
+            const userType = sessionStorage.getItem('userType');
+            const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
+            document.querySelectorAll('a[href*="dashboard"]').forEach(link => { if (link.href.includes('studentdashboard.html')) link.href = dashboardUrl; });
+            document.querySelectorAll('nav a').forEach(link => { if (link.textContent.trim() === 'DASHBOARD') link.href = dashboardUrl; });
+            renderBooks('filipino'); renderBooks('english'); renderBooks('mathematics'); renderBooks('science'); renderBooks('ap'); renderBooks('mapeh'); renderBooks('epp'); renderBooks('gmrc');
+        });
+        
+        function goToDashboard() { const userType = sessionStorage.getItem('userType'); window.location.href = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html'; }
+        
         const booksDatabase = {
             filipino: [
-                { title: "Panitikan ng Pilipinas 4", author: "Literary Team", available: true, cover: "images/books/g4-panitikan.jpg" },
-                { title: "Mga Tula at Awit", author: "Poets Collective", available: true, cover: "images/books/g4-tula.jpg" },
-                { title: "Epiko ng Bansa", author: "Cultural Heritage", available: true, cover: "images/books/g4-epiko.jpg" },
-                { title: "Gramatika ng Filipino", author: "Language Department", available: false, cover: "images/books/g4-gramatika.jpg" },
-                { title: "Maikling Kwento", author: "Story Writers", available: true, cover: "images/books/g4-kwento.jpg" },
-                { title: "Sanaysay at Talumpati", author: "Writing Center", available: true, cover: "images/books/g4-sanaysay.jpg" }
+                { title: "Panitikan ng Pilipinas 4", author: "Literary Team", available: true, cover: "images/books/g4-panitikan.jpg", category: "Filipino", isbn: "978-4234567891", overview: "Pag-aralan ang iba't ibang uri ng panitikan tulad ng tula, maikling kuwento, at dula. Matutunan ang mga elemento ng bawat genre at kung paano bumuo ng sariling akda." },
+                { title: "Mga Tula at Awit", author: "Poets Collective", available: true, cover: "images/books/g4-tula.jpg", category: "Filipino", isbn: "978-4234567892", overview: "Koleksyon ng mga tulang Pilipino na nagpapakita ng iba't ibang temang panlipunan, pampamilya, at pangkalikasan. Alamin ang sining ng pagtula at pagsulat ng orihinal na mga tula." },
+                { title: "Epiko ng Bansa", author: "Cultural Heritage", available: true, cover: "images/books/g4-epiko.jpg", category: "Filipino", isbn: "978-4234567893", overview: "Mga kilalang epiko mula sa iba't ibang rehiyon ng Pilipinas. Tuklasin ang mga bayani at kanilang mga kabayanihan na sumasalamin sa kultura at kaugalian ng mga ninuno." },
+                { title: "Gramatika ng Filipino", author: "Language Department", available: false, cover: "images/books/g4-gramatika.jpg", category: "Filipino", isbn: "978-4234567894", overview: "Mas malalim na pag-aaral ng gramatikang Filipino. Kasama rito ang pangungusap, pandiwa, pang-uri, at wastong paggamit ng mga salita sa pagsulat at pakikipag-usap." },
+                { title: "Maikling Kwento", author: "Story Writers", available: true, cover: "images/books/g4-kwento.jpg", category: "Filipino", isbn: "978-4234567895", overview: "Koleksyon ng mga maikling kuwentong Pilipino mula sa kilalang mga manunulat. Matutunan ang mga elemento ng maikling kuwento at kung paano sumulat ng sariling kwento." },
+                { title: "Sanaysay at Talumpati", author: "Writing Center", available: true, cover: "images/books/g4-sanaysay.jpg", category: "Filipino", isbn: "978-4234567896", overview: "Gabay sa pagsulat ng sanaysay at paghahanda ng talumpati. Alamin ang mga teknik sa paglalahad ng ideya at pagiging epektibo sa pagpapahayag ng saloobin." }
             ],
             english: [
-                { title: "English for Young Learners 4", author: "Language Institute", available: true, cover: "images/books/g4-english-learners.jpg" },
-                { title: "Reading Comprehension 4", author: "Education Publishers", available: true, cover: "images/books/g4-comprehension.jpg" },
-                { title: "Grammar Essentials", author: "Teaching Team", available: false, cover: "images/books/g4-grammar.jpg" },
-                { title: "Creative Writing Workshop", author: "Writers Workshop", available: true, cover: "images/books/g4-creative.jpg" },
-                { title: "Poetry and Literature", author: "Young Poets", available: true, cover: "images/books/g4-poetry.jpg" }
+                { title: "English for Young Learners 4", author: "Language Institute", available: true, cover: "images/books/g4-english-learners.jpg", category: "English", isbn: "978-4234567897", overview: "Comprehensive English program focusing on grammar, vocabulary, reading comprehension, and writing skills. Includes engaging activities and real-world applications." },
+                { title: "Reading Comprehension 4", author: "Education Publishers", available: true, cover: "images/books/g4-comprehension.jpg", category: "English", isbn: "978-4234567898", overview: "Enhance reading skills through diverse passages and comprehension questions. Learn to identify themes, make predictions, and analyze character development in stories." },
+                { title: "Grammar Essentials", author: "Teaching Team", available: false, cover: "images/books/g4-grammar.jpg", category: "English", isbn: "978-4234567899", overview: "Master advanced grammar concepts including complex sentences, verb tenses, and proper punctuation. Practice through exercises and real-world writing applications." },
+                { title: "Creative Writing Workshop", author: "Writers Workshop", available: true, cover: "images/books/g4-creative.jpg", category: "English", isbn: "978-4234567900", overview: "Develop creative writing skills through guided activities. Learn to write narratives, descriptive essays, and poetry while expressing your unique voice and ideas." },
+                { title: "Poetry and Literature", author: "Young Poets", available: true, cover: "images/books/g4-poetry.jpg", category: "English", isbn: "978-4234567901", overview: "Explore various forms of poetry and literary works. Understand metaphors, similes, and other literary devices while creating your own poetic compositions." }
             ],
             mathematics: [
-                { title: "Advanced Multiplication", author: "Math Wizards", available: true, cover: "images/books/g4-multiplication.jpg" },
-                { title: "Division Mastery", author: "Numbers Team", available: true, cover: "images/books/g4-division.jpg" },
-                { title: "Fractions and Decimals", author: "Math Department", available: false, cover: "images/books/g4-fractions.jpg" },
-                { title: "Geometry and Shapes", author: "Shape Experts", available: true, cover: "images/books/g4-geometry.jpg" },
-                { title: "Word Problems 4", author: "Problem Solvers", available: true, cover: "images/books/g4-word-problems.jpg" },
-                { title: "Measurement and Data", author: "Math Skills", available: true, cover: "images/books/g4-measurement.jpg" }
+                { title: "Advanced Multiplication", author: "Math Wizards", available: true, cover: "images/books/g4-multiplication.jpg", category: "Mathematics", isbn: "978-4234567902", overview: "Master multiplication with multi-digit numbers. Learn efficient strategies, mental math techniques, and real-world applications of multiplication in daily life." },
+                { title: "Division Mastery", author: "Numbers Team", available: true, cover: "images/books/g4-division.jpg", category: "Mathematics", isbn: "978-4234567903", overview: "Develop division skills with remainders and long division. Understand the relationship between multiplication and division through practical problem-solving." },
+                { title: "Fractions and Decimals", author: "Math Department", available: false, cover: "images/books/g4-fractions.jpg", category: "Mathematics", isbn: "978-4234567904", overview: "Explore equivalent fractions, comparing fractions, and basic decimal operations. Learn to convert between fractions and decimals with visual representations." },
+                { title: "Geometry and Shapes", author: "Shape Experts", available: true, cover: "images/books/g4-geometry.jpg", category: "Mathematics", isbn: "978-4234567905", overview: "Study geometric shapes, angles, perimeter, and area. Identify and classify polygons while understanding their properties and real-world applications." },
+                { title: "Word Problems 4", author: "Problem Solvers", available: true, cover: "images/books/g4-word-problems.jpg", category: "Mathematics", isbn: "978-4234567906", overview: "Solve complex word problems using multiple operations. Develop critical thinking and analytical skills through real-life mathematical scenarios." },
+                { title: "Measurement and Data", author: "Math Skills", available: true, cover: "images/books/g4-measurement.jpg", category: "Mathematics", isbn: "978-4234567907", overview: "Learn about units of measurement, converting units, and interpreting data through graphs and charts. Apply measurement skills to practical situations." }
             ],
             science: [
-                { title: "Our Living World 4", author: "Science Department", available: true, cover: "images/books/g4-living-world.jpg" },
-                { title: "Matter and Energy", author: "Physics Team", available: true, cover: "images/books/g4-matter.jpg" },
-                { title: "Ecosystems and Habitats", author: "Biology Center", available: true, cover: "images/books/g4-ecosystems.jpg" },
-                { title: "Earth and Space Science", author: "Astronomy Lab", available: false, cover: "images/books/g4-earth-space.jpg" },
-                { title: "Science Experiments 4", author: "Lab Researchers", available: true, cover: "images/books/g4-experiments.jpg" },
-                { title: "Weather and Climate", author: "Meteorology Team", available: true, cover: "images/books/g4-weather.jpg" }
+                { title: "Our Living World 4", author: "Science Department", available: true, cover: "images/books/g4-living-world.jpg", category: "Science", isbn: "978-4234567908", overview: "Explore ecosystems, food webs, and biodiversity. Understand how living organisms interact with their environment and depend on each other for survival." },
+                { title: "Matter and Energy", author: "Physics Team", available: true, cover: "images/books/g4-matter.jpg", category: "Science", isbn: "978-4234567909", overview: "Investigate properties of matter, chemical and physical changes, and forms of energy. Conduct experiments to understand energy transfer and transformation." },
+                { title: "Ecosystems and Habitats", author: "Biology Center", available: true, cover: "images/books/g4-ecosystems.jpg", category: "Science", isbn: "978-4234567910", overview: "Study different ecosystems from rainforests to deserts. Learn how organisms adapt to their habitats and the importance of environmental conservation." },
+                { title: "Earth and Space Science", author: "Astronomy Lab", available: false, cover: "images/books/g4-earth-space.jpg", category: "Science", isbn: "978-4234567911", overview: "Discover Earth's place in the solar system, moon phases, and seasonal changes. Learn about rocks, minerals, and the water cycle." },
+                { title: "Science Experiments 4", author: "Lab Researchers", available: true, cover: "images/books/g4-experiments.jpg", category: "Science", isbn: "978-4234567912", overview: "Hands-on experiments covering various science topics. Follow the scientific method to observe, hypothesize, and draw conclusions from investigations." },
+                { title: "Weather and Climate", author: "Meteorology Team", available: true, cover: "images/books/g4-weather.jpg", category: "Science", isbn: "978-4234567913", overview: "Understand weather patterns, climate zones, and atmospheric phenomena. Learn how to read weather maps and predict weather conditions." }
             ],
             ap: [
-                { title: "Kasaysayan ng Pilipinas 4", author: "History Scholars", available: true, cover: "images/books/g4-kasaysayan.jpg" },
-                { title: "Heograpiya ng Bansa", author: "Geography Team", available: true, cover: "images/books/g4-geography.jpg" },
-                { title: "Mga Bayani at Kabayanihan", author: "National Heroes", available: true, cover: "images/books/g4-bayani.jpg" },
-                { title: "Kultura at Tradisyon", author: "Heritage Center", available: false, cover: "images/books/g4-kultura.jpg" },
-                { title: "Pamayanan at Lipunan", author: "Civic Education", available: true, cover: "images/books/g4-pamayanan.jpg" }
+                { title: "Kasaysayan ng Pilipinas 4", author: "History Scholars", available: true, cover: "images/books/g4-kasaysayan.jpg", category: "Araling Panlipunan", isbn: "978-4234567914", overview: "Malalim na pag-aaral ng kasaysayan ng Pilipinas mula sa panahon ng Espanyol hanggang sa Amerikanong pananakop. Alamin ang mga mahalagang kaganapan at personalidad." },
+                { title: "Heograpiya ng Bansa", author: "Geography Team", available: true, cover: "images/books/g4-geography.jpg", category: "Araling Panlipunan", isbn: "978-4234567915", overview: "Pag-aralan ang heograpikal na katangian ng Pilipinas, mga rehiyon, likas na yaman, at kapaligiran. Unawain ang ugnayan ng tao at kalikasan." },
+                { title: "Mga Bayani at Kabayanihan", author: "National Heroes", available: true, cover: "images/books/g4-bayani.jpg", category: "Araling Panlipunan", isbn: "978-4234567916", overview: "Kilalaning mabuti ang mga bayaning Pilipino at ang kanilang naging ambag sa kalayaan at pag-unlad ng bansa. Maging inspirado sa kanilang dedikasyon." },
+                { title: "Kultura at Tradisyon", author: "Heritage Center", available: false, cover: "images/books/g4-kultura.jpg", category: "Araling Panlipunan", isbn: "978-4234567917", overview: "Tuklasin ang iba't ibang kultura at tradisyon ng mga Pilipino sa iba't ibang rehiyon. Pahalagahan ang pagkakaiba-iba at pagkakaisa ng bansa." },
+                { title: "Pamayanan at Lipunan", author: "Civic Education", available: true, cover: "images/books/g4-pamayanan.jpg", category: "Araling Panlipunan", isbn: "978-4234567918", overview: "Unawain ang tungkulin ng bawat mamamayan sa lipunan. Matutunan ang tungkol sa pamahalaan, ekonomiya, at pakikilahok sa komunidad." }
             ],
             mapeh: [
-                { title: "Music Fundamentals 4", author: "Music Department", available: true, cover: "images/books/g4-music.jpg" },
-                { title: "Philippine Folk Songs", author: "Cultural Arts", available: true, cover: "images/books/g4-folk-songs.jpg" },
-                { title: "Creative Arts and Crafts", author: "Arts Team", available: true, cover: "images/books/g4-arts-crafts.jpg" },
-                { title: "Physical Fitness for Kids", author: "PE Department", available: false, cover: "images/books/g4-fitness.jpg" },
-                { title: "Health and Hygiene", author: "Health Center", available: true, cover: "images/books/g4-health.jpg" },
-                { title: "Sports and Games 4", author: "Athletics Team", available: true, cover: "images/books/g4-sports.jpg" }
+                { title: "Music Fundamentals 4", author: "Music Department", available: true, cover: "images/books/g4-music.jpg", category: "MAPEH", isbn: "978-4234567919", overview: "Learn musical notation, rhythm, melody, and harmony. Explore different musical instruments and develop appreciation for various music genres." },
+                { title: "Philippine Folk Songs", author: "Cultural Arts", available: true, cover: "images/books/g4-folk-songs.jpg", category: "MAPEH", isbn: "978-4234567920", overview: "Discover traditional Filipino folk songs from different regions. Learn the history and cultural significance of each song through singing and performance." },
+                { title: "Creative Arts and Crafts", author: "Arts Team", available: true, cover: "images/books/g4-arts-crafts.jpg", category: "MAPEH", isbn: "978-4234567921", overview: "Express creativity through various art forms including drawing, painting, and sculpture. Learn about color theory, composition, and artistic techniques." },
+                { title: "Physical Fitness for Kids", author: "PE Department", available: false, cover: "images/books/g4-fitness.jpg", category: "MAPEH", isbn: "978-4234567922", overview: "Develop physical fitness through exercises, games, and sports activities. Understand the importance of regular exercise and healthy lifestyle habits." },
+                { title: "Health and Hygiene", author: "Health Center", available: true, cover: "images/books/g4-health.jpg", category: "MAPEH", isbn: "978-4234567923", overview: "Learn about personal hygiene, nutrition, disease prevention, and overall wellness. Make informed decisions about health and safety in daily life." },
+                { title: "Sports and Games 4", author: "Athletics Team", available: true, cover: "images/books/g4-sports.jpg", category: "MAPEH", isbn: "978-4234567924", overview: "Master fundamental skills in various sports and traditional Filipino games. Learn sportsmanship, teamwork, and fair play through competitive activities." }
             ],
             epp: [
-                { title: "Home Economics 4", author: "Life Skills Team", available: true, cover: "images/books/g4-home-ec.jpg" },
-                { title: "Agriculture Basics", author: "Agri Department", available: true, cover: "images/books/g4-agriculture.jpg" },
-                { title: "Industrial Arts", author: "Tech Education", available: false, cover: "images/books/g4-industrial.jpg" },
-                { title: "ICT Fundamentals", author: "Computer Lab", available: true, cover: "images/books/g4-ict.jpg" },
-                { title: "Entrepreneurship for Kids", author: "Business Education", available: true, cover: "images/books/g4-entrepreneur.jpg" }
+                { title: "Home Economics 4", author: "Life Skills Team", available: true, cover: "images/books/g4-home-ec.jpg", category: "EPP", isbn: "978-4234567925", overview: "Develop practical life skills including basic cooking, sewing, and household management. Learn the importance of family roles and responsibilities." },
+                { title: "Agriculture Basics", author: "Agri Department", available: true, cover: "images/books/g4-agriculture.jpg", category: "EPP", isbn: "978-4234567926", overview: "Introduction to agriculture, gardening, and plant care. Understand the food production process and the importance of sustainable farming practices." },
+                { title: "Industrial Arts", author: "Tech Education", available: false, cover: "images/books/g4-industrial.jpg", category: "EPP", isbn: "978-4234567927", overview: "Learn basic woodworking, metalworking, and craft skills. Develop hand-eye coordination and problem-solving abilities through practical projects." },
+                { title: "ICT Fundamentals", author: "Computer Lab", available: true, cover: "images/books/g4-ict.jpg", category: "EPP", isbn: "978-4234567928", overview: "Introduction to computers, basic software applications, and internet safety. Develop digital literacy skills essential for modern learning and communication." },
+                { title: "Entrepreneurship for Kids", author: "Business Education", available: true, cover: "images/books/g4-entrepreneur.jpg", category: "EPP", isbn: "978-4234567929", overview: "Learn basic business concepts, money management, and entrepreneurial thinking. Develop creativity and problem-solving skills for future endeavors." }
             ],
             gmrc: [
-                { title: "Respect and Responsibility 4", author: "Values Team", available: true, cover: "images/books/g4-respect.jpg" },
-                { title: "Friendship and Teamwork", author: "Social Skills", available: true, cover: "images/books/g4-friendship.jpg" },
-                { title: "Honesty and Integrity", author: "Character Building", available: true, cover: "images/books/g4-honesty.jpg" },
-                { title: "Kindness and Compassion", author: "Moral Education", available: true, cover: "images/books/g4-kindness.jpg" }
+                { title: "Respect and Responsibility 4", author: "Values Team", available: true, cover: "images/books/g4-respect.jpg", category: "GMRC", isbn: "978-4234567930", overview: "Develop deeper understanding of respect for self, others, and the environment. Learn about personal and social responsibility in school and community." },
+                { title: "Friendship and Teamwork", author: "Social Skills", available: true, cover: "images/books/g4-friendship.jpg", category: "GMRC", isbn: "978-4234567931", overview: "Strengthen interpersonal skills and learn the value of cooperation. Understand how to build positive relationships and work effectively in groups." },
+                { title: "Honesty and Integrity", author: "Character Building", available: true, cover: "images/books/g4-honesty.jpg", category: "GMRC", isbn: "978-4234567932", overview: "Explore the importance of honesty, truthfulness, and integrity in daily life. Learn how to make ethical decisions and stand up for what is right." },
+                { title: "Kindness and Compassion", author: "Moral Education", available: true, cover: "images/books/g4-kindness.jpg", category: "GMRC", isbn: "978-4234567933", overview: "Cultivate empathy and compassion for others. Learn about helping those in need and making positive contributions to society." }
             ]
         };
-
+        
+        let selectedBook = null;
+        
         function renderBooks(category) {
             const container = document.getElementById(`${category}-books`);
-            const books = booksDatabase[category];
-
+            if (!container) return;
+            const books = booksDatabase[category] || [];
             container.innerHTML = books.map(book => `
                 <div class="book-card">
                     <div class="book-cover">
-                        <img src="${book.cover}" alt="${book.title}" 
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <svg style="display:none;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
-                        </svg>
-                        <span class="availability-badge ${book.available ? 'available' : 'borrowed'}">
-                            ${book.available ? 'Available' : 'Borrowed'}
-                        </span>
+                        ${book.cover ? `<img src="${book.cover}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="${book.cover ? 'display:none;' : ''}"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                        <span class="availability-badge ${book.available ? 'available' : 'borrowed'}">${book.available ? 'Available' : 'Borrowed'}</span>
                     </div>
                     <div class="book-info">
-                        <h3 class="book-title">${book.title}</h3>
-                        <p class="book-author">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                             ${book.author}
-                        </p>
+                        </div>
                     </div>
                     <div class="book-actions">
-                        <button class="btn btn-view" onclick="viewBook('${book.title}')">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                            </svg>
+                        <button class="btn btn-view" onclick='viewBook(${JSON.stringify(book).replace(/'/g, "&apos;")})'>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
                             View
                         </button>
-                        <button class="btn btn-borrow" onclick="borrowBook('${book.title}')" ${!book.available ? 'disabled' : ''}>
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
-                            </svg>
+                        <button class="btn btn-borrow" ${!book.available ? 'disabled' : ''} onclick='borrowBook(${JSON.stringify(book).replace(/'/g, "&apos;")})'>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                             Borrow
                         </button>
-                        <button class="btn btn-read" onclick="readOnline('${book.title}')">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
-                            </svg>
+                        <button class="btn btn-read" onclick='readBook(${JSON.stringify(book).replace(/'/g, "&apos;")})'>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>
                             Read
                         </button>
                     </div>
                 </div>
             `).join('');
         }
-
+        
         function showCategory(category) {
-            document.querySelectorAll('.category-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
+            document.querySelectorAll('.category-section').forEach(section => section.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`${category}-section`).classList.add('active');
             event.target.classList.add('active');
-
-            window.scrollTo({ top: document.querySelector('.category-tabs').offsetTop - 100, behavior: 'smooth' });
         }
-
-        function viewBook(title) {
-            alert(`Viewing details for: ${title}\n\nThis will open the book details page.`);
+        
+        function viewBook(book) {
+            selectedBook = book;
+            document.getElementById('modalBookTitle').textContent = book.title;
+            document.getElementById('modalAuthor').textContent = book.author;
+            document.getElementById('modalCategory').textContent = book.category;
+            document.getElementById('modalGrade').textContent = 'Grade 4';
+            document.getElementById('modalISBN').textContent = book.isbn || 'N/A';
+            document.getElementById('modalOverview').textContent = book.overview;
+            document.getElementById('modalStatus').textContent = book.available ? 'Available' : 'Borrowed';
+            document.getElementById('modalStatus').className = book.available ? 'status' : 'status borrowed';
+            
+            const modalBorrowBtn = document.getElementById('modalBorrowBtn');
+            if (book.available) {
+                modalBorrowBtn.disabled = false;
+                modalBorrowBtn.textContent = 'Borrow This Book';
+            } else {
+                modalBorrowBtn.disabled = true;
+                modalBorrowBtn.textContent = 'Currently Borrowed';
+            }
+            
+            const thumbnail = document.getElementById('modalThumbnail');
+            if (book.cover) {
+                thumbnail.innerHTML = `<img src="${book.cover}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>`;
+            } else {
+                thumbnail.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>`;
+            }
+            
+            document.getElementById('bookModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-
-        function borrowBook(title) {
-            if (confirm(`Do you want to borrow "${title}"?`)) {
-                alert(`Book borrowed successfully!\nYou have 7 days to return "${title}".`);
+        
+        function closeModal() {
+            document.getElementById('bookModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            selectedBook = null;
+        }
+        
+        function borrowBook(book) {
+            if (!book.available) {
+                alert('This book is currently borrowed.');
+                return;
+            }
+            alert(`You have requested to borrow: "${book.title}"\n\nPlease visit the library to complete the borrowing process.`);
+        }
+        
+        function borrowFromModal() {
+            if (selectedBook && selectedBook.available) {
+                borrowBook(selectedBook);
             }
         }
-
-        function readOnline(title) {
-            alert(`Opening "${title}" in online reader...\n\nThis will launch the e-reader interface.`);
+        
+        function readBook(book) {
+            alert(`Opening "${book.title}" in the online reader...\n\nThis feature will be available soon!`);
         }
-
-        // Restored per-page dropdown behavior (inline)
-
-        function toggleDropdown(e) {
-            e = e || window.event;
-            try { e.stopPropagation(); } catch (err) {}
-            var toggle = e.currentTarget || e.target;
-            var dd = toggle.closest('.dropdown');
-            var menu = dd ? dd.querySelector('.dropdown-menu') : document.getElementById('booksMenu');
-            if (!menu) return;
-            menu.classList.toggle('show');
-            if (dd) dd.classList.toggle('active');
-            var t = dd ? dd.querySelector('.dropdown-toggle') : null;
-            if (t) t.setAttribute('aria-expanded', menu.classList.contains('show') ? 'true' : 'false');
+        
+        function readFromModal() {
+            if (selectedBook) {
+                readBook(selectedBook);
+            }
         }
-
-        (function () {
-            document.addEventListener('click', function () {
-                document.querySelectorAll('.dropdown-menu.show').forEach(function (menu) {
-                    menu.classList.remove('show');
-                    var d = menu.closest('.dropdown');
-                    if (d) d.classList.remove('active');
-                    var t = d ? d.querySelector('.dropdown-toggle') : null;
-                    if (t) t.setAttribute('aria-expanded', 'false');
-                });
-            });
-            document.querySelectorAll('.dropdown-menu').forEach(function (menu) {
-                menu.addEventListener('click', function (e) { e.stopPropagation(); });
-            });
-        })();
-
-        document.addEventListener('DOMContentLoaded', function() {
-            renderBooks('filipino');
-            renderBooks('english');
-            renderBooks('mathematics');
-            renderBooks('science');
-            renderBooks('ap');
-            renderBooks('mapeh');
-            renderBooks('epp');
-            renderBooks('gmrc');
+        
+        document.getElementById('bookModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+        
+        function toggleDropdown() {
+            const menu = document.getElementById('booksMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        document.addEventListener('click', function(e) {
+            const dropdown = document.querySelector('.dropdown');
+            if (dropdown && !dropdown.contains(e.target)) {
+                document.getElementById('booksMenu').style.display = 'none';
+            }
         });
     </script>
 </body>
