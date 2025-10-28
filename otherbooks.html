@@ -605,7 +605,31 @@
     </footer>
 
     <script>
-        // Complete books database for Other Books
+        document.addEventListener('DOMContentLoaded', function() {
+    
+    const userType = sessionStorage.getItem('userType');
+    const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
+    
+    const dashboardLinks = document.querySelectorAll('a[href*="dashboard"]');
+    dashboardLinks.forEach(link => {
+        if (link.href.includes('studentdashboard.html')) {
+            link.href = dashboardUrl;
+        }
+    });
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        if (link.textContent.trim() === 'DASHBOARD') {
+            link.href = dashboardUrl;
+        }
+    });
+    
+});
+function goToDashboard() {
+    const userType = sessionStorage.getItem('userType');
+    const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
+    window.location.href = dashboardUrl;
+}
+        // emeng database for Other Books
         const booksDatabase = {
             kwentong: [
                 { title: "Si Juan Tamad", author: "Filipino Folklore", available: true, cover: "images/books/juan-tamad.jpg" },

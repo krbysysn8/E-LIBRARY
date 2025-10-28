@@ -605,7 +605,31 @@
     </footer>
 
     <script>
-        // Complete books database for Grade 4
+        document.addEventListener('DOMContentLoaded', function() {
+    
+    const userType = sessionStorage.getItem('userType');
+    const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
+    
+    const dashboardLinks = document.querySelectorAll('a[href*="dashboard"]');
+    dashboardLinks.forEach(link => {
+        if (link.href.includes('studentdashboard.html')) {
+            link.href = dashboardUrl;
+        }
+    });
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        if (link.textContent.trim() === 'DASHBOARD') {
+            link.href = dashboardUrl;
+        }
+    });
+    
+});
+function goToDashboard() {
+    const userType = sessionStorage.getItem('userType');
+    const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
+    window.location.href = dashboardUrl;
+}
+        // emeng database for Grade 4
         const booksDatabase = {
             filipino: [
                 { title: "Panitikan ng Pilipinas 4", author: "Literary Team", available: true, cover: "images/books/g4-panitikan.jpg" },
