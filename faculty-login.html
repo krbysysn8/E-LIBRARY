@@ -6,6 +6,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <title>Faculty Login | Pedro Guevara Elementary School E-Library</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .register-link a {
+            color: #4a5f9d;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -57,6 +76,9 @@
                     <div class="forgot-link">
                         <a href="forgot.html?type=faculty">Forgot your password? Click here</a>
                     </div>
+                    <div class="register-link">
+                        Don't have an account? <a href="facultyregister.html">Register here</a>
+                    </div>
                 </div>
             </div>
             <div class="login-image">
@@ -104,12 +126,16 @@
         const username = document.getElementById('faculty-username').value;
         const password = document.getElementById('faculty-password').value;
         
-        if (username && password) {
+        const registeredFaculty = JSON.parse(localStorage.getItem('registeredFaculty') || '[]');
+        const faculty = registeredFaculty.find(f => f.facultyId === username && f.password === password);
+        
+        if (faculty) {
             const facultyData = {
-                name: 'Maria Clara Santos', 
-                facultyId: username,
-                department: 'Mathematics', 
-                photo: '' 
+                name: faculty.fullName,
+                facultyId: faculty.facultyId,
+                department: faculty.department,
+                position: faculty.position,
+                photo: faculty.photo
             };
             
             sessionStorage.setItem('facultyData', JSON.stringify(facultyData));
@@ -118,7 +144,7 @@
             
             window.location.href = 'facultydashboard.html';
         } else {
-            alert('Please fill in all fields');
+            alert('Invalid Faculty ID or Password. Please try again.');
         }
     }
 </script>
