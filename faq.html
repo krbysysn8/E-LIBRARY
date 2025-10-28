@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | Pedro Guevara Elementary School E-Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f9fafc;
+      margin: 0;
+      padding: 0;
+    }
+
+    .logo img {
+            width: 180px;
+            height: 150px;
+            border-radius: 100%;
+            box-shadow: 0 4px 24px rgba(74,95,157,0.18);
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 5px;
+        }
+        .header-text h1 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 8px;
+            margin-left: -29px;
+        }
+        .header-text h2 {
+            font-size: 29px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-left: -29px;
+        }
+        .header-text p {
+            font-size: 18px;
+            margin-left: -29px;
+        }
+       nav {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 15px 0;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 40px;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #6b7fa8;
+    }
+
+    .header-text h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .header-text h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 28px;
+      margin: 5px 0;
+      font-weight: 700;
+    }
+
+    .header-text p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin: 25px 40px;
+      background-color: #004aad;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .back-home:hover {
+      background-color: #003580;
+    }
+    .faq-container {
+      max-width: 800px;
+      margin: 20px auto 50px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #004aad;
+    }
+
+    .faq {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      cursor: pointer;
+    }
+
+    .faq:last-child {
+      border-bottom: none;
+    }
+
+    .question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      color: #004aad;
+    }
+
+    .answer {
+      display: none;
+      padding-top: 10px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .answer ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+
+    .answer li {
+      margin: 5px 0;
+    }
+
+    .answer ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+
+    .answer a {
+      color: #004aad;
+      text-decoration: underline;
+    }
+
+    .faq.active .answer {
+      display: block;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 139px;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .social-icons a:hover svg {
+            fill: #4a5f9d;
+        }
+  </style>
+</head>
+
+<body class="homepage-with-bg">
+  <header>
+    <div class="logo">
+      <a href="homepage.html" aria-label="Go to Homepage">
+        <img src="images/school/logo.png" alt="PGES Logo"/>
+      </a>
+    </div>
+    <div class="header-text">
+      <h1>Republic of the Philippines</h1>
+      <h2>Pedro Guevara Elementary School E-Library</h2>
+      <p>San Nicolas, Manila</p>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="homepage.html">HOMEPAGE</a></li>
+      <li><a href="about.html">ABOUT US</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+
+    </ul>
+  </nav>
+
+  <main>
+
+  <div class="faq-container">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq">
+      <div class="question">
+        <span>Who can access the E-Library?</span>
+        <span>+</span>
+      </div>
+      <div class="answer">
+        Only registered students and teachers of Pedro Guevara Elementary School are authorized to access the e-library website.
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <span>How do I borrow books through the e-library?</span>
+        <span>+</span>
+      </div>
+      <div class="answer">
+        To borrow a book:
+        <ol>
+          <li>Log in to the e-library system.</li>
+          <li>Click the "Borrow" button next to your chosen book.</li>
+          <li>Present your school ID to the librarian to receive the physical copy.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <span>How long can I borrow books?</span>
+        <span>+</span>
+      </div>
+      <div class="answer">
+        <ul>
+          <li>Students may borrow books for up to <strong>7 days</strong> from the date of borrowing.</li>
+          <li>Teachers may borrow books for up to <strong>14 days</strong> from the date of borrowing.</li>
+        </ul>
+        <p>Please borrow and return books responsibly.</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <span>Are there online copies of books available?</span>
+        <span>+</span>
+      </div>
+      <div class="answer">
+        Yes, some books have digital versions that can be accessed directly through the website. Others are available only in physical format.
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <span>How can I contact the library for help?</span>
+        <span>+</span>
+      </div>
+      <div class="answer">
+        You can reach out in two ways:
+        <ol>
+          <li>Message us via our official Facebook page: <a href="#" target="_blank">[Facebook Page Link]</a></li>
+          <li>Visit the library and speak with the librarian during library hours (8 AM - 3 PM).</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+
+  </main>
+  <footer>
+        <div>
+            <p>2025 PGES All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-use.html">Terms of Use</a>
+        </div>
+        <div class="social-icons">
+            <a href="#facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <a href="#instagram" title="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+  <script>
+    document.querySelectorAll('.faq').forEach(faq => {
+      faq.addEventListener('click', () => {
+        faq.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

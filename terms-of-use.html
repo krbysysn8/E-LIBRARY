@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Login Dashboard | Pedro Guevara Elementary School E-Library</title>
+    <link rel="stylesheet" href="styles.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      background: linear-gradient(135deg, #e8edff 0%, #f8f9fa 100%);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+     header {
+      background: linear-gradient(135deg, #5a6b8f 0%, #6b7fa8 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      gap: 20px;
+    }
+
+    .logo img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .header-text h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .header-text h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .header-text p {
+      font-size: 0.95rem;
+    }
+
+    nav {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 15px 0;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 40px;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #6b7fa8;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .title-wrapper {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+      background: linear-gradient(135deg, #5a6b8f 0%, #6b7fa8 100%);
+      padding: 38px 0 28px 0;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 32px rgba(90,107,143,0.12);
+      color: #fff;
+    }
+
+    .title-wrapper h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.5rem;
+      color: #fff;
+      margin: 0 0 8px 0;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(74,95,157,0.18);
+    }
+
+    .title-wrapper p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      margin: 0;
+    }
+
+    .sections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 36px;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto 40px auto;
+      padding: 0 32px;
+    }
+
+    .creative-section {
+      position: relative;
+      background: linear-gradient(135deg, #f8f9fa 60%, #e8edff 100%);
+      padding: 38px 32px 38px 32px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(74,95,157,0.10);
+      transition: transform 0.2s, box-shadow 0.2s, border-left 0.2s;
+      overflow: hidden;
+      border-left: 10px solid #5a6b8f;
+      min-height: 220px;
+      z-index: 1;
+    }
+
+    .creative-section:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 16px 48px rgba(74,95,157,0.18);
+      border-left: 10px solid #6b7fa8;
+    }
+
+    .section-icon {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      opacity: 0.13;
+      font-size: 5.5rem;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .creative-section h2 {
+      color: #5a6b8f;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-family: 'Fredoka', Arial, sans-serif;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 1px;
+    }
+
+    .creative-section p, .creative-section ul {
+      position: relative;
+      z-index: 1;
+      font-size: 1.05rem;
+    }
+
+    .creative-section ul {
+      padding-left: 22px;
+      margin-bottom: 15px;
+    }
+
+    .creative-section li {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .sections-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+      }
+    }
+
+    ooter {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 139px;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .social-icons a:hover svg {
+            fill: #4a5f9d;
+        }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="homepage.html">
+        <img src="images/school/logo.png" alt="PGES Logo">
+      </a>
+    </div>
+    <div class="header-text">
+      <h1>Republic of the Philippines</h1>
+      <h2>Pedro Guevara Elementary School E-Library</h2>
+      <p>San Nicolas, Manila</p>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="homepage.html">Homepage</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+      <div class="title-wrapper">
+        <h1>Terms of Use</h1>
+        <p>Last Updated: October 28, 2025</p>
+      </div>
+      <div class="sections-grid">
+        <section class="creative-section"><span class="section-icon">✅</span><h2>Acceptance of Terms</h2><p>Welcome to the Pedro Guevara Elementary School E-Library. By accessing and using this platform, you agree to comply with and be bound by these Terms of Use. If you do not agree to these terms, please do not use the E-Library.</p><p>These terms apply to all students, faculty members, and authorized users of the E-Library system.</p></section>
+        <section class="creative-section"><span class="section-icon">🧑‍🎓</span><h2>Eligibility and Account Registration</h2><p>The E-Library is available exclusively to enrolled students and authorized faculty members of Pedro Guevara Elementary School. Users must:</p><ul><li>Be a current student or faculty member of Pedro Guevara Elementary School</li><li>Register with accurate and complete information</li><li>Keep login credentials confidential and secure</li><li>Notify the school immediately of any unauthorized use of their account</li><li>Accept responsibility for all activities that occur under their account</li></ul></section>
+        <section class="creative-section"><span class="section-icon">📚</span><h2>Acceptable Use Policy</h2><p>Users of the E-Library agree to use the platform responsibly and appropriately. The following activities are strictly prohibited:</p><ul><li>Sharing account credentials with others</li><li>Accessing or attempting to access another user's account</li><li>Downloading, copying, or distributing copyrighted materials without permission</li><li>Using the platform for commercial purposes</li><li>Transmitting viruses, malware, or any harmful code</li><li>Attempting to disrupt or interfere with the platform's functionality</li><li>Using the E-Library for any illegal or unauthorized purpose</li><li>Violating any applicable laws or regulations</li></ul></section>
+        <section class="creative-section"><span class="section-icon">🔖</span><h2>Borrowing and Access Rights</h2><p>Digital materials available through the E-Library are subject to borrowing policies:</p><ul><li>Books may be borrowed for a specified period as determined by the school</li><li>Users must return borrowed materials on or before the due date</li><li>Late returns may result in temporary suspension of borrowing privileges</li><li>The school reserves the right to recall borrowed materials if needed</li><li>Access to materials is for personal educational use only</li></ul></section>
+        <section class="creative-section"><span class="section-icon">💡</span><h2>Intellectual Property Rights</h2><p>All content available through the E-Library, including books, images, text, and software, is protected by copyright and other intellectual property laws. Users agree to:</p><ul><li>Respect all copyright notices and restrictions</li><li>Not reproduce, distribute, or create derivative works without permission</li><li>Use materials only for personal educational purposes</li><li>Acknowledge sources appropriately in academic work</li></ul></section>
+        <section class="creative-section"><span class="section-icon">🤝</span><h2>Code of Conduct</h2><p>All users must maintain respectful and appropriate behavior while using the E-Library:</p><ul><li>Respect other users' rights to access the platform</li><li>Use appropriate language in any communication features</li><li>Report any technical issues or inappropriate content to administrators</li><li>Follow all school policies and the Department of Education guidelines</li></ul></section>
+        <section class="creative-section"><span class="section-icon">⚠️</span><h2>Consequences of Violation</h2><p>Violation of these Terms of Use may result in:</p><ul><li>Warning and counseling</li><li>Temporary suspension of E-Library access</li><li>Permanent termination of account</li><li>Referral to school administration for disciplinary action</li><li>Legal action if violations involve illegal activities</li></ul></section>
+        <section class="creative-section"><span class="section-icon">🛠️</span><h2>Disclaimer of Warranties</h2><p>The E-Library platform is provided "as is" without warranties of any kind. While we strive to maintain continuous service, we do not guarantee uninterrupted or error-free access. The school is not responsible for:</p><ul><li>Technical difficulties or system downtime</li><li>Loss of data or materials</li><li>Errors or inaccuracies in content</li><li>Third-party content or external links</li></ul></section>
+        <section class="creative-section"><span class="section-icon">🚫</span><h2>Limitation of Liability</h2><p>Pedro Guevara Elementary School and its staff shall not be liable for any damages arising from the use or inability to use the E-Library, including but not limited to direct, indirect, incidental, or consequential damages.</p></section>
+        <section class="creative-section"><span class="section-icon">🔄</span><h2>System Maintenance and Modifications</h2><p>The school reserves the right to:</p><ul><li>Temporarily suspend the E-Library for maintenance or updates</li><li>Modify features, content, or availability of materials</li><li>Update these Terms of Use at any time</li><li>Discontinue the service with reasonable notice</li></ul><p>Users will be notified of significant changes through the platform or official school communications.</p></section>
+        <section class="creative-section"><span class="section-icon">🔏</span><h2>Privacy and Data Protection</h2><p>Use of the E-Library is also governed by our Privacy Policy, which describes how we collect, use, and protect user information. Please review the Privacy Policy for detailed information about data handling practices.</p></section>
+        <section class="creative-section"><span class="section-icon">⚖️</span><h2>Governing Law</h2><p>These Terms of Use are governed by the laws of the Republic of the Philippines and the policies of the Department of Education. Any disputes shall be resolved through appropriate school administrative procedures.</p></section>
+        <section class="creative-section"><span class="section-icon">📬</span><h2>Contact and Support</h2><p>For questions, concerns, or technical support regarding these Terms of Use or the E-Library platform, please contact:</p><p><strong>Pedro Guevara Elementary School E-Library</strong><br>San Nicolas, Manila<br>Email: <a href="mailto:elibrary@pedroguevara.edu.ph">elibrary@pedroguevara.edu.ph</a></p></section>
+        <section class="creative-section"><span class="section-icon">📝</span><h2>Acknowledgment</h2><p>By using the Pedro Guevara Elementary School E-Library, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use. Your continued use of the platform constitutes acceptance of any modifications to these terms.</p></section>
+      </div>
+    </main>
+
+  <footer>
+        <div>
+            <p>2025 PGES All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-use.html">Terms of Use</a>
+        </div>
+        <div class="social-icons">
+            <a href="#facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <a href="#instagram" title="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
+
+</head>
+<body class="homepage-with-bg">

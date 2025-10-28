@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Pedro Guevara Elementary School E-Library</title>
+    <link rel="stylesheet" href="styles.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    body {
+      font-family: 'Fredoka', Arial, sans-serif;
+      margin: 0;
+      background-color: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .logo img {
+            width: 180px;
+            height: 150px;
+            border-radius: 100%;
+            box-shadow: 0 4px 24px rgba(74,95,157,0.18);
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 5px;
+        }
+        .header-text h1 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 8px;
+            margin-left: -29px;
+        }
+        .header-text h2 {
+            font-size: 29px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-left: -29px;
+        }
+        .header-text p {
+            font-size: 18px;
+            margin-left: -29px;
+        }
+        nav {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 15px 0;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 40px;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #6b7fa8;
+    }
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #333;
+      line-height: 1.8;
+    }
+    .sections-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .creative-section {
+      position: relative;
+      background: linear-gradient(135deg, #f8f9fa 60%, #e8edff 100%);
+      padding: 32px 28px 32px 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(74,95,157,0.10);
+      margin-bottom: 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+      border-left: 8px solid #4a5f9d;
+    }
+    .creative-section:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(74,95,157,0.18);
+      border-left: 8px solid #6b82c5;
+    }
+    .section-icon {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      opacity: 0.13;
+      font-size: 5rem;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .creative-section h2 {
+      color: #4a5f9d;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      font-family: 'Fredoka', Arial, sans-serif;
+      position: relative;
+      z-index: 1;
+    }
+    .creative-section p, .creative-section ul {
+      position: relative;
+      z-index: 1;
+    }
+    .creative-section ul {
+      padding-left: 18px;
+    }
+    @media (max-width: 900px) {
+      .sections-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    section {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 0;
+    }
+
+    .title-wrapper {
+      text-align: center;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, rgba(74,95,157,0.95), rgba(107,130,197,0.95));
+      padding: 22px 18px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(74,95,157,0.12);
+      color: #fff;
+    }
+
+    .title-wrapper h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4a5f9d;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    section {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+
+    section h2 {
+      color: #4a5f9d;
+      margin-bottom: 10px;
+    }
+
+    footer {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 139px;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .social-icons a:hover svg {
+            fill: #4a5f9d;
+        }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="homepage.html">
+        <img src="images/school/logo.png" alt="School Logo">
+      </a>
+    </div>
+    <div class="header-text">
+      <h1>Republic of the Philippines</h1>
+      <h2>Pedro Guevara Elementary School</h2>
+      <p>San Nicolas, Manila</p>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="homepage.html">HOMEPAGE</a></li>
+      <li><a href="about.html">ABOUT US</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+
+    </ul>
+  </nav>
+
+  <main>
+      <div class="title-wrapper">
+        <h1>About Our E-Library</h1>
+      </div>
+      <div class="sections-grid">
+        <section class="creative-section">
+          <span class="section-icon">📚</span>
+          <h2>Overview</h2>
+          <p>
+            The Pedro Guevara Elementary School E-Library is a digital platform designed to give students
+            and faculty members convenient access to educational materials anytime, anywhere. It is a modern
+            solution to traditional library challenges—allowing for digital book borrowing, easy searching,
+            and seamless access to reading resources across all grade levels.
+          </p>
+        </section>
+        <section class="creative-section">
+          <span class="section-icon">🎯</span>
+          <h2>Objectives</h2>
+          <ul>
+            <li>To provide easy access to electronic books and learning materials.</li>
+            <li>To promote responsible digital resource usage among students and teachers.</li>
+            <li>To integrate technology into daily educational experiences.</li>
+            <li>To support the Department of Education's goal of modernized and inclusive learning.</li>
+          </ul>
+        </section>
+        <section class="creative-section">
+          <span class="section-icon">👨‍💻</span>
+          <h2>Developers</h2>
+          <p>
+            This system was developed by the 2nd Year and 4th Year BSIT students of <strong>Pamantasan ng Lungsod ng Maynila</strong>
+            as part of their Project. The team collaborated with the librarian of Pedro Guevara
+            Elementary School to create an efficient and user-friendly E-Library system tailored to the needs of the school.
+          </p>
+        </section>
+        <section class="creative-section">
+          <span class="section-icon">✉️</span>
+          <h2>Contact Us</h2>
+          <p>
+            For inquiries, suggestions, or technical assistance, please contact our support team at:
+            <a href="mailto:elibrary@pedroguevara.edu.ph">elibrary@pedroguevara.edu.ph</a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+  <footer>
+        <div>
+            <p>2025 PGES All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-use.html">Terms of Use</a>
+        </div>
+        <div class="social-icons">
+            <a href="#facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <a href="#instagram" title="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+</head>
+<body class="homepage-with-bg">
+
