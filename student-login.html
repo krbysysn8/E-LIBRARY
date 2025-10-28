@@ -6,6 +6,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <title>Student Login | Pedro Guevara Elementary School E-Library</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .register-link a {
+            color: #4a5f9d;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -56,6 +75,9 @@
                     </form>
                     <div class="forgot-link">
                         <a href="forgot.html?type=student">Forgot your password? Click here</a>
+                    </div>
+                    <div class="register-link">
+                        Don't have an account? <a href="studentregister.html">Register here</a>
                     </div>
                 </div>
             </div>
@@ -108,10 +130,21 @@
             const password = document.getElementById('student-password').value.trim();
 
             if (username && password) {
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userType', 'student');
+                const registeredStudents = JSON.parse(localStorage.getItem('registeredStudents') || '[]');
+                const student = registeredStudents.find(s => s.username === username && s.password === password);
 
-                window.location.href = 'studentdashboard.html';
+                if (student) {
+                    localStorage.setItem('studentData', JSON.stringify({
+                        name: student.fullName,
+                        grade: student.grade,
+                        photo: student.photo || ''
+                    }));
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userType', 'student');
+                    window.location.href = 'studentdashboard.html';
+                } else {
+                    alert('Invalid username or password. Please try again or register if you don\'t have an account.');
+                }
             } else {
                 alert('Please enter your username and password.');
             }
