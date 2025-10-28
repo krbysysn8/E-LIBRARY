@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Books Management | Pedro Guevara Elementary School E-Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 144px;
+        }
+        .logo img {
+            width: 180px;
+            height: 150px;
+            border-radius: 100%;
+            box-shadow: 0 4px 24px rgba(74,95,157,0.18);
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 5px;
+        }
+        .header-text h1 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 8px;
+            margin-left: -29px;
+        }
+        .header-text h2 {
+            font-size: 29px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-left: -29px;
+        }
+        .header-text p {
+            font-size: 18px;
+            margin-left: -29px;
+        }
+        nav {
+            background: white;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        nav a {
+            display: block;
+            padding: 14px 0;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        nav a:hover {
+            color: #4a5f9d;
+        }
+        .back-btn {
+            background: #4a5f9d;
+            color: white;
+            padding: 8px 24px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #6b82c5;
+            transform: translateY(-2px);
+        }
+        main {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .page-header {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.12);
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-header h1 {
+            font-family: 'Fredoka', Arial, sans-serif;
+            font-size: 2.2rem;
+            color: #4a5f9d;
+            margin-bottom: 8px;
+        }
+        .add-book-btn {
+            background: #27ae60;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+        .add-book-btn:hover {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        .stat-box {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.1);
+            text-align: center;
+        }
+        .stat-box h3 {
+            font-family: 'Fredoka', Arial, sans-serif;
+            font-size: 2.5rem;
+            color: #4a5f9d;
+            margin-bottom: 8px;
+        }
+        .stat-box p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .controls-section {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.1);
+            margin-bottom: 24px;
+        }
+        .search-filter-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-input:focus {
+            border-color: #4a5f9d;
+        }
+        .filter-select {
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .book-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(74,95,157,0.15);
+            border-color: #4a5f9d;
+        }
+        .book-header {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .book-cover {
+            width: 90px;
+            height: 130px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .book-info {
+            flex: 1;
+        }
+        .book-title {
+            font-family: 'Fredoka', Arial, sans-serif;
+            font-size: 1.3rem;
+            color: #4a5f9d;
+            margin-bottom: 6px;
+        }
+        .book-author {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+        .book-badges {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .book-grade {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #27ae60;
+            color: white;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .book-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e8f0fe;
+            color: #4a5f9d;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .book-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+        .detail-label {
+            color: #666;
+            font-weight: 600;
+        }
+        .detail-value {
+            color: #333;
+        }
+        .book-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            flex: 1;
+        }
+        .btn-edit {
+            background: #4a5f9d;
+            color: white;
+        }
+        .btn-edit:hover {
+            background: #6b82c5;
+        }
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .modal-header h3 {
+            font-size: 1.6rem;
+            color: #4a5f9d;
+            font-family: 'Fredoka', Arial, sans-serif;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            line-height: 1;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #4a5f9d;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #4a5f9d;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .image-upload-section {
+            margin-bottom: 20px;
+        }
+        .image-preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            border: 2px dashed #e0e0e0;
+            border-radius: 12px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        .image-preview-container:hover {
+            border-color: #4a5f9d;
+            background: #f0f4ff;
+        }
+        .image-preview {
+            width: 150px;
+            height: 200px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 60px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(74,95,157,0.2);
+        }
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .upload-controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+        .btn-upload {
+            background: #4a5f9d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .btn-upload:hover {
+            background: #6b82c5;
+            transform: translateY(-2px);
+        }
+        .btn-remove-image {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .btn-remove-image:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        .image-hint {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .btn-save {
+            background: #27ae60;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        .btn-save:hover {
+            background: #229954;
+        }
+        .btn-cancel {
+            background: #95a5a6;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        .btn-cancel:hover {
+            background: #7f8c8d;
+        }
+        footer {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 139px;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .social-icons a:hover svg {
+            fill: #4a5f9d;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="homepage.html">
+                <img src="images/school/logo.png" alt="PGES Logo"/>
+            </a>
+        </div>
+        <div class="header-text">
+            <h1>Republic of the Philippines</h1>
+            <h2>Pedro Guevara Elementary School E-Library</h2>
+            <p>San Nicolas, Manila</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="homepage.html">HOMEPAGE</a></li>
+            <li><a href="admindashboard.html">ADMIN DASHBOARD</a></li>
+            <li style="flex: 1;"></li>
+            <li>
+                <button class="back-btn" onclick="window.location.href='admindashboard.html'">← Back to Dashboard</button>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="page-header">
+            <div>
+                <h1>Books Management</h1>
+                <p>Add, edit, and manage library books</p>
+            </div>
+            <button class="add-book-btn" onclick="openAddModal()">+ Add New Book</button>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <h3 id="totalBooksCount">0</h3>
+                <p>Total Books</p>
+            </div>
+            <div class="stat-box">
+                <h3 id="availableBooksCount">0</h3>
+                <p>Available</p>
+            </div>
+            <div class="stat-box">
+                <h3 id="borrowedBooksCount">0</h3>
+                <p>Borrowed</p>
+            </div>
+            <div class="stat-box">
+                <h3 id="categoriesCount">0</h3>
+                <p>Categories</p>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <div class="search-filter-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search by title or author..." onkeyup="filterBooks()">
+                <select class="filter-select" id="gradeFilter" onchange="filterBooks()">
+                    <option value="all">All Grades</option>
+                    <option value="Grade 1">Grade 1</option>
+                    <option value="Grade 2">Grade 2</option>
+                    <option value="Grade 3">Grade 3</option>
+                    <option value="Grade 4">Grade 4</option>
+                    <option value="Grade 5">Grade 5</option>
+                    <option value="Grade 6">Grade 6</option>
+                    <option value="Other Books">Other Books</option>
+                </select>
+                <select class="filter-select" id="categoryFilter" onchange="filterBooks()">
+                    <option value="all">All Categories</option>
+                </select>
+                <select class="filter-select" id="statusFilter" onchange="filterBooks()">
+                    <option value="all">All Status</option>
+                    <option value="available">Available</option>
+                    <option value="borrowed">Borrowed</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="books-grid" id="booksGrid">
+        </div>
+    </main>
+
+    <div class="modal" id="bookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Book</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="bookForm" onsubmit="saveBook(event)">
+                <div class="image-upload-section">
+                    <label style="display: block; font-weight: 600; color: #4a5f9d; margin-bottom: 12px; font-size: 14px;">Book Cover Image</label>
+                    <div class="image-preview-container">
+                        <div class="image-preview" id="imagePreview">
+                            📚
+                        </div>
+                        <div class="upload-controls">
+                            <div class="file-input-wrapper">
+                                <label for="bookImageInput" class="btn-upload">Choose Image</label>
+                                <input type="file" id="bookImageInput" accept="image/*" onchange="handleImageUpload(event)">
+                            </div>
+                            <button type="button" class="btn-remove-image" id="removeImageBtn" onclick="removeImage()" style="display: none;">Remove Image</button>
+                        </div>
+                        <p class="image-hint">Recommended size: 300x400px (JPG, PNG, GIF)</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Book Title *</label>
+                    <input type="text" id="bookTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Author *</label>
+                    <input type="text" id="bookAuthor" required>
+                </div>
+                <div class="form-group">
+                    <label>Grade Level *</label>
+                    <select id="bookGrade" required onchange="updateCategoryOptions()">
+                        <option value="">Select Grade Level</option>
+                        <option value="Grade 1">Grade 1</option>
+                        <option value="Grade 2">Grade 2</option>
+                        <option value="Grade 3">Grade 3</option>
+                        <option value="Grade 4">Grade 4</option>
+                        <option value="Grade 5">Grade 5</option>
+                        <option value="Grade 6">Grade 6</option>
+                        <option value="Other Books">Other Books</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Category *</label>
+                    <select id="bookCategory" required>
+                        <option value="">Select Grade Level First</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>ISBN</label>
+                    <input type="text" id="bookISBN">
+                </div>
+                <div class="form-group">
+                    <label>Publisher</label>
+                    <input type="text" id="bookPublisher">
+                </div>
+                <div class="form-group">
+                    <label>Year Published</label>
+                    <input type="number" id="bookYear" min="1900" max="2025">
+                </div>
+                <div class="form-group">
+                    <label>Copies Available *</label>
+                    <input type="number" id="bookCopies" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="bookDescription" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Save Book</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <p>2025 PGES All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Use</a>
+        </div>
+        <div class="social-icons">
+            <a href="#facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <a href="#instagram" title="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        let allBooks = [];
+        let editingBookId = null;
+        let currentBookImage = null;
+
+        const gradeCategories = {
+            'Grade 1': ['Language', 'Reading & Literacy', 'Mathematics', 'Makabansa', 'GMRC'],
+            'Grade 2': ['Filipino', 'English', 'Mathematics', 'Makabansa', 'GMRC'],
+            'Grade 3': ['Filipino', 'English', 'Science', 'Mathematics', 'Makabansa', 'GMRC'],
+            'Grade 4': ['Filipino', 'English', 'Science', 'Mathematics', 'AP', 'MAPEH', 'EPP', 'GMRC'],
+            'Grade 5': ['Filipino', 'English', 'Science', 'Mathematics', 'AP', 'MAPEH', 'EPP', 'GMRC'],
+            'Grade 6': ['Filipino', 'English', 'Science', 'Mathematics', 'AP', 'MAPEH', 'Makabansa', 'TLE'],
+            'Other Books': ['Kwentong Pambata', 'Comics', 'Horror', 'Fairy Tales', 'Picture Books', 'Historical', 'Fantasy', 'Mystery']
+        };
+
+        function updateCategoryOptions() {
+            const gradeSelect = document.getElementById('bookGrade');
+            const categorySelect = document.getElementById('bookCategory');
+            const selectedGrade = gradeSelect.value;
+
+            categorySelect.innerHTML = '<option value="">Select Category</option>';
+
+            if (selectedGrade && gradeCategories[selectedGrade]) {
+                gradeCategories[selectedGrade].forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat;
+                    option.textContent = cat;
+                    categorySelect.appendChild(option);
+                });
+            }
+        }
+
+        function updateCategoryFilter() {
+            const gradeFilter = document.getElementById('gradeFilter').value;
+            const categoryFilter = document.getElementById('categoryFilter');
+            
+            categoryFilter.innerHTML = '<option value="all">All Categories</option>';
+
+            if (gradeFilter === 'all') {
+                const allCategories = new Set();
+                Object.values(gradeCategories).forEach(cats => {
+                    cats.forEach(cat => allCategories.add(cat));
+                });
+                [...allCategories].sort().forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat;
+                    option.textContent = cat;
+                    categoryFilter.appendChild(option);
+                });
+            } else if (gradeCategories[gradeFilter]) {
+                gradeCategories[gradeFilter].forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat;
+                    option.textContent = cat;
+                    categoryFilter.appendChild(option);
+                });
+            }
+        }
+
+        function initializeBooks() {
+            const stored = localStorage.getItem('libraryBooks');
+            if (stored) {
+                allBooks = JSON.parse(stored);
+            } else {
+                allBooks = [
+                    {
+                        id: 1,
+                        title: "Wika at Pagbasa para sa Grade 1",
+                        author: "DepEd Philippines",
+                        isbn: "978-1234567890",
+                        grade: "Grade 1",
+                        category: "Language",
+                        publisher: "Department of Education",
+                        year: 2023,
+                        copies: 10,
+                        available: 8,
+                        description: "Language textbook for Grade 1 students.",
+                        image: null
+                    },
+                    {
+                        id: 2,
+                        title: "Math Made Easy",
+                        author: "Juan dela Cruz",
+                        isbn: "978-0987654321",
+                        grade: "Grade 2",
+                        category: "Mathematics",
+                        publisher: "Rex Bookstore",
+                        year: 2023,
+                        copies: 15,
+                        available: 12,
+                        description: "Mathematics workbook for Grade 2 learners.",
+                        image: null
+                    },
+                    {
+                        id: 3,
+                        title: "Science Explorer",
+                        author: "Maria Santos",
+                        isbn: "978-1122334455",
+                        grade: "Grade 3",
+                        category: "Science",
+                        publisher: "Vibal Group",
+                        year: 2024,
+                        copies: 12,
+                        available: 10,
+                        description: "Science textbook with hands-on activities.",
+                        image: null
+                    },
+                    {
+                        id: 4,
+                        title: "Araling Panlipunan",
+                        author: "Jose Rizal Memorial",
+                        isbn: "978-5566778899",
+                        grade: "Grade 4",
+                        category: "AP",
+                        publisher: "Rex Bookstore",
+                        year: 2023,
+                        copies: 8,
+                        available: 6,
+                        description: "Social studies textbook for Grade 4.",
+                        image: null
+                    },
+                    {
+                        id: 5,
+                        title: "Ang Alamat ng Ampalaya",
+                        author: "Filipino Folklore",
+                        isbn: "978-9988776655",
+                        grade: "Other Books",
+                        category: "Kwentong Pambata",
+                        publisher: "Adarna House",
+                        year: 2022,
+                        copies: 20,
+                        available: 18,
+                        description: "A classic Filipino folktale for children.",
+                        image: null
+                    }
+                ];
+                saveBooks();
+            }
+        }
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Image size should be less than 5MB.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentBookImage = e.target.result;
+                displayImagePreview(currentBookImage);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function displayImagePreview(imageData) {
+            const preview = document.getElementById('imagePreview');
+            const removeBtn = document.getElementById('removeImageBtn');
+            
+            if (imageData) {
+                preview.innerHTML = `<img src="${imageData}" alt="Book cover">`;
+                removeBtn.style.display = 'block';
+            } else {
+                preview.innerHTML = '📚';
+                removeBtn.style.display = 'none';
+            }
+        }
+
+        function removeImage() {
+            currentBookImage = null;
+            displayImagePreview(null);
+            document.getElementById('bookImageInput').value = '';
+        }
+
+        function saveBooks() {
+            localStorage.setItem('libraryBooks', JSON.stringify(allBooks));
+        }
+
+        function updateStats() {
+            const total = allBooks.length;
+            const available = allBooks.reduce((sum, book) => sum + book.available, 0);
+            const borrowed = allBooks.reduce((sum, book) => sum + (book.copies - book.available), 0);
+            const categories = new Set(allBooks.map(b => b.category)).size;
+
+            document.getElementById('totalBooksCount').textContent = total;
+            document.getElementById('availableBooksCount').textContent = available;
+            document.getElementById('borrowedBooksCount').textContent = borrowed;
+            document.getElementById('categoriesCount').textContent = categories;
+        }
+
+        function renderBooks(books) {
+            const grid = document.getElementById('booksGrid');
+            
+            if (books.length === 0) {
+                grid.innerHTML = '<div class="empty-state">No books found</div>';
+                return;
+            }
+
+            grid.innerHTML = books.map(book => `
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-cover">
+                            ${book.image ? `<img src="${book.image}" alt="${book.title}">` : '📚'}
+                        </div>
+                        <div class="book-info">
+                            <div class="book-title">${book.title}</div>
+                            <div class="book-author">by ${book.author}</div>
+                            <div class="book-badges">
+                                <span class="book-grade">${book.grade}</span>
+                                <span class="book-category">${book.category}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-details">
+                        <div class="detail-item">
+                            <span class="detail-label">ISBN:</span>
+                            <span class="detail-value">${book.isbn || 'N/A'}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Publisher:</span>
+                            <span class="detail-value">${book.publisher || 'N/A'}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Year:</span>
+                            <span class="detail-value">${book.year || 'N/A'}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Available:</span>
+                            <span class="detail-value">${book.available} of ${book.copies}</span>
+                        </div>
+                    </div>
+                    <div class="book-actions">
+                        <button class="btn btn-edit" onclick="editBook(${book.id})">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteBook(${book.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterBooks() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const gradeFilter = document.getElementById('gradeFilter').value;
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            let filtered = allBooks;
+
+            if (searchTerm) {
+                filtered = filtered.filter(b => 
+                    b.title.toLowerCase().includes(searchTerm) || 
+                    b.author.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            if (gradeFilter !== 'all') {
+                filtered = filtered.filter(b => b.grade === gradeFilter);
+            }
+
+            if (categoryFilter !== 'all') {
+                filtered = filtered.filter(b => b.category === categoryFilter);
+            }
+
+            if (statusFilter !== 'all') {
+                if (statusFilter === 'available') {
+                    filtered = filtered.filter(b => b.available > 0);
+                } else {
+                    filtered = filtered.filter(b => b.available < b.copies);
+                }
+            }
+
+            renderBooks(filtered);
+        }
+
+        function openAddModal() {
+            editingBookId = null;
+            currentBookImage = null;
+            document.getElementById('modalTitle').textContent = 'Add New Book';
+            document.getElementById('bookForm').reset();
+            document.getElementById('bookCategory').innerHTML = '<option value="">Select Grade Level First</option>';
+            displayImagePreview(null);
+            document.getElementById('bookModal').classList.add('show');
+        }
+
+        function editBook(id) {
+            const book = allBooks.find(b => b.id === id);
+            if (!book) return;
+
+            editingBookId = id;
+            currentBookImage = book.image || null;
+            document.getElementById('modalTitle').textContent = 'Edit Book';
+            document.getElementById('bookTitle').value = book.title;
+            document.getElementById('bookAuthor').value = book.author;
+            document.getElementById('bookGrade').value = book.grade;
+            updateCategoryOptions();
+            document.getElementById('bookCategory').value = book.category;
+            document.getElementById('bookISBN').value = book.isbn || '';
+            document.getElementById('bookPublisher').value = book.publisher || '';
+            document.getElementById('bookYear').value = book.year || '';
+            document.getElementById('bookCopies').value = book.copies;
+            document.getElementById('bookDescription').value = book.description || '';
+            displayImagePreview(currentBookImage);
+            
+            document.getElementById('bookModal').classList.add('show');
+        }
+
+        function deleteBook(id) {
+            const book = allBooks.find(b => b.id === id);
+            if (!book) return;
+
+            if (confirm(`Are you sure you want to delete "${book.title}"? This action cannot be undone.`)) {
+                allBooks = allBooks.filter(b => b.id !== id);
+                saveBooks();
+                updateStats();
+                filterBooks();
+                alert('Book deleted successfully!');
+            }
+        }
+
+        function saveBook(event) {
+            event.preventDefault();
+
+            const bookData = {
+                title: document.getElementById('bookTitle').value,
+                author: document.getElementById('bookAuthor').value,
+                grade: document.getElementById('bookGrade').value,
+                category: document.getElementById('bookCategory').value,
+                isbn: document.getElementById('bookISBN').value,
+                publisher: document.getElementById('bookPublisher').value,
+                year: parseInt(document.getElementById('bookYear').value) || null,
+                copies: parseInt(document.getElementById('bookCopies').value),
+                description: document.getElementById('bookDescription').value,
+                image: currentBookImage
+            };
+
+            if (editingBookId) {
+                const book = allBooks.find(b => b.id === editingBookId);
+                if (book) {
+                    const availableDiff = bookData.copies - book.copies;
+                    Object.assign(book, bookData);
+                    book.available = Math.max(0, book.available + availableDiff);
+                    alert('Book updated successfully!');
+                }
+            } else {
+                const newBook = {
+                    id: Date.now(),
+                    ...bookData,
+                    available: bookData.copies
+                };
+                allBooks.unshift(newBook);
+                alert('Book added successfully!');
+            }
+
+            saveBooks();
+            updateStats();
+            updateCategoryFilter();
+            filterBooks();
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById('bookModal').classList.remove('show');
+            document.getElementById('bookForm').reset();
+            editingBookId = null;
+            currentBookImage = null;
+            displayImagePreview(null);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        document.getElementById('gradeFilter').addEventListener('change', updateCategoryFilter);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeBooks();
+            updateStats();
+            updateCategoryFilter();
+            renderBooks(allBooks);
+        });
+    </script>
+</body>
+</html>
