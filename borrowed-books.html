@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>My Borrowed Books | Pedro Guevara Elementary School E-Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 144px;
+        }
+        .logo img {
+            width: 180px;
+            height: 150px;
+            border-radius: 100%;
+            box-shadow: 0 4px 24px rgba(74,95,157,0.18);
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 5px;
+        }
+        .header-text h1 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 8px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .header-text h2 {
+            font-size: 29px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .header-text p {
+            font-size: 18px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        nav {
+            background: white;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        nav li {
+            position: relative;
+        }
+        nav a {
+            display: block;
+            padding: 14px 0;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            position: relative;
+            font-family: 'Open Sans', Arial, sans-serif;
+            cursor: pointer;
+        }
+        nav a:hover {
+            color: #4a5f9d;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #4a5f9d;
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        .back-btn {
+            background: #4a5f9d;
+            color: white;
+            padding: 8px 24px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #6b82c5;
+            transform: translateY(-2px);
+        }
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .page-header {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.12);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .page-header svg {
+            width: 64px;
+            height: 64px;
+            fill: #4a5f9d;
+        }
+        .page-header h1 {
+            font-family: 'Fredoka', Arial, sans-serif;
+            font-size: 2.2rem;
+            color: #4a5f9d;
+        }
+        .page-header p {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 8px;
+        }
+        .books-container {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.12);
+        }
+        .filter-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .filter-bar select, .filter-bar input {
+            padding: 10px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .filter-bar select:focus, .filter-bar input:focus {
+            border-color: #4a5f9d;
+        }
+        .book-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .book-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 24px;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .book-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(74,95,157,0.15);
+            border-color: #4a5f9d;
+        }
+        .book-cover {
+            width: 120px;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .book-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .book-title {
+            font-family: 'Fredoka', Arial, sans-serif;
+            font-size: 1.4rem;
+            color: #4a5f9d;
+            margin-bottom: 8px;
+        }
+        .book-author {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .book-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .info-item svg {
+            width: 18px;
+            height: 18px;
+            fill: #4a5f9d;
+        }
+        .status-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+        .status-due-soon {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-overdue {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status-ok {
+            background: #d4edda;
+            color: #155724;
+        }
+        .book-actions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+        }
+        .btn {
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .btn-renew {
+            background: #4a5f9d;
+            color: white;
+        }
+        .btn-renew:hover {
+            background: #6b82c5;
+            transform: translateY(-2px);
+        }
+        .btn-return {
+            background: #27ae60;
+            color: white;
+        }
+        .btn-return:hover {
+            background: #2ecc71;
+            transform: translateY(-2px);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .empty-state svg {
+            width: 120px;
+            height: 120px;
+            fill: #ccc;
+            margin-bottom: 24px;
+        }
+        .empty-state h3 {
+            font-family: 'Fredoka', Arial, sans-serif;
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .empty-state p {
+            color: #999;
+            font-size: 1rem;
+        }
+        footer {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            justify-content: flex-start;
+            margin-left: 10px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 139px;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .social-icons a:hover svg {
+            fill: #4a5f9d;
+        }
+        @media (max-width: 768px) {
+            .book-item {
+                grid-template-columns: 1fr;
+            }
+            .filter-bar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="homepage.html">
+                <img src="images/school/logo.png" alt="PGES Logo"/>
+            </a>
+        </div>
+        <div class="header-text">
+            <h1>Republic of the Philippines</h1>
+            <h2>Pedro Guevara Elementary School E-Library</h2>
+            <p>San Nicolas, Manila</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="homepage.html">HOMEPAGE</a></li>
+            <li><a onclick="goToDashboard()">DASHBOARD</a></li>
+            <li style="flex: 1;"></li>
+            <li>
+<button class="back-btn" onclick="goBackToDashboard()">← Back to Dashboard</button>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="page-header">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+            </svg>
+            <div>
+                <h1>Borrowed Books</h1>
+                <p>Books you currently have borrowed</p>
+            </div>
+        </div>
+
+        <div class="books-container">
+            <div class="filter-bar">
+                <select id="sortFilter" onchange="filterBooks()">
+                    <option value="all">All Books</option>
+                    <option value="due-soon">Due Soon</option>
+                    <option value="overdue">Overdue</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Search borrowed books..." onkeyup="filterBooks()">
+            </div>
+
+            <div class="book-list" id="bookList">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <p>2025 PGES All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Use</a>
+        </div>
+        <div class="social-icons">
+            <a href="#facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <a href="#instagram" title="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+         function goBackToDashboard() {
+    const userType = sessionStorage.getItem('userType') || localStorage.getItem('userType');
+    if (userType === 'faculty') {
+        window.location.href = 'facultydashboard.html';
+    } else {
+        window.location.href = 'studentdashboard.html';
+    }
+}
+        // Sample borrowed books data
+        const borrowedBooks = [
+            {
+                id: 1,
+                title: "Pedro Guevara: A Hero's Life",
+                author: "Maria Santos",
+                borrowDate: "2025-10-15",
+                dueDate: "2025-11-05",
+                cover: "images/school/pedro.png"
+            },
+            {
+                id: 2,
+                title: "Math for Kids",
+                author: "John Doe",
+                borrowDate: "2025-10-20",
+                dueDate: "2025-11-03",
+                cover: "images/school/pedro.png"
+            },
+            {
+                id: 3,
+                title: "Science Wonders",
+                author: "Jane Smith",
+                borrowDate: "2025-10-10",
+                dueDate: "2025-10-29",
+                cover: "images/school/pedro.png"
+            }
+        ];
+
+        function getDaysUntilDue(dueDate) {
+            const today = new Date();
+            const due = new Date(dueDate);
+            const diffTime = due - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        }
+
+        function getStatusClass(daysUntilDue) {
+            if (daysUntilDue < 0) return 'status-overdue';
+            if (daysUntilDue <= 3) return 'status-due-soon';
+            return 'status-ok';
+        }
+
+        function getStatusText(daysUntilDue) {
+            if (daysUntilDue < 0) return `Overdue by ${Math.abs(daysUntilDue)} days`;
+            if (daysUntilDue === 0) return 'Due Today';
+            if (daysUntilDue === 1) return 'Due Tomorrow';
+            if (daysUntilDue <= 3) return `Due in ${daysUntilDue} days`;
+            return `${daysUntilDue} days remaining`;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        }
+
+        function renderBooks(books = borrowedBooks) {
+            const bookList = document.getElementById('bookList');
+            
+            if (books.length === 0) {
+                bookList.innerHTML = `
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                        </svg>
+                        <h3>No Borrowed Books</h3>
+                        <p>You haven't borrowed any books yet. Visit the library to start reading!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            bookList.innerHTML = books.map(book => {
+                const daysUntilDue = getDaysUntilDue(book.dueDate);
+                const statusClass = getStatusClass(daysUntilDue);
+                const statusText = getStatusText(daysUntilDue);
+
+                return `
+                    <div class="book-item">
+                        <div class="book-cover">
+                            <img src="${book.cover}" alt="${book.title}">
+                        </div>
+                        <div class="book-details">
+                            <div class="book-title">${book.title}</div>
+                            <div class="book-author">by ${book.author}</div>
+                            <div class="book-info">
+                                <div class="info-item">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                                    </svg>
+                                    <span>Borrowed: ${formatDate(book.borrowDate)}</span>
+                                </div>
+                                <div class="info-item">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                                    </svg>
+                                    <span>Due: ${formatDate(book.dueDate)}</span>
+                                </div>
+                                <span class="status-badge ${statusClass}">${statusText}</span>
+                            </div>
+                        </div>
+                        <div class="book-actions">
+                            <button class="btn btn-renew" onclick="renewBook(${book.id})">Renew Book</button>
+                            <button class="btn btn-return" onclick="returnBook(${book.id})">Return Book</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterBooks() {
+            const sortFilter = document.getElementById('sortFilter').value;
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+
+            let filtered = borrowedBooks.filter(book => {
+                const matchesSearch = book.title.toLowerCase().includes(searchInput) || 
+                                    book.author.toLowerCase().includes(searchInput);
+                
+                if (sortFilter === 'all') return matchesSearch;
+                
+                const daysUntilDue = getDaysUntilDue(book.dueDate);
+                if (sortFilter === 'overdue') return matchesSearch && daysUntilDue < 0;
+                if (sortFilter === 'due-soon') return matchesSearch && daysUntilDue >= 0 && daysUntilDue <= 3;
+                
+                return matchesSearch;
+            });
+
+            renderBooks(filtered);
+        }
+
+        function renewBook(bookId) {
+            const book = borrowedBooks.find(b => b.id === bookId);
+            if (book) {
+                if (confirm(`Renew "${book.title}"? This will extend your borrowing period by 7 days.`)) {
+                    const newDueDate = new Date(book.dueDate);
+                    newDueDate.setDate(newDueDate.getDate() + 7);
+                    book.dueDate = newDueDate.toISOString().split('T')[0];
+                    renderBooks();
+                    alert('Book renewed successfully!');
+                }
+            }
+        }
+
+        function returnBook(bookId) {
+            const book = borrowedBooks.find(b => b.id === bookId);
+            if (book) {
+                if (confirm(`Return "${book.title}"?`)) {
+                    const index = borrowedBooks.findIndex(b => b.id === bookId);
+                    borrowedBooks.splice(index, 1);
+                    renderBooks();
+                    alert('Book returned successfully!');
+                }
+            }
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            renderBooks();
+        });
+    </script>
+</body>
+</html> 
