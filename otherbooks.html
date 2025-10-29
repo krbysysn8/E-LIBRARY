@@ -11,7 +11,6 @@
             background: #f8f9fa;
             position: relative;
         }
-        
         body::before {
             content: '';
             position: fixed;
@@ -25,7 +24,6 @@
             z-index: 0;
             pointer-events: none;
         }
-
         main {
             position: relative;
             z-index: 1;
@@ -33,15 +31,62 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-        
-    .category-tabs {
+        .back-button-container {
+            position: relative;
+            margin-left: 31.5px;
+            margin-top: 20px;
+            margin-bottom: 0;
+            z-index: 1;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 15px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(74, 95, 157, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 95, 157, 0.4);
+        }
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-top: 0;
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            color: #4a5f9d;
+            font-family: 'Fredoka', Arial, sans-serif;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(74, 95, 157, 0.1);
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .category-tabs {
             display: flex;
             justify-content: center;
             gap: 12px;
             margin-bottom: 40px;
             flex-wrap: wrap;
         }
-
         .tab-btn {
             padding: 12px 28px;
             background: white;
@@ -54,37 +99,30 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .tab-btn:hover {
             background: #e8f0ff;
             transform: translateY(-2px);
         }
-
         .tab-btn.active {
             background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
             color: white;
             box-shadow: 0 4px 15px rgba(74, 95, 157, 0.3);
         }
-
         .category-section {
             display: none;
         }
-
         .category-section.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .section-header {
             text-align: center;
             margin-bottom: 32px;
         }
-
         .section-header h2 {
             font-size: 2rem;
             color: #4a5f9d;
@@ -92,34 +130,27 @@
             font-weight: 700;
             margin-bottom: 8px;
         }
-
         .section-header p {
             font-size: 1rem;
             color: #666;
             font-family: 'Open Sans', Arial, sans-serif;
         }
-
-        /* Restored per-page dropdown CSS */
         .dropdown {
             position: relative;
         }
-
         .dropdown-toggle {
             display: flex;
             align-items: center;
             gap: 5px;
             cursor: pointer;
         }
-
         .dropdown-toggle .arrow {
             font-size: 0.8em;
             transition: transform 0.3s ease;
         }
-
         .dropdown.active .dropdown-toggle .arrow {
             transform: rotate(180deg);
         }
-
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -135,13 +166,11 @@
             transition: all 0.3s ease;
             z-index: 100;
         }
-
         .dropdown-menu.show {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-
         .dropdown-menu a {
             display: block;
             padding: 10px 20px;
@@ -149,37 +178,25 @@
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
-
         .dropdown-menu a:hover {
             background-color: #f5f5f5;
             color: #4a5f9d;
         }
-
         .books-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 32px;
             margin-bottom: 40px;
         }
-
         @media (max-width: 1200px) {
-            .books-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .books-grid { grid-template-columns: repeat(3, 1fr); }
         }
-
         @media (max-width: 900px) {
-            .books-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .books-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 600px) {
-            .books-grid {
-                grid-template-columns: 1fr;
-            }
+            .books-grid { grid-template-columns: 1fr; }
         }
-
         .book-card {
             background: white;
             border-radius: 20px;
@@ -189,8 +206,10 @@
             border: 3px solid transparent;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 550px;
         }
-
         .book-card::before {
             content: '';
             position: absolute;
@@ -202,17 +221,14 @@
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
-
         .book-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 32px rgba(74, 95, 157, 0.2);
             border-color: #4a5f9d;
         }
-
         .book-card:hover::before {
             transform: scaleX(1);
         }
-
         .book-cover {
             width: 100%;
             height: 280px;
@@ -225,20 +241,17 @@
             overflow: hidden;
             position: relative;
         }
-
         .book-cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .book-cover svg {
             width: 80px;
             height: 80px;
             fill: #4a5f9d;
             opacity: 0.3;
         }
-
         .availability-badge {
             position: absolute;
             top: 12px;
@@ -250,21 +263,18 @@
             font-family: 'Open Sans', Arial, sans-serif;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
-
         .availability-badge.available {
             background: #2ecc71;
             color: white;
         }
-
         .availability-badge.borrowed {
             background: #e74c3c;
             color: white;
         }
-
         .book-info {
             margin-bottom: 20px;
+            flex-grow: 1;
         }
-
         .book-title {
             font-size: 1.4rem;
             color: #4a5f9d;
@@ -273,14 +283,12 @@
             font-weight: 700;
             line-height: 1.3;
         }
-
         .book-author {
             font-size: 1rem;
             color: #666;
             font-family: 'Open Sans', Arial, sans-serif;
             margin-bottom: 4px;
         }
-
         .book-author svg {
             width: 16px;
             height: 16px;
@@ -288,13 +296,12 @@
             vertical-align: middle;
             margin-right: 6px;
         }
-
         .book-actions {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+            margin-top: auto;
         }
-
         .btn {
             flex: 1;
             min-width: 80px;
@@ -311,193 +318,254 @@
             justify-content: center;
             gap: 6px;
         }
-
         .btn svg {
             width: 16px;
             height: 16px;
         }
-
         .btn-view {
             background: #3498db;
             color: white;
         }
-
         .btn-view:hover {
             background: #2980b9;
             transform: translateY(-2px);
         }
-
         .btn-borrow {
             background: #2ecc71;
             color: white;
         }
-
         .btn-borrow:hover {
             background: #27ae60;
             transform: translateY(-2px);
         }
-
         .btn-borrow:disabled {
             background: #bdc3c7;
             cursor: not-allowed;
             transform: none;
         }
-
         .btn-read {
             background: #9b59b6;
             color: white;
         }
-
         .btn-read:hover {
             background: #8e44ad;
             transform: translateY(-2px);
         }
-
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .category-tabs {
-                gap: 8px;
-            }
-
-            .tab-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-
-            .book-cover {
-                height: 240px;
-            }
-
-            body::before {
-                width: 400px;
-                height: 400px;
-            }
-
-            .back-button-container {
-                margin-left: 0;
-            }
-
-            .book-actions {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
         }
-.back-button-container {
-            position: relative;
-            margin-left: 31.5px;
-            margin-top: 20px;
-            margin-bottom: 0;
-            z-index: 1;
-        }
-
-        .back-btn {
-            display: inline-flex;
+        .modal.active {
+            display: flex;
             align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
-            color: white;
-            padding: 15px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(74, 95, 157, 0.3);
-            transition: all 0.3s ease;
+            justify-content: center;
+            animation: fadeIn 0.3s;
         }
-
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(74, 95, 157, 0.4);
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
-
-        .back-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 32px;
-            padding-top: 0;
+        .modal-header {
+            padding: 30px;
+            border-bottom: 2px solid #e8f0ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
         }
-
-        .page-header h1 {
-            font-size: 3rem;
+        .modal-header h2 {
+            font-family: 'Fredoka', sans-serif;
             color: #4a5f9d;
-            font-family: 'Fredoka', Arial, sans-serif;
-            font-weight: 700;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .close-btn:hover {
+            color: #333;
+            background: #f0f0f0;
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        .book-details {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .book-thumbnail {
+            background: linear-gradient(135deg, #e8f0ff 0%, #f0f4ff 100%);
+            border-radius: 12px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(74, 95, 157, 0.15);
+        }
+        .book-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .book-thumbnail svg {
+            width: 100px;
+            height: 100px;
+            fill: #4a5f9d;
+            opacity: 0.3;
+        }
+        .book-meta h3 {
+            font-family: 'Fredoka', sans-serif;
+            color: #4a5f9d;
+            font-size: 1.8rem;
             margin-bottom: 12px;
-            text-shadow: 2px 2px 4px rgba(74, 95, 157, 0.1);
+            line-height: 1.3;
         }
-
-        .page-header p {
-            font-size: 1.2rem;
+        .book-meta .author {
             color: #666;
-            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-
-        
+        .book-meta .author svg {
+            width: 18px;
+            height: 18px;
+            fill: #666;
+        }
+        .book-meta .status {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .book-meta .status.borrowed {
+            background: #e74c3c;
+        }
+        .book-meta .info-row {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1rem;
+        }
+        .book-meta .info-row strong {
+            color: #333;
+            font-weight: 700;
+        }
+        .overview-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e8f0ff;
+        }
+        .overview-section h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: #4a5f9d;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        .overview-section p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        .modal-actions {
+            padding: 25px 30px;
+            border-top: 2px solid #e8f0ff;
+            display: flex;
+            gap: 15px;
+            background: #f8faff;
+        }
+        .modal-actions .btn {
+            padding: 14px 30px;
+            font-size: 1rem;
+        }
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .category-tabs { gap: 8px; }
+            .tab-btn { padding: 10px 20px; font-size: 0.9rem; }
+            .book-cover { height: 240px; }
+            body::before { width: 400px; height: 400px; }
+            .back-button-container { margin-left: 0; }
+            .book-actions { flex-direction: column; }
+            .btn { width: 100%; }
+            .book-details { grid-template-columns: 1fr; }
+            .book-thumbnail { height: 280px; }
+            .modal-content { width: 95%; max-height: 95vh; }
+            .modal-header, .modal-body, .modal-actions { padding: 20px; }
+            .modal-actions { flex-direction: column; }
+            .modal-actions .btn { width: 100%; }
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <a href="homepage.html" aria-label="Go to Homepage">
-                <img src="images/school/logo.png" alt="PGES Logo"/>
-            </a>
-        </div>
+        <div class="logo"><a href="homepage.html" aria-label="Go to Homepage"><img src="images/school/logo.png" alt="PGES Logo"/></a></div>
         <div class="header-text">
             <h1>Republic of the Philippines</h1>
             <h2>Pedro Guevara Elementary School E-Library</h2>
             <p>San Nicolas, Manila</p>
         </div>
     </header>
-
     <nav>
         <ul>
             <li><a href="homepage.html">HOMEPAGE</a></li>
-            <li><a href="studentdashboard.html">DASHBOARD</a></li>
+            <li><a href="javascript:void(0)" onclick="goToDashboard()">DASHBOARD</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" role="button" aria-expanded="false" onclick="toggleDropdown(event)">
-                    BOOKS
-                    <span class="arrow">▼</span>
-                </a>
+                <a class="dropdown-toggle" role="button" aria-expanded="false" onclick="toggleDropdown(event)">BOOKS <span class="arrow">▼</span></a>
                 <div class="dropdown-menu" id="booksMenu">
-                    <a href="grade1.html">Grade 1</a>
-                    <a href="grade2.html">Grade 2</a>
-                    <a href="grade3.html">Grade 3</a>
-                    <a href="grade4.html">Grade 4</a>
-                    <a href="grade5.html">Grade 5</a>
-                    <a href="grade6.html">Grade 6</a>
+                    <a href="grade1books.html">Grade 1</a>
+                    <a href="grade2books.html">Grade 2</a>
+                    <a href="grade3books.html">Grade 3</a>
+                    <a href="grade4books.html">Grade 4</a>
+                    <a href="grade5books.html">Grade 5</a>
+                    <a href="grade6books.html">Grade 6</a>
                     <a href="otherbooks.html">Other Books</a>
                 </div>
             </li>
         </ul>
     </nav>
-
     <div class="back-button-container">
-        <a href="studentdashboard.html" class="back-btn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-            </svg>
+        <a href="javascript:void(0)" onclick="goToDashboard()" class="back-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
             Back to Dashboard
         </a>
     </div>
-
     <main>
-        <div class="page-header">
-            <h1>Other Books</h1>
-            <p>Explore different genres and stories</p>
-        </div>
-
+        <div class="page-header"><h1>Other Books</h1><p>Explore different genres and stories</p></div>
         <div class="category-tabs">
             <button class="tab-btn active" onclick="showCategory('kwentong')">Kwentong Pambata</button>
             <button class="tab-btn" onclick="showCategory('comics')">Comics</button>
@@ -508,203 +576,143 @@
             <button class="tab-btn" onclick="showCategory('fantasy')">Fantasy</button>
             <button class="tab-btn" onclick="showCategory('mystery')">Mystery</button>
         </div>
-
-        <!-- Kwentong Pambata -->
         <div class="category-section active" id="kwentong-section">
-            <div class="section-header">
-                <h2>Kwentong Pambata</h2>
-                <p>Stories for young readers</p>
-            </div>
+            <div class="section-header"><h2>Kwentong Pambata</h2><p>Stories for young readers</p></div>
             <div class="books-grid" id="kwentong-books"></div>
         </div>
-
-        <!-- Comics -->
         <div class="category-section" id="comics-section">
-            <div class="section-header">
-                <h2>Comics</h2>
-                <p>Illustrated adventure stories</p>
-            </div>
+            <div class="section-header"><h2>Comics</h2><p>Illustrated adventure stories</p></div>
             <div class="books-grid" id="comics-books"></div>
         </div>
-
-        <!-- Horror -->
         <div class="category-section" id="horror-section">
-            <div class="section-header">
-                <h2>Horror</h2>
-                <p>Spooky and thrilling tales</p>
-            </div>
+            <div class="section-header"><h2>Horror</h2><p>Spooky and thrilling tales</p></div>
             <div class="books-grid" id="horror-books"></div>
         </div>
-
-        <!-- Fairy Tales -->
         <div class="category-section" id="fairytales-section">
-            <div class="section-header">
-                <h2>Fairy Tales</h2>
-                <p>Magical stories and legends</p>
-            </div>
+            <div class="section-header"><h2>Fairy Tales</h2><p>Magical stories and legends</p></div>
             <div class="books-grid" id="fairytales-books"></div>
         </div>
-
-        <!-- Picture Books -->
         <div class="category-section" id="picture-section">
-            <div class="section-header">
-                <h2>Picture Books</h2>
-                <p>Colorful illustrated stories</p>
-            </div>
+            <div class="section-header"><h2>Picture Books</h2><p>Colorful illustrated stories</p></div>
             <div class="books-grid" id="picture-books"></div>
         </div>
-
-        <!-- Historical -->
         <div class="category-section" id="historical-section">
-            <div class="section-header">
-                <h2>Historical</h2>
-                <p>Stories from the past</p>
-            </div>
+            <div class="section-header"><h2>Historical</h2><p>Stories from the past</p></div>
             <div class="books-grid" id="historical-books"></div>
         </div>
-
-        <!-- Fantasy -->
         <div class="category-section" id="fantasy-section">
-            <div class="section-header">
-                <h2>Fantasy</h2>
-                <p>Imaginative worlds and magic</p>
-            </div>
+            <div class="section-header"><h2>Fantasy</h2><p>Imaginative worlds and magic</p></div>
             <div class="books-grid" id="fantasy-books"></div>
         </div>
-
-        <!-- Mystery -->
         <div class="category-section" id="mystery-section">
-            <div class="section-header">
-                <h2>Mystery</h2>
-                <p>Puzzles and detective stories</p>
-            </div>
+            <div class="section-header"><h2>Mystery</h2><p>Puzzles and detective stories</p></div>
             <div class="books-grid" id="mystery-books"></div>
         </div>
     </main>
-
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2>Book Details</h2><button class="close-btn" onclick="closeModal()">&times;</button></div>
+            <div class="modal-body">
+                <div class="book-details">
+                    <div class="book-thumbnail" id="modalThumbnail">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                    </div>
+                    <div class="book-meta">
+                        <h3 id="modalBookTitle">Book Title</h3>
+                        <div class="author">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            <span id="modalAuthor">Author Name</span>
+                        </div>
+                        <span class="status" id="modalStatus">Available</span>
+                        <div class="info-row"><strong>Category:</strong> <span id="modalCategory">Category</span></div>
+                        <div class="info-row"><strong>Genre:</strong> <span id="modalGenre">Various</span></div>
+                        <div class="info-row"><strong>ISBN:</strong> <span id="modalISBN">N/A</span></div>
+                    </div>
+                </div>
+                <div class="overview-section"><h4>Overview</h4><p id="modalOverview">Book overview will be displayed here.</p></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-borrow" id="modalBorrowBtn" onclick="borrowFromModal()">Borrow This Book</button>
+                <button class="btn btn-read" onclick="readFromModal()">Read Online</button>
+            </div>
+        </div>
+    </div>
     <footer>
-        <div>
-            <p>2025 PGES All rights reserved.</p>
-        </div>
-        <div class="footer-links">
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Use</a>
-        </div>
+        <div><p>2025 PGES All rights reserved.</p></div>
+        <div class="footer-links"><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Use</a></div>
         <div class="social-icons">
-            <a href="#facebook" title="Facebook">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-            </a>
-            <a href="#instagram" title="Instagram">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-            </a>
+            <a href="#facebook" title="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#instagram" title="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    
-    const userType = sessionStorage.getItem('userType');
-    const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
-    
-    const dashboardLinks = document.querySelectorAll('a[href*="dashboard"]');
-    dashboardLinks.forEach(link => {
-        if (link.href.includes('studentdashboard.html')) {
-            link.href = dashboardUrl;
-        }
-    });
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-        if (link.textContent.trim() === 'DASHBOARD') {
-            link.href = dashboardUrl;
-        }
-    });
-    
-});
-function goToDashboard() {
-    const userType = sessionStorage.getItem('userType');
-    const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
-    window.location.href = dashboardUrl;
-}
-        // emeng database for Other Books
+            const userType = sessionStorage.getItem('userType');
+            const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
+            document.querySelectorAll('a[href*="dashboard"]').forEach(link => { if (link.href.includes('studentdashboard.html')) link.href = dashboardUrl; });
+            document.querySelectorAll('nav a').forEach(link => { if (link.textContent.trim() === 'DASHBOARD') link.href = dashboardUrl; });
+            renderBooks('kwentong'); renderBooks('comics'); renderBooks('horror'); renderBooks('fairytales'); renderBooks('picture'); renderBooks('historical'); renderBooks('fantasy'); renderBooks('mystery');
+        });
+        function goToDashboard() { const userType = sessionStorage.getItem('userType'); window.location.href = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html'; }
         const booksDatabase = {
             kwentong: [
-                { title: "Si Juan Tamad", author: "Filipino Folklore", available: true, cover: "images/books/juan-tamad.jpg" },
-                { title: "Ang Kuneho at Pagong", author: "Traditional Tales", available: true, cover: "images/books/kuneho-pagong.jpg" },
-                { title: "Mga Alamat ng Pilipinas", author: "Cultural Heritage", available: true, cover: "images/books/alamat.jpg" },
-                { title: "Kuwentong Bayan", author: "Folk Stories", available: false, cover: "images/books/kuwentong-bayan.jpg" },
-                { title: "Ang Matsing at Pagong", author: "Aesop's Fables", available: true, cover: "images/books/matsing-pagong.jpg" },
-                { title: "Si Pilandok", author: "Mindanao Tales", available: true, cover: "images/books/pilandok.jpg" }
+                { title: "Si Juan Tamad", author: "Filipino Folklore", available: true, cover: "images/books/juan-tamad.jpg", category: "Kwentong Pambata", isbn: "978-0234567891", overview: "Isang klasikong kuwentong bayan tungkol kay Juan Tamad at ang kanyang mga karanasan. Matuto ng mga aral sa buhay sa pamamagitan ng masasayang kuwento na puno ng humor at karunungan." },
+                { title: "Ang Kuneho at Pagong", author: "Traditional Tales", available: true, cover: "images/books/kuneho-pagong.jpg", category: "Kwentong Pambata", isbn: "978-0234567892", overview: "Ang sikat na pabula tungkol sa karera ng kuneho at pagong. Itinuuturo nito ang kahalagahan ng pagtitiyaga at hindi pagmamataas kahit gaano ka kagaling." },
+                { title: "Mga Alamat ng Pilipinas", author: "Cultural Heritage", available: true, cover: "images/books/alamat.jpg", category: "Kwentong Pambata", isbn: "978-0234567893", overview: "Koleksyon ng mga alamat mula sa iba't ibang bahagi ng Pilipinas. Tuklasin kung paano nagkaroon ng pangalan ang mga lugar, bundok, at ilog sa ating bansa." },
+                { title: "Kuwentong Bayan", author: "Folk Stories", available: false, cover: "images/books/kuwentong-bayan.jpg", category: "Kwentong Pambata", isbn: "978-0234567894", overview: "Mga tradisyonal na kuwentong bayan na ipinasa mula sa henerasyon patungo sa henerasyon. Kasama ang mga kuwento tungkol sa mga diwata, engkanto, at mga taong may kapangyarihan." }
             ],
             comics: [
-                { title: "Darna Adventures", author: "Mars Ravelo", available: true, cover: "images/books/darna.jpg" },
-                { title: "Pugad Baboy", author: "Pol Medina Jr.", available: true, cover: "images/books/pugad-baboy.jpg" },
-                { title: "Zsazsa Zaturnnah", author: "Carlo Vergara", available: false, cover: "images/books/zsazsa.jpg" },
-                { title: "Kikomachine", author: "Manix Abrera", available: true, cover: "images/books/kikomachine.jpg" },
-                { title: "Trese", author: "Budjette Tan", available: true, cover: "images/books/trese.jpg" },
-                { title: "Mythology Class", author: "Arnold Arre", available: true, cover: "images/books/mythology-class.jpg" }
+                { title: "Darna Adventures", author: "Mars Ravelo", available: true, cover: "images/books/darna.jpg", category: "Comics", isbn: "978-0234567895", overview: "Follow the adventures of Darna, the Philippines' iconic superheroine. Watch as she protects the innocent and fights against evil forces threatening the nation." },
+                { title: "Pugad Baboy", author: "Pol Medina Jr.", available: true, cover: "images/books/pugad-baboy.jpg", category: "Comics", isbn: "978-0234567896", overview: "A hilarious Filipino comic strip featuring Polgas the dog and his friends. Filled with satire, social commentary, and laugh-out-loud humor that appeals to all ages." },
+                { title: "Zsazsa Zaturnnah", author: "Carlo Vergara", available: false, cover: "images/books/zsazsa.jpg", category: "Comics", isbn: "978-0234567897", overview: "An award-winning Filipino graphic novel about a gay beautician who transforms into a superhero. A unique blend of humor, action, and LGBTQ+ themes in Philippine comics." },
+                { title: "Kikomachine", author: "Manix Abrera", available: true, cover: "images/books/kikomachine.jpg", category: "Comics", isbn: "978-0234567898", overview: "Wordless comic strips that tell stories through clever visual narratives. Each panel is a mini-masterpiece that captures everyday Filipino life with humor and heart." }
             ],
             horror: [
-                { title: "Mga Multo sa Bahay", author: "Scary Tales PH", available: true, cover: "images/books/multo.jpg" },
-                { title: "Aswang Chronicles", author: "Horror Writers", available: true, cover: "images/books/aswang.jpg" },
-                { title: "White Lady Stories", author: "Urban Legends", available: false, cover: "images/books/white-lady.jpg" },
-                { title: "Mga Engkanto", author: "Filipino Folklore", available: true, cover: "images/books/engkanto.jpg" },
-                { title: "Haunted School", author: "Ghost Stories", available: true, cover: "images/books/haunted-school.jpg" }
+                { title: "Mga Multo sa Bahay", author: "Scary Tales PH", available: true, cover: "images/books/multo.jpg", category: "Horror", isbn: "978-0234567899", overview: "Nakakatakot na mga kuwento tungkol sa mga multo at di-pangkaraniwang kaganapan sa mga lumang bahay. Handa ka na bang matakot at hindi makatulog sa gabi?" },
+                { title: "Aswang Chronicles", author: "Horror Writers", available: true, cover: "images/books/aswang.jpg", category: "Horror", isbn: "978-0234567900", overview: "Terrifying tales about aswangs, the shape-shifting monsters of Philippine folklore. Learn about their origins, habits, and the brave souls who dare to confront them." },
+                { title: "White Lady Stories", author: "Urban Legends", available: false, cover: "images/books/white-lady.jpg", category: "Horror", isbn: "978-0234567901", overview: "Chilling encounters with the mysterious White Lady who haunts roads and buildings. Real testimonies and fictional accounts that will make you think twice about traveling alone at night." },
+                { title: "Mga Engkanto", author: "Filipino Folklore", available: true, cover: "images/books/engkanto.jpg", category: "Horror", isbn: "978-0234567902", overview: "Stories about mystical beings and enchanted creatures from Philippine mythology. Discover the engkantos who live in trees, mountains, and hidden realms." }
             ],
             fairytales: [
-                { title: "Ang Prinsesa at Pulubi", author: "Classic Tales", available: true, cover: "images/books/prinsesa-pulubi.jpg" },
-                { title: "Ibong Adarna", author: "Jose dela Cruz", available: true, cover: "images/books/ibong-adarna.jpg" },
-                { title: "Maria Makiling", author: "Philippine Mythology", available: true, cover: "images/books/maria-makiling.jpg" },
-                { title: "Mariang Sinukuan", author: "Kapampangan Tales", available: false, cover: "images/books/mariang-sinukuan.jpg" },
-                { title: "Bernardo Carpio", author: "Tagalog Legends", available: true, cover: "images/books/bernardo-carpio.jpg" },
-                { title: "Lam-ang", author: "Ilocano Epic", available: true, cover: "images/books/lam-ang.jpg" }
+                { title: "Ang Prinsesa at Pulubi", author: "Classic Tales", available: true, cover: "images/books/prinsesa-pulubi.jpg", category: "Fairy Tales", isbn: "978-0234567903", overview: "Isang romantikong kuwento ng pag-ibig na lumalampas sa estado sa buhay. Itinuuturo nito na ang tunay na pagmamahal ay hindi nakikita sa yaman o kapangyarihan." },
+                { title: "Ibong Adarna", author: "Jose dela Cruz", available: true, cover: "images/books/ibong-adarna.jpg", category: "Fairy Tales", isbn: "978-0234567904", overview: "Ang sikat na epikong Pilipino tungkol sa mahiwagang ibong may pitong kulay. Sumama sa paglalakbay ng tatlong prinsipe upang mahuli ang ibong makapagpapagaling sa kanilang amang hari." },
+                { title: "Maria Makiling", author: "Philippine Mythology", available: true, cover: "images/books/maria-makiling.jpg", category: "Fairy Tales", isbn: "978-0234567905", overview: "The legend of the beautiful diwata who guards Mount Makiling. Learn about her kindness to the villagers and what happened when greed entered human hearts." },
+                { title: "Mariang Sinukuan", author: "Kapampangan Tales", available: false, cover: "images/books/mariang-sinukuan.jpg", category: "Fairy Tales", isbn: "978-0234567906", overview: "Ang alamat ng magandang diwata ng Bundok Arayat. Tuklasin ang kanyang mga himala at kung bakit siya tumutulong sa mga mabubuting tao." }
             ],
             picture: [
-                { title: "The Rainbow Fish", author: "Marcus Pfister", available: true, cover: "images/books/rainbow-fish.jpg" },
-                { title: "Where the Wild Things Are", author: "Maurice Sendak", available: true, cover: "images/books/wild-things.jpg" },
-                { title: "Ang Pambihirang Buhok ni Raquel", author: "Adarna House", available: true, cover: "images/books/raquel.jpg" },
-                { title: "The Very Hungry Caterpillar", author: "Eric Carle", available: false, cover: "images/books/caterpillar.jpg" },
-                { title: "Ang Malaking Saging", author: "Tahanan Books", available: true, cover: "images/books/malaking-saging.jpg" }
+                { title: "The Rainbow Fish", author: "Marcus Pfister", available: true, cover: "images/books/rainbow-fish.jpg", category: "Picture Books", isbn: "978-0234567907", overview: "A beautiful story about sharing and friendship featuring the most beautiful fish in the ocean. Learn that true happiness comes from giving and being kind to others." },
+                { title: "Where the Wild Things Are", author: "Maurice Sendak", available: true, cover: "images/books/wild-things.jpg", category: "Picture Books", isbn: "978-0234567908", overview: "Join Max on his imaginative adventure to the land of wild things. A classic tale about childhood imagination, emotions, and the comfort of home." },
+                { title: "Ang Pambihirang Buhok ni Raquel", author: "Adarna House", available: true, cover: "images/books/raquel.jpg", category: "Picture Books", isbn: "978-0234567909", overview: "Isang masayang kuwento tungkol sa batang babae na may natatanging buhok. Matuto ng aral tungkol sa pagtanggap sa sarili at pagmamalaki sa ating kakaiba." },
+                { title: "The Very Hungry Caterpillar", author: "Eric Carle", available: false, cover: "images/books/caterpillar.jpg", category: "Picture Books", isbn: "978-0234567910", overview: "Follow the journey of a tiny caterpillar as it eats its way through various foods before transforming into a beautiful butterfly. A perfect story about growth and transformation." }
             ],
             historical: [
-                { title: "Si Lapu-Lapu", author: "History Books PH", available: true, cover: "images/books/lapu-lapu.jpg" },
-                { title: "Andres Bonifacio", author: "Heroes Series", available: true, cover: "images/books/bonifacio.jpg" },
-                { title: "The First Filipino", author: "Leon Ma. Guerrero", available: false, cover: "images/books/first-filipino.jpg" },
-                { title: "Noli Me Tangere", author: "Jose Rizal", available: true, cover: "images/books/noli.jpg" },
-                { title: "El Filibusterismo", author: "Jose Rizal", available: true, cover: "images/books/fili.jpg" },
-                { title: "Emilio Aguinaldo", author: "Historical Biography", available: true, cover: "images/books/aguinaldo.jpg" }
+                { title: "Si Lapu-Lapu", author: "History Books PH", available: true, cover: "images/books/lapu-lapu.jpg", category: "Historical", isbn: "978-0234567911", overview: "Ang kuwento ng unang bayaning Pilipino na lumaban sa mga mananakop. Alamin ang tungkol sa Labanan sa Mactan at ang katapangan ni Lapu-Lapu." },
+                { title: "Andres Bonifacio", author: "Heroes Series", available: true, cover: "images/books/bonifacio.jpg", category: "Historical", isbn: "978-0234567912", overview: "The story of the Father of the Philippine Revolution. Discover how Bonifacio founded the Katipunan and fought for Philippine independence from Spanish rule." },
+                { title: "The First Filipino", author: "Leon Ma. Guerrero", available: false, cover: "images/books/first-filipino.jpg", category: "Historical", isbn: "978-0234567913", overview: "A comprehensive biography of Jose Rizal, exploring his life, works, and sacrifice for the Filipino people. Understand why he is considered our national hero." },
+                { title: "Noli Me Tangere", author: "Jose Rizal", available: true, cover: "images/books/noli.jpg", category: "Historical", isbn: "978-0234567914", overview: "Rizal's masterpiece that exposed the abuses of Spanish colonial rule in the Philippines. Follow Crisostomo Ibarra's story of love, betrayal, and social reform." }
             ],
             fantasy: [
-                { title: "The Enchanted Kingdom", author: "Fantasy Writers", available: true, cover: "images/books/enchanted-kingdom.jpg" },
-                { title: "Dragons of Maharlika", author: "Epic Tales", available: true, cover: "images/books/dragons.jpg" },
-                { title: "The Magic Tree", author: "Wonder Stories", available: false, cover: "images/books/magic-tree.jpg" },
-                { title: "Ang Mahiwagang Bato", author: "Magical Adventures", available: true, cover: "images/books/mahiwagang-bato.jpg" },
-                { title: "Kingdom of Dreams", author: "Fantasy Authors", available: true, cover: "images/books/kingdom-dreams.jpg" },
-                { title: "The Crystal Cave", author: "Adventure Tales", available: true, cover: "images/books/crystal-cave.jpg" }
+                { title: "The Enchanted Kingdom", author: "Fantasy Writers", available: true, cover: "images/books/enchanted-kingdom.jpg", category: "Fantasy", isbn: "978-0234567915", overview: "Enter a magical realm where mythical creatures and humans coexist. Join the quest to save the kingdom from dark forces threatening to destroy the balance of magic." },
+                { title: "Dragons of Maharlika", author: "Epic Tales", available: true, cover: "images/books/dragons.jpg", category: "Fantasy", isbn: "978-0234567916", overview: "Ancient dragons once protected the islands of pre-colonial Philippines. Discover their legends and the brave warriors who fought alongside them." },
+                { title: "The Magic Tree", author: "Wonder Stories", available: false, cover: "images/books/magic-tree.jpg", category: "Fantasy", isbn: "978-0234567917", overview: "A mysterious tree grants wishes to those pure of heart. But be careful what you wish for, as magic always comes with unexpected consequences." },
+                { title: "Ang Mahiwagang Bato", author: "Magical Adventures", available: true, cover: "images/books/mahiwagang-bato.jpg", category: "Fantasy", isbn: "978-0234567918", overview: "Isang ordinaryong bato na may kakaibang kapangyarihan. Sumama sa pakikipagsapalaran ng mga bata na nakatagpo nito at natutunan ang kahalagahan ng responsibilidad." }
             ],
             mystery: [
-                { title: "The Missing Book Case", author: "Detective Kids", available: true, cover: "images/books/missing-book.jpg" },
-                { title: "Secret of the Old Library", author: "Mystery Club", available: true, cover: "images/books/secret-library.jpg" },
-                { title: "Who Took the Trophy?", author: "School Mysteries", available: false, cover: "images/books/trophy.jpg" },
-                { title: "The Hidden Treasure", author: "Adventure Seekers", available: true, cover: "images/books/hidden-treasure.jpg" },
-                { title: "Mystery at Midnight", author: "Detective Stories", available: true, cover: "images/books/midnight-mystery.jpg" },
-                { title: "The Lost Key", author: "Junior Detectives", available: true, cover: "images/books/lost-key.jpg" }
+                { title: "The Missing Book Case", author: "Detective Kids", available: true, cover: "images/books/missing-book.jpg", category: "Mystery", isbn: "978-0234567919", overview: "Books are disappearing from the school library! Join the young detectives as they solve clues, interview suspects, and uncover the truth behind the mysterious thefts." },
+                { title: "Secret of the Old Library", author: "Mystery Club", available: true, cover: "images/books/secret-library.jpg", category: "Mystery", isbn: "978-0234567920", overview: "An abandoned library holds a century-old secret. Can a group of curious students decode the hidden messages and discover what's been locked away all these years?" },
+                { title: "Who Took the Trophy?", author: "School Mysteries", available: false, cover: "images/books/trophy.jpg", category: "Mystery", isbn: "978-0234567921", overview: "The championship trophy has vanished before the awards ceremony! Race against time to find the culprit and return the trophy before the event begins." },
+                { title: "The Hidden Treasure", author: "Adventure Seekers", available: true, cover: "images/books/hidden-treasure.jpg", category: "Mystery", isbn: "978-0234567922", overview: "An old map leads to a treasure hidden somewhere in the school grounds. Follow the clues, solve riddles, and outsmart those who also seek the prize." }
             ]
         };
-
+        let currentBookData = null;
         function renderBooks(category) {
-            const container = document.getElementById(`${category}-books`);
             const books = booksDatabase[category];
-
+            const container = document.getElementById(`${category}-books`);
             container.innerHTML = books.map(book => `
                 <div class="book-card">
                     <div class="book-cover">
-                        <img src="${book.cover}" alt="${book.title}" 
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <svg style="display:none;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        ${book.cover ? `<img src="${book.cover}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="${book.cover ? 'display:none;' : ''}">
                             <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
                         </svg>
                         <span class="availability-badge ${book.available ? 'available' : 'borrowed'}">
@@ -721,20 +729,20 @@ function goToDashboard() {
                         </p>
                     </div>
                     <div class="book-actions">
-                        <button class="btn btn-view" onclick="viewBook('${book.title}')">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <button class="btn btn-view" onclick='openModal(${JSON.stringify(book).replace(/'/g, "&#39;")})'>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
                                 <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
                             </svg>
                             View
                         </button>
-                        <button class="btn btn-borrow" onclick="borrowBook('${book.title}')" ${!book.available ? 'disabled' : ''}>
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                        <button class="btn btn-borrow" ${!book.available ? 'disabled' : ''} onclick='borrowBook("${book.title}")'>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
                             </svg>
                             Borrow
                         </button>
-                        <button class="btn btn-read" onclick="readOnline('${book.title}')">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <button class="btn btn-read" onclick='readBook("${book.title}")'>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
                                 <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
                             </svg>
                             Read
@@ -743,38 +751,61 @@ function goToDashboard() {
                 </div>
             `).join('');
         }
-
         function showCategory(category) {
-            document.querySelectorAll('.category-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
+            document.querySelectorAll('.category-section').forEach(section => section.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`${category}-section`).classList.add('active');
             event.target.classList.add('active');
-
-            window.scrollTo({ top: document.querySelector('.category-tabs').offsetTop - 100, behavior: 'smooth' });
         }
-
-        function viewBook(title) {
-            alert(`Viewing details for: ${title}\n\nThis will open the book details page.`);
+        function openModal(book) {
+            currentBookData = book;
+            document.getElementById('modalBookTitle').textContent = book.title;
+            document.getElementById('modalAuthor').textContent = book.author;
+            document.getElementById('modalCategory').textContent = book.category;
+            document.getElementById('modalGenre').textContent = book.category;
+            document.getElementById('modalISBN').textContent = book.isbn;
+            document.getElementById('modalOverview').textContent = book.overview;
+            const statusElement = document.getElementById('modalStatus');
+            statusElement.textContent = book.available ? 'Available' : 'Borrowed';
+            statusElement.className = book.available ? 'status' : 'status borrowed';
+            const thumbnailDiv = document.getElementById('modalThumbnail');
+            if (book.cover) {
+                thumbnailDiv.innerHTML = `<img src="${book.cover}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+                        <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                    </svg>`;
+            } else {
+                thumbnailDiv.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                </svg>`;
+            }
+            const borrowBtn = document.getElementById('modalBorrowBtn');
+            borrowBtn.disabled = !book.available;
+            document.getElementById('bookModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-
-        function borrowBook(title) {
-            if (confirm(`Do you want to borrow "${title}"?`)) {
-                alert(`Book borrowed successfully!\nYou have 7 days to return "${title}".`);
+        function closeModal() {
+            document.getElementById('bookModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentBookData = null;
+        }
+        function borrowFromModal() {
+            if (currentBookData && currentBookData.available) {
+                borrowBook(currentBookData.title);
+                closeModal();
             }
         }
-
-        function readOnline(title) {
-            alert(`Opening "${title}" in online reader...\n\nThis will launch the e-reader interface.`);
+        function readFromModal() {
+            if (currentBookData) {
+                readBook(currentBookData.title);
+            }
         }
-
-        // Restored per-page dropdown behavior (inline)
-
+        function borrowBook(title) {
+            alert(`Borrowing request sent for: ${title}\n\nPlease visit the library to complete your borrowing transaction.`);
+        }
+        function readBook(title) {
+            alert(`Opening online reader for: ${title}\n\nThis feature will be available soon!`);
+        }
         function toggleDropdown(e) {
             e = e || window.event;
             try { e.stopPropagation(); } catch (err) {}
@@ -787,7 +818,6 @@ function goToDashboard() {
             var t = dd ? dd.querySelector('.dropdown-toggle') : null;
             if (t) t.setAttribute('aria-expanded', menu.classList.contains('show') ? 'true' : 'false');
         }
-
         (function () {
             document.addEventListener('click', function () {
                 document.querySelectorAll('.dropdown-menu.show').forEach(function (menu) {
@@ -802,16 +832,16 @@ function goToDashboard() {
                 menu.addEventListener('click', function (e) { e.stopPropagation(); });
             });
         })();
-
-        document.addEventListener('DOMContentLoaded', function() {
-            renderBooks('kwentong');
-            renderBooks('comics');
-            renderBooks('horror');
-            renderBooks('fairytales');
-            renderBooks('picture');
-            renderBooks('historical');
-            renderBooks('fantasy');
-            renderBooks('mystery');
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
