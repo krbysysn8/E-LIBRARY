@@ -125,6 +125,39 @@
                 transform: translateY(0);
             }
         }
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .category-tab {
+            padding: 10px 24px;
+            background: white;
+            border: 2px solid #6b82c5;
+            border-radius: 25px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #6b82c5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .category-tab:hover {
+            background: #e8f0ff;
+            transform: translateY(-2px);
+        }
+        .category-tab.active {
+            background: #6b82c5;
+            color: white;
+        }
+        .category-section {
+            display: none;
+        }
+        .category-section.active {
+            display: block;
+        }
         .section-header {
             text-align: center;
             margin-bottom: 32px;
@@ -483,10 +516,10 @@
             .page-header h1 {
                 font-size: 2rem;
             }
-            .grade-tabs {
+            .grade-tabs, .category-tabs {
                 gap: 8px;
             }
-            .tab-btn {
+            .tab-btn, .category-tab {
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
@@ -546,37 +579,153 @@
             <p>Browse our complete library collection by grade level</p>
         </div>
         <div class="grade-tabs">
-            <button class="tab-btn active" onclick="showGrade('grade1')">Grade 1</button>
-            <button class="tab-btn" onclick="showGrade('grade2')">Grade 2</button>
-            <button class="tab-btn" onclick="showGrade('grade3')">Grade 3</button>
-            <button class="tab-btn" onclick="showGrade('grade4')">Grade 4</button>
-            <button class="tab-btn" onclick="showGrade('grade5')">Grade 5</button>
-            <button class="tab-btn" onclick="showGrade('grade6')">Grade 6</button>
-        </div>
+    <button class="tab-btn active" onclick="showGrade('grade1')">Grade 1</button>
+    <button class="tab-btn" onclick="showGrade('grade2')">Grade 2</button>
+    <button class="tab-btn" onclick="showGrade('grade3')">Grade 3</button>
+    <button class="tab-btn" onclick="showGrade('grade4')">Grade 4</button>
+    <button class="tab-btn" onclick="showGrade('grade5')">Grade 5</button>
+    <button class="tab-btn" onclick="showGrade('grade6')">Grade 6</button>
+    <button class="tab-btn" onclick="showGrade('other')">Other Books</button>
+</div>
+
+        
         <div class="grade-section active" id="grade1-section">
-            <div class="section-header"><h2>Grade 1 Books</h2><p>Educational books for Grade 1 students</p></div>
-            <div class="books-grid" id="grade1-books"></div>
+            <div class="section-header"><h2>Grade 1 Books</h2><p>Browse all books by category</p></div>
+            <div class="category-tabs" id="grade1-category-tabs">
+                <button class="category-tab active" onclick="showCategory('grade1', 'language')">Language</button>
+                <button class="category-tab" onclick="showCategory('grade1', 'reading')">Reading & Literacy</button>
+                <button class="category-tab" onclick="showCategory('grade1', 'mathematics')">Mathematics</button>
+                <button class="category-tab" onclick="showCategory('grade1', 'makabansa')">Makabansa</button>
+                <button class="category-tab" onclick="showCategory('grade1', 'gmrc')">GMRC</button>
+            </div>
+            <div class="category-section active" id="grade1-language"><div class="books-grid" id="grade1-language-books"></div></div>
+            <div class="category-section" id="grade1-reading"><div class="books-grid" id="grade1-reading-books"></div></div>
+            <div class="category-section" id="grade1-mathematics"><div class="books-grid" id="grade1-mathematics-books"></div></div>
+            <div class="category-section" id="grade1-makabansa"><div class="books-grid" id="grade1-makabansa-books"></div></div>
+            <div class="category-section" id="grade1-gmrc"><div class="books-grid" id="grade1-gmrc-books"></div></div>
         </div>
+
         <div class="grade-section" id="grade2-section">
-            <div class="section-header"><h2>Grade 2 Books</h2><p>Educational books for Grade 2 students</p></div>
-            <div class="books-grid" id="grade2-books"></div>
+            <div class="section-header"><h2>Grade 2 Books</h2><p>Browse all books by category</p></div>
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="showCategory('grade2', 'filipino')">Filipino</button>
+                <button class="category-tab" onclick="showCategory('grade2', 'english')">English</button>
+                <button class="category-tab" onclick="showCategory('grade2', 'mathematics')">Mathematics</button>
+                <button class="category-tab" onclick="showCategory('grade2', 'makabansa')">Makabansa</button>
+                <button class="category-tab" onclick="showCategory('grade2', 'gmrc')">GMRC</button>
+            </div>
+            <div class="category-section active" id="grade2-filipino"><div class="books-grid" id="grade2-filipino-books"></div></div>
+            <div class="category-section" id="grade2-english"><div class="books-grid" id="grade2-english-books"></div></div>
+            <div class="category-section" id="grade2-mathematics"><div class="books-grid" id="grade2-mathematics-books"></div></div>
+            <div class="category-section" id="grade2-makabansa"><div class="books-grid" id="grade2-makabansa-books"></div></div>
+            <div class="category-section" id="grade2-gmrc"><div class="books-grid" id="grade2-gmrc-books"></div></div>
         </div>
+
         <div class="grade-section" id="grade3-section">
-            <div class="section-header"><h2>Grade 3 Books</h2><p>Educational books for Grade 3 students</p></div>
-            <div class="books-grid" id="grade3-books"></div>
+            <div class="section-header"><h2>Grade 3 Books</h2><p>Browse all books by category</p></div>
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="showCategory('grade3', 'filipino')">Filipino</button>
+                <button class="category-tab" onclick="showCategory('grade3', 'english')">English</button>
+                <button class="category-tab" onclick="showCategory('grade3', 'science')">Science</button>
+                <button class="category-tab" onclick="showCategory('grade3', 'mathematics')">Mathematics</button>
+                <button class="category-tab" onclick="showCategory('grade3', 'makabansa')">Makabansa</button>
+                <button class="category-tab" onclick="showCategory('grade3', 'gmrc')">GMRC</button>
+            </div>
+            <div class="category-section active" id="grade3-filipino"><div class="books-grid" id="grade3-filipino-books"></div></div>
+            <div class="category-section" id="grade3-english"><div class="books-grid" id="grade3-english-books"></div></div>
+            <div class="category-section" id="grade3-science"><div class="books-grid" id="grade3-science-books"></div></div>
+            <div class="category-section" id="grade3-mathematics"><div class="books-grid" id="grade3-mathematics-books"></div></div>
+            <div class="category-section" id="grade3-makabansa"><div class="books-grid" id="grade3-makabansa-books"></div></div>
+            <div class="category-section" id="grade3-gmrc"><div class="books-grid" id="grade3-gmrc-books"></div></div>
         </div>
-        <div class="grade-section" id="grade4-section">
-            <div class="section-header"><h2>Grade 4 Books</h2><p>Educational books for Grade 4 students</p></div>
-            <div class="books-grid" id="grade4-books"></div>
+
+       <div class="grade-section" id="grade4-section">
+            <div class="section-header"><h2>Grade 4 Books</h2></div>
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="showCategory('grade4', 'filipino')">Filipino</button>
+                <button class="category-tab" onclick="showCategory('grade4', 'english')">English</button>
+                <button class="category-tab" onclick="showCategory('grade4', 'mathematics')">Mathematics</button>
+                <button class="category-tab" onclick="showCategory('grade4', 'science')">Science</button>
+                <button class="category-tab" onclick="showCategory('grade4', 'ap')">AP</button>
+                <button class="category-tab" onclick="showCategory('grade4', 'mapeh')">MAPEH</button>
+                <button class="category-tab" onclick="showCategory('grade4', 'epp')">EPP</button>
+                <button class="category-tab" onclick="showCategory('grade4', 'gmrc')">GMRC</button>
+            </div>
+            <div class="category-section active" id="grade4-filipino"><div class="books-grid" id="grade4-filipino-books"></div></div>
+            <div class="category-section" id="grade4-english"><div class="books-grid" id="grade4-english-books"></div></div>
+            <div class="category-section" id="grade4-mathematics"><div class="books-grid" id="grade4-mathematics-books"></div></div>
+            <div class="category-section" id="grade4-science"><div class="books-grid" id="grade4-science-books"></div></div>
+            <div class="category-section" id="grade4-ap"><div class="books-grid" id="grade4-ap-books"></div></div>
+            <div class="category-section" id="grade4-mapeh"><div class="books-grid" id="grade4-mapeh-books"></div></div>
+            <div class="category-section" id="grade4-epp"><div class="books-grid" id="grade4-epp-books"></div></div>
+            <div class="category-section" id="grade4-gmrc"><div class="books-grid" id="grade4-gmrc-books"></div></div>
         </div>
+
         <div class="grade-section" id="grade5-section">
-            <div class="section-header"><h2>Grade 5 Books</h2><p>Educational books for Grade 5 students</p></div>
-            <div class="books-grid" id="grade5-books"></div>
+            <div class="section-header"><h2>Grade 5 Books</h2></div>
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="showCategory('grade5', 'filipino')">Filipino</button>
+                <button class="category-tab" onclick="showCategory('grade5', 'english')">English</button>
+                <button class="category-tab" onclick="showCategory('grade5', 'mathematics')">Mathematics</button>
+                <button class="category-tab" onclick="showCategory('grade5', 'science')">Science</button>
+                <button class="category-tab" onclick="showCategory('grade5', 'ap')">AP</button>
+                <button class="category-tab" onclick="showCategory('grade5', 'mapeh')">MAPEH</button>
+                <button class="category-tab" onclick="showCategory('grade5', 'epp')">EPP</button>
+                <button class="category-tab" onclick="showCategory('grade5', 'gmrc')">GMRC</button>
+            </div>
+            <div class="category-section active" id="grade5-filipino"><div class="books-grid" id="grade5-filipino-books"></div></div>
+            <div class="category-section" id="grade5-english"><div class="books-grid" id="grade5-english-books"></div></div>
+            <div class="category-section" id="grade5-mathematics"><div class="books-grid" id="grade5-mathematics-books"></div></div>
+            <div class="category-section" id="grade5-science"><div class="books-grid" id="grade5-science-books"></div></div>
+            <div class="category-section" id="grade5-ap"><div class="books-grid" id="grade5-ap-books"></div></div>
+            <div class="category-section" id="grade5-mapeh"><div class="books-grid" id="grade5-mapeh-books"></div></div>
+            <div class="category-section" id="grade5-epp"><div class="books-grid" id="grade5-epp-books"></div></div>
+            <div class="category-section" id="grade5-gmrc"><div class="books-grid" id="grade5-gmrc-books"></div></div>
         </div>
+
         <div class="grade-section" id="grade6-section">
-            <div class="section-header"><h2>Grade 6 Books</h2><p>Educational books for Grade 6 students</p></div>
-            <div class="books-grid" id="grade6-books"></div>
+            <div class="section-header"><h2>Grade 6 Books</h2></div>
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="showCategory('grade6', 'filipino')">Filipino</button>
+                <button class="category-tab" onclick="showCategory('grade6', 'english')">English</button>
+                <button class="category-tab" onclick="showCategory('grade6', 'mathematics')">Mathematics</button>
+                <button class="category-tab" onclick="showCategory('grade6', 'science')">Science</button>
+                <button class="category-tab" onclick="showCategory('grade6', 'ap')">AP</button>
+                <button class="category-tab" onclick="showCategory('grade6', 'mapeh')">MAPEH</button>
+                <button class="category-tab" onclick="showCategory('grade6', 'tle')">TLE</button>
+                <button class="category-tab" onclick="showCategory('grade6', 'makabansa')">Makabansa</button>
+            </div>
+            <div class="category-section active" id="grade6-filipino"><div class="books-grid" id="grade6-filipino-books"></div></div>
+            <div class="category-section" id="grade6-english"><div class="books-grid" id="grade6-english-books"></div></div>
+            <div class="category-section" id="grade6-mathematics"><div class="books-grid" id="grade6-mathematics-books"></div></div>
+            <div class="category-section" id="grade6-science"><div class="books-grid" id="grade6-science-books"></div></div>
+            <div class="category-section" id="grade6-ap"><div class="books-grid" id="grade6-ap-books"></div></div>
+            <div class="category-section" id="grade6-mapeh"><div class="books-grid" id="grade6-mapeh-books"></div></div>
+            <div class="category-section" id="grade6-epp"><div class="books-grid" id="grade6-tle-books"></div></div>
+            <div class="category-section" id="grade6-gmrc"><div class="books-grid" id="grade6-makabansa-books"></div></div>
         </div>
+
+        <div class="grade-section" id="other-section">
+    <div class="section-header"><h2>Other Books</h2><p>Story books, comics, and more</p></div>
+    <div class="category-tabs">
+        <button class="category-tab active" onclick="showCategory('other', 'kwentong')">Kwentong Pambata</button>
+        <button class="category-tab" onclick="showCategory('other', 'comics')">Comics</button>
+        <button class="category-tab" onclick="showCategory('other', 'horror')">Horror</button>
+        <button class="category-tab" onclick="showCategory('other', 'fairytales')">Fairy Tales</button>
+        <button class="category-tab" onclick="showCategory('other', 'picture')">Picture Books</button>
+        <button class="category-tab" onclick="showCategory('other', 'historical')">Historical</button>
+        <button class="category-tab" onclick="showCategory('other', 'fantasy')">Fantasy</button>
+        <button class="category-tab" onclick="showCategory('other', 'mystery')">Mystery</button>
+    </div>
+    <div class="category-section active" id="other-kwentong"><div class="books-grid" id="other-kwentong-books"></div></div>
+    <div class="category-section" id="other-comics"><div class="books-grid" id="other-comics-books"></div></div>
+    <div class="category-section" id="other-horror"><div class="books-grid" id="other-horror-books"></div></div>
+    <div class="category-section" id="other-fairytales"><div class="books-grid" id="other-fairytales-books"></div></div>
+    <div class="category-section" id="other-picture"><div class="books-grid" id="other-picture-books"></div></div>
+    <div class="category-section" id="other-historical"><div class="books-grid" id="other-historical-books"></div></div>
+    <div class="category-section" id="other-fantasy"><div class="books-grid" id="other-fantasy-books"></div></div>
+    <div class="category-section" id="other-mystery"><div class="books-grid" id="other-mystery-books"></div></div>
+</div>
     </main>
     <div id="bookModal" class="modal">
         <div class="modal-content">
@@ -615,61 +764,357 @@
         </div>
     </footer>
     <script>
-        const allBooks = {
-            grade1: [
-                { title: "Ang Aking Pamilya", author: "Maria Santos", available: true, category: "Language - Filipino", grade: "Grade 1", isbn: "978-1234567891", overview: "Ang 'Ang Aking Pamilya' ay isang masayang aklat na naglalahad ng iba't ibang uri ng pamilya sa Pilipinas. Natututo ang mga bata tungkol sa pagmamahal, paggalang, at pakikipag-ugnayan sa loob ng pamilya." },
-                { title: "My First English Words", author: "Jennifer Cruz", available: true, category: "Language - English", grade: "Grade 1", isbn: "978-1234567892", overview: "A colorful introduction to basic English vocabulary for Grade 1 students. Features common words with illustrations, helping children build their English vocabulary through fun pictures and simple sentences." },
-                { title: "Mga Kuwentong Pambata", author: "Ana Garcia", available: true, category: "Reading & Literacy", grade: "Grade 1", isbn: "978-1234567895", overview: "Koleksyon ng mga maikling kuwento na angkop sa Grade 1. Bawat kuwento ay may aral at mga tanong upang mapaunlad ang kakayahan sa pagbasa at pag-unawa ng mga bata." },
-                { title: "Counting with Fun", author: "Robert Chen", available: true, category: "Mathematics", grade: "Grade 1", isbn: "978-1234567899", overview: "Learn numbers from 1 to 100 with fun exercises and colorful illustrations. Includes counting games, basic addition, and number recognition activities." },
-                { title: "Ang Ating Bansa", author: "Jose Dela Cruz", available: false, category: "Makabansa", grade: "Grade 1", isbn: "978-1234567903", overview: "Alamin ang tungkol sa ating bansang Pilipinas - ang mga bayani, kultura, at tradisyon. Naglalaman ng mga larawan ng ating watawat, pambansang sagisag, at mga tanyag na lugar." },
-                { title: "Mabuting Asal", author: "Angela Martinez", available: true, category: "GMRC", grade: "Grade 1", isbn: "978-1234567907", overview: "Matuto ng mabubuting asal at ugali na dapat sundin sa bahay, eskwela, at komunidad. May mga halimbawa at larawan ng tamang kilos at pag-uugali." }
+        const grade1Books = {
+            language: [
+                { title: "Ang Aking Pamilya", author: "Maria Santos", available: true, category: "Language - Filipino", isbn: "978-1234567891", overview: "Ang 'Ang Aking Pamilya' ay isang masayang aklat na naglalahad ng iba't ibang uri ng pamilya sa Pilipinas. Natututo ang mga bata tungkol sa pagmamahal, paggalang, at pakikipag-ugnayan sa loob ng pamilya." },
+                { title: "My First English Words", author: "Jennifer Cruz", available: true, category: "Language - English", isbn: "978-1234567892", overview: "A colorful introduction to basic English vocabulary for Grade 1 students. Features common words with illustrations." },
+                { title: "Mga Salitang Mahalaga", author: "Pedro Reyes", available: false, category: "Language - Filipino", isbn: "978-1234567893", overview: "Isang aklat na nagtuturo ng mahahalagang salita sa pang-araw-araw na buhay." },
+                { title: "ABC and Me", author: "Sarah Johnson", available: true, category: "Language - English", isbn: "978-1234567894", overview: "Learn the English alphabet with fun activities and colorful pictures." }
             ],
-            grade2: [
-                { title: "Mga Kuwentong Bayan", author: "Filipino Writers", available: true, category: "Filipino", grade: "Grade 2", isbn: "978-2234567891", overview: "Koleksyon ng mga tradisyonal na kuwentong bayan ng Pilipinas na puno ng aral at kaalaman. Kasama rito ang mga alamat, pabula, at maikling kuwento." },
-                { title: "Read and Learn", author: "Education Team", available: true, category: "English", grade: "Grade 2", isbn: "978-2234567895", overview: "A comprehensive reading program designed for Grade 2 students. Features engaging stories and activities that build reading fluency and comprehension skills." },
-                { title: "Math Adventures", author: "Math Department", available: false, category: "Mathematics", grade: "Grade 2", isbn: "978-2234567899", overview: "Exciting mathematical adventures that make learning numbers fun! Explore addition, subtraction, and basic problem-solving through colorful illustrations and games." },
-                { title: "Mga Simbolo ng Pilipinas", author: "Cultural Studies", available: true, category: "Makabansa", grade: "Grade 2", isbn: "978-2234567903", overview: "Alamin ang tungkol sa mga pambansang sagisag ng Pilipinas - ang watawat, opisyal na awit, bulaklak, at ibon." },
-                { title: "Values for Children", author: "Character Education", available: true, category: "GMRC", grade: "Grade 2", isbn: "978-2234567907", overview: "Matuto ng mahahalagang pagpapahalaga tulad ng katapatan, kagandahang-loob, at paggalang." }
+            reading: [
+                { title: "Mga Kuwentong Pambata", author: "Ana Garcia", available: true, category: "Reading & Literacy", isbn: "978-1234567895", overview: "Koleksyon ng mga maikling kuwento na angkop sa Grade 1." },
+                { title: "Reading Adventures", author: "Michael Brown", available: true, category: "Reading & Literacy", isbn: "978-1234567896", overview: "Join exciting reading adventures with simple stories designed for beginning readers." },
+                { title: "Basahin at Unawain", author: "Carmen Lopez", available: false, category: "Reading & Literacy", isbn: "978-1234567897", overview: "Mga basahing nakatutulong sa pagpapaunlad ng kasanayan sa pagbasa at pag-unawa." },
+                { title: "Story Time for Kids", author: "Emily White", available: true, category: "Reading & Literacy", isbn: "978-1234567898", overview: "A collection of engaging stories that promote reading fluency and comprehension." }
             ],
-            grade3: [
-                { title: "Panitikan ng Pilipinas", author: "Literary Team", available: true, category: "Filipino", grade: "Grade 3", isbn: "978-3234567891", overview: "Tuklasin ang mayamang panitikan ng Pilipinas mula sa sinaunang panahon hanggang sa kasalukuyan." },
-                { title: "English for Young Learners", author: "Language Institute", available: true, category: "English", grade: "Grade 3", isbn: "978-3234567895", overview: "A comprehensive English language course designed for Grade 3 students. Covers reading, writing, speaking, and listening skills." },
-                { title: "Our Living World", author: "Science Department", available: true, category: "Science", grade: "Grade 3", isbn: "978-3234567899", overview: "Explore the fascinating world of living organisms. Learn about ecosystems, food chains, habitats, and how plants and animals adapt to their environment." },
-                { title: "Multiplication Mastery", author: "Math Experts", available: false, category: "Mathematics", grade: "Grade 3", isbn: "978-3234567903", overview: "Master multiplication tables from 1 to 10 with fun strategies and tricks. Learn the relationship between multiplication and division." },
-                { title: "Kasaysayan ng Pilipinas", author: "History Department", available: true, category: "Makabansa", grade: "Grade 3", isbn: "978-3234567907", overview: "Tuklasin ang mahalagang kaganapan sa kasaysayan ng Pilipinas mula sa sinaunang panahon hanggang sa kasalukuyan." },
-                { title: "Mabuting Asal sa Tahanan", author: "Values Education", available: true, category: "GMRC", grade: "Grade 3", isbn: "978-3234567911", overview: "Matutunan ang mga mabubuting gawi sa bahay at pamilya. Alamin ang kahalagahan ng paggalang at pagtulong sa gawaing bahay." }
+            mathematics: [
+                { title: "Counting with Fun", author: "Robert Chen", available: true, category: "Mathematics", isbn: "978-1234567899", overview: "Learn numbers from 1 to 100 with fun exercises and colorful illustrations." },
+                { title: "Mga Numero at Ako", author: "Linda Ramos", available: true, category: "Mathematics", isbn: "978-1234567900", overview: "Pag-aralan ang mga numero at basic na pagbilang sa masayang paraan." },
+                { title: "Basic Shapes and Patterns", author: "David Lee", available: false, category: "Mathematics", isbn: "978-1234567901", overview: "Explore basic geometric shapes and patterns through interactive activities." },
+                { title: "Math is Everywhere", author: "Patricia Cruz", available: true, category: "Mathematics", isbn: "978-1234567902", overview: "Discover math in everyday life!" }
             ],
-            grade4: [
-                { title: "Ang Dakilang Panitikan", author: "Literature Department", available: true, category: "Filipino", grade: "Grade 4", isbn: "978-4234567891", overview: "Pag-aralan ang mga dakilang akda ng panitikang Filipino. Mga tula, sanaysay, at kwentong naglalarawan ng kultura at kasaysayan ng bansa." },
-                { title: "Advanced English", author: "Language Center", available: true, category: "English", grade: "Grade 4", isbn: "978-4234567895", overview: "Develop advanced English skills through reading comprehension, grammar exercises, and creative writing activities." },
-                { title: "Science Explorer", author: "Science Team", available: false, category: "Science", grade: "Grade 4", isbn: "978-4234567899", overview: "Discover the wonders of science through experiments and investigations. Learn about matter, energy, forces, and earth science." },
-                { title: "Mathematics in Action", author: "Math Institute", available: true, category: "Mathematics", grade: "Grade 4", isbn: "978-4234567903", overview: "Apply mathematical concepts to real-world situations. Learn fractions, decimals, geometry, and problem-solving strategies." },
-                { title: "Kasaysayan at Kultura", author: "History Team", available: true, category: "Araling Panlipunan", grade: "Grade 4", isbn: "978-4234567907", overview: "Pag-aralan ang kasaysayan at kultura ng Pilipinas at ng ibang bansa. Matutunan ang kahalagahan ng pag-unawa sa iba't ibang kultura." },
-                { title: "Building Character", author: "Values Team", available: true, category: "EsP", grade: "Grade 4", isbn: "978-4234567911", overview: "Develop strong moral character through stories and activities. Learn about honesty, responsibility, and respect for others." }
+            makabansa: [
+                { title: "Ang Ating Bansa", author: "Jose Dela Cruz", available: true, category: "Makabansa", isbn: "978-1234567903", overview: "Alamin ang tungkol sa ating bansang Pilipinas - ang mga bayani, kultura, at tradisyon." },
+                { title: "My Country Philippines", author: "Gloria Santos", available: true, category: "Makabansa", isbn: "978-1234567904", overview: "Learn about the Philippines - our heroes, symbols, and traditions." },
+                { title: "Mga Bayani Natin", author: "Ramon Fernandez", available: false, category: "Makabansa", isbn: "978-1234567905", overview: "Makilala ang mga bayaning Pilipino na nakipaglaban para sa ating kalayaan." },
+                { title: "Filipino Values for Kids", author: "Teresa Aquino", available: true, category: "Makabansa", isbn: "978-1234567906", overview: "Learn about important Filipino values like respect, unity, and love for country." }
             ],
-            grade5: [
-                { title: "Mga Dakilang Pilipino", author: "Biography Team", available: true, category: "Filipino", grade: "Grade 5", isbn: "978-5234567891", overview: "Makilala ang mga dakilang Pilipino na nag-ambag sa lipunan. Mga bayani, siyentipiko, at mga taong nagsilbi sa bayan." },
-                { title: "English Literature", author: "Literary Arts", available: true, category: "English", grade: "Grade 5", isbn: "978-5234567895", overview: "Explore classic and contemporary English literature. Analyze stories, poems, and plays while developing critical thinking skills." },
-                { title: "Life Science", author: "Biology Department", available: true, category: "Science", grade: "Grade 5", isbn: "978-5234567899", overview: "Study the human body, plants, animals, and ecosystems. Learn how living things interact and depend on each other." },
-                { title: "Advanced Mathematics", author: "Math Academy", available: false, category: "Mathematics", grade: "Grade 5", isbn: "978-5234567903", overview: "Master advanced mathematical concepts including ratios, percentages, statistics, and algebraic thinking." },
-                { title: "Heograpiya ng Pilipinas", author: "Geography Team", available: true, category: "Araling Panlipunan", grade: "Grade 5", isbn: "978-5234567907", overview: "Pag-aralan ang heograpiya ng Pilipinas - ang mga rehiyon, likas na yaman, at kapaligiran. Matutunan ang kahalagahan ng pag-aalaga sa kalikasan." },
-                { title: "Values in Action", author: "Ethics Department", available: true, category: "EsP", grade: "Grade 5", isbn: "978-5234567911", overview: "Put values into practice through community service and social responsibility. Learn how to make ethical decisions." }
-            ],
-            grade6: [
-                { title: "Filipino sa Piling Larangan", author: "Language Arts", available: true, category: "Filipino", grade: "Grade 6", isbn: "978-6234567891", overview: "Pag-aralan ang Filipino sa iba't ibang larangan tulad ng agham, sining, at teknolohiya. Pagyamanin ang bokabularyo at kasanayan sa komunikasyon." },
-                { title: "English Mastery", author: "Language Experts", available: true, category: "English", grade: "Grade 6", isbn: "978-6234567895", overview: "Achieve English language mastery through comprehensive lessons in grammar, composition, and literature analysis." },
-                { title: "Physical Science", author: "Physics and Chemistry", available: false, category: "Science", grade: "Grade 6", isbn: "978-6234567899", overview: "Explore the physical world through chemistry and physics. Learn about atoms, molecules, energy, and the laws of nature." },
-                { title: "Problem Solving Mathematics", author: "Math Masters", available: true, category: "Mathematics", grade: "Grade 6", isbn: "978-6234567903", overview: "Develop advanced problem-solving skills using mathematical reasoning. Prepare for higher level mathematics with algebra and geometry." },
-                { title: "Kasaysayan ng Daigdig", author: "World History", available: true, category: "Araling Panlipunan", grade: "Grade 6", isbn: "978-6234567907", overview: "Pag-aralan ang kasaysayan ng daigdig at kung paano ito nakaapekto sa Pilipinas. Mula sa sinaunang sibilisasyon hanggang sa modernong panahon." },
-                { title: "Leadership and Service", author: "Character Formation", available: true, category: "EsP", grade: "Grade 6", isbn: "978-6234567911", overview: "Develop leadership skills and learn the importance of service to community. Prepare to be responsible citizens and future leaders." }
+            gmrc: [
+                { title: "Mabuting Asal", author: "Angela Martinez", available: true, category: "GMRC", isbn: "978-1234567907", overview: "Matuto ng mabubuting asal at ugali na dapat sundin sa bahay, eskwela, at komunidad." },
+                { title: "Good Manners for Children", author: "Susan Taylor", available: true, category: "GMRC", isbn: "978-1234567908", overview: "A guide to proper behavior and good manners at home, school, and in the community." },
+                { title: "Respect and Kindness", author: "Marco Villanueva", available: false, category: "GMRC", isbn: "978-1234567909", overview: "Learn the importance of treating others with respect and kindness." },
+                { title: "Pagiging Mabuting Bata", author: "Rosa Mendoza", available: true, category: "GMRC", isbn: "978-1234567910", overview: "Gabay sa pagiging mabuting bata sa pamamagitan ng mga kuwento at halimbawa." }
             ]
         };
 
+        const grade2Books = {
+            filipino: [
+                { title: "Mga Kuwentong Bayan", author: "Filipino Writers", available: true, category: "Filipino", isbn: "978-2234567891", overview: "Koleksyon ng mga tradisyonal na kuwentong bayan ng Pilipinas." },
+                { title: "Alamat ng Sampaguita", author: "Traditional", available: true, category: "Filipino", isbn: "978-2234567892", overview: "Isang magandang alamat tungkol sa pambansang bulaklak ng Pilipinas." },
+                { title: "Pagbasa at Pagsulat", author: "Maria Gonzales", available: true, category: "Filipino", isbn: "978-2234567893", overview: "Gabay sa pagpapaunlad ng kasanayan sa pagbasa at pagsulat." },
+                { title: "Tula Para sa Bata", author: "Jose Santos", available: true, category: "Filipino", isbn: "978-2234567894", overview: "Koleksyon ng mga tulang pambata na madaling unawain." }
+            ],
+            english: [
+                { title: "Read and Learn", author: "Education Team", available: true, category: "English", isbn: "978-2234567895", overview: "A comprehensive reading program designed for Grade 2 students." },
+                { title: "English Grammar for Kids", author: "Teaching Staff", available: true, category: "English", isbn: "978-2234567896", overview: "Learn basic English grammar through fun exercises." },
+                { title: "Stories for Grade 2", author: "Children's Library", available: true, category: "English", isbn: "978-2234567897", overview: "A collection of age-appropriate stories." },
+                { title: "My English Workbook", author: "Language Center", available: false, category: "English", isbn: "978-2234567898", overview: "Interactive workbook filled with exercises." }
+            ],
+            mathematics: [
+                { title: "Math Adventures", author: "Math Department", available: true, category: "Mathematics", isbn: "978-2234567899", overview: "Exciting mathematical adventures!" },
+                { title: "Addition and Subtraction", author: "Numbers Team", available: true, category: "Mathematics", isbn: "978-2234567900", overview: "Master the fundamentals of addition and subtraction." },
+                { title: "Word Problems", author: "Problem Solving", available: true, category: "Mathematics", isbn: "978-2234567901", overview: "Develop critical thinking through word problems." },
+                { title: "Measurement Basics", author: "Teaching Staff", available: true, category: "Mathematics", isbn: "978-2234567902", overview: "Introduction to measurement concepts." }
+            ],
+            makabansa: [
+                { title: "Mga Simbolo ng Pilipinas", author: "Cultural Studies", available: true, category: "Makabansa", isbn: "978-2234567903", overview: "Alamin ang tungkol sa mga pambansang sagisag." },
+                { title: "Our Filipino Heroes", author: "History Department", available: true, category: "Makabansa", isbn: "978-2234567904", overview: "Learn about brave Filipino heroes." },
+                { title: "Philippine Festivals", author: "Culture Center", available: true, category: "Makabansa", isbn: "978-2234567905", overview: "Tuklasin ang iba't ibang pista sa Pilipinas." },
+                { title: "Community Helpers", author: "Social Studies", available: false, category: "Makabansa", isbn: "978-2234567906", overview: "Meet the people who help our community." }
+            ],
+            gmrc: [
+                { title: "Values for Children", author: "Character Education", available: true, category: "GMRC", isbn: "978-2234567907", overview: "Matuto ng mahahalagang pagpapahalaga." },
+                { title: "Being Responsible", author: "Moral Values", available: true, category: "GMRC", isbn: "978-2234567908", overview: "Learn the importance of taking responsibility." },
+                { title: "Helping Others", author: "Community Values", available: true, category: "GMRC", isbn: "978-2234567909", overview: "Discover the joy of helping others." },
+                { title: "Honesty and Truth", author: "Character Building", available: true, category: "GMRC", isbn: "978-2234567910", overview: "Understand why honesty is important." }
+            ]
+        };
+
+        const grade3Books = {
+            filipino: [
+                { title: "Panitikan ng Pilipinas", author: "Literary Team", available: true, category: "Filipino", isbn: "978-3234567891", overview: "Tuklasin ang mayamang panitikan ng Pilipinas." },
+                { title: "Mga Tula at Awit", author: "Poets Collective", available: true, category: "Filipino", isbn: "978-3234567892", overview: "Koleksyon ng mga tulang pambata." },
+                { title: "Epiko ng Bansa", author: "Cultural Heritage", available: true, category: "Filipino", isbn: "978-3234567893", overview: "Mga kilalang epiko ng Pilipinas." },
+                { title: "Gramatika ng Filipino", author: "Language Department", available: false, category: "Filipino", isbn: "978-3234567894", overview: "Komprehensibong gabay sa gramatika." }
+            ],
+            english: [
+                { title: "English for Young Learners", author: "Language Institute", available: true, category: "English", isbn: "978-3234567895", overview: "Comprehensive English language course." },
+                { title: "Reading Comprehension 3", author: "Education Publishers", available: true, category: "English", isbn: "978-3234567896", overview: "Develop critical reading skills." },
+                { title: "Grammar Essentials", author: "Teaching Team", available: false, category: "English", isbn: "978-3234567897", overview: "Master English grammar fundamentals." },
+                { title: "Creative Writing", author: "Writers Workshop", available: true, category: "English", isbn: "978-3234567898", overview: "Unleash your imagination." }
+            ],
+            science: [
+                { title: "Our Living World", author: "Science Department", available: true, category: "Science", isbn: "978-3234567899", overview: "Explore the world of living organisms." },
+                { title: "Matter and Energy", author: "Physics Team", available: true, category: "Science", isbn: "978-3234567900", overview: "Discover properties of matter." },
+                { title: "Plants and Animals", author: "Biology Center", available: true, category: "Science", isbn: "978-3234567901", overview: "Learn about life cycles." },
+                { title: "Earth and Space", author: "Astronomy Group", available: false, category: "Science", isbn: "978-3234567902", overview: "Journey through our solar system." }
+            ],
+            mathematics: [
+                { title: "Multiplication Mastery", author: "Math Experts", available: true, category: "Mathematics", isbn: "978-3234567903", overview: "Master multiplication tables." },
+                { title: "Division for Beginners", author: "Number Sense Team", available: true, category: "Mathematics", isbn: "978-3234567904", overview: "Understand division concepts." },
+                { title: "Fractions and Decimals", author: "Mathematics Center", available: true, category: "Mathematics", isbn: "978-3234567905", overview: "Introduction to fractions." },
+                { title: "Problem Solving Adventures", author: "Math Challenge Team", available: false, category: "Mathematics", isbn: "978-3234567906", overview: "Develop critical thinking." }
+            ],
+            makabansa: [
+                { title: "Kasaysayan ng Pilipinas", author: "History Department", available: true, category: "Makabansa", isbn: "978-3234567907", overview: "Mahalagang kaganapan sa kasaysayan." },
+                { title: "Mga Bayani ng Bayan", author: "National Heroes Board", available: true, category: "Makabansa", isbn: "978-3234567908", overview: "Kilalanin ang mga bayaning Pilipino." },
+                { title: "Kultura at Tradisyon", author: "Cultural Studies", available: true, category: "Makabansa", isbn: "978-3234567909", overview: "Iba't ibang kultura ng Pilipinas." },
+                { title: "Heograpiya ng Pilipinas", author: "Geography Team", available: false, category: "Makabansa", isbn: "978-3234567910", overview: "Lokasyon at likas na yaman." }
+            ],
+            gmrc: [
+                { title: "Mabuting Asal sa Tahanan", author: "Values Education", available: true, category: "GMRC", isbn: "978-3234567911", overview: "Mabubuting gawi sa bahay." },
+                { title: "Pagpapahalaga sa Kapwa", author: "Character Development", available: true, category: "GMRC", isbn: "978-3234567912", overview: "Paggalang at pagmamalasakit." },
+                { title: "Pagiging Responsable", author: "Moral Education", available: false, category: "GMRC", isbn: "978-3234567913", overview: "Pag-unawa sa responsibilidad." },
+                { title: "Pagmamahal sa Bayan", author: "Civic Values Team", available: true, category: "GMRC", isbn: "978-3234567914", overview: "Ipakita ang pagmamahal sa bansa." }
+            ]
+        };
+
+        const grade4Books = {
+            filipino: [
+                { title: "Panitikan ng Pilipinas 4", author: "Literary Team", available: true, cover: "images/books/g4-panitikan.jpg", category: "Filipino", isbn: "978-4234567891", overview: "Pag-aralan ang iba't ibang uri ng panitikan tulad ng tula, maikling kuwento, at dula. Matutunan ang mga elemento ng bawat genre at kung paano bumuo ng sariling akda." },
+                { title: "Mga Tula at Awit", author: "Poets Collective", available: true, cover: "images/books/g4-tula.jpg", category: "Filipino", isbn: "978-4234567892", overview: "Koleksyon ng mga tulang Pilipino na nagpapakita ng iba't ibang temang panlipunan, pampamilya, at pangkalikasan. Alamin ang sining ng pagtula at pagsulat ng orihinal na mga tula." },
+                { title: "Epiko ng Bansa", author: "Cultural Heritage", available: true, cover: "images/books/g4-epiko.jpg", category: "Filipino", isbn: "978-4234567893", overview: "Mga kilalang epiko mula sa iba't ibang rehiyon ng Pilipinas. Tuklasin ang mga bayani at kanilang mga kabayanihan na sumasalamin sa kultura at kaugalian ng mga ninuno." },
+                { title: "Gramatika ng Filipino", author: "Language Department", available: false, cover: "images/books/g4-gramatika.jpg", category: "Filipino", isbn: "978-4234567894", overview: "Mas malalim na pag-aaral ng gramatikang Filipino. Kasama rito ang pangungusap, pandiwa, pang-uri, at wastong paggamit ng mga salita sa pagsulat at pakikipag-usap." },
+                { title: "Maikling Kwento", author: "Story Writers", available: true, cover: "images/books/g4-kwento.jpg", category: "Filipino", isbn: "978-4234567895", overview: "Koleksyon ng mga maikling kuwentong Pilipino mula sa kilalang mga manunulat. Matutunan ang mga elemento ng maikling kuwento at kung paano sumulat ng sariling kwento." },
+                { title: "Sanaysay at Talumpati", author: "Writing Center", available: true, cover: "images/books/g4-sanaysay.jpg", category: "Filipino", isbn: "978-4234567896", overview: "Gabay sa pagsulat ng sanaysay at paghahanda ng talumpati. Alamin ang mga teknik sa paglalahad ng ideya at pagiging epektibo sa pagpapahayag ng saloobin." }
+            ],
+            english: [
+                { title: "English for Young Learners 4", author: "Language Institute", available: true, cover: "images/books/g4-english-learners.jpg", category: "English", isbn: "978-4234567897", overview: "Comprehensive English program focusing on grammar, vocabulary, reading comprehension, and writing skills. Includes engaging activities and real-world applications." },
+                { title: "Reading Comprehension 4", author: "Education Publishers", available: true, cover: "images/books/g4-comprehension.jpg", category: "English", isbn: "978-4234567898", overview: "Enhance reading skills through diverse passages and comprehension questions. Learn to identify themes, make predictions, and analyze character development in stories." },
+                { title: "Grammar Essentials", author: "Teaching Team", available: false, cover: "images/books/g4-grammar.jpg", category: "English", isbn: "978-4234567899", overview: "Master advanced grammar concepts including complex sentences, verb tenses, and proper punctuation. Practice through exercises and real-world writing applications." },
+                { title: "Creative Writing Workshop", author: "Writers Workshop", available: true, cover: "images/books/g4-creative.jpg", category: "English", isbn: "978-4234567900", overview: "Develop creative writing skills through guided activities. Learn to write narratives, descriptive essays, and poetry while expressing your unique voice and ideas." },
+                { title: "Poetry and Literature", author: "Young Poets", available: true, cover: "images/books/g4-poetry.jpg", category: "English", isbn: "978-4234567901", overview: "Explore various forms of poetry and literary works. Understand metaphors, similes, and other literary devices while creating your own poetic compositions." }
+            ],
+            mathematics: [
+                { title: "Advanced Multiplication", author: "Math Wizards", available: true, cover: "images/books/g4-multiplication.jpg", category: "Mathematics", isbn: "978-4234567902", overview: "Master multiplication with multi-digit numbers. Learn efficient strategies, mental math techniques, and real-world applications of multiplication in daily life." },
+                { title: "Division Mastery", author: "Numbers Team", available: true, cover: "images/books/g4-division.jpg", category: "Mathematics", isbn: "978-4234567903", overview: "Develop division skills with remainders and long division. Understand the relationship between multiplication and division through practical problem-solving." },
+                { title: "Fractions and Decimals", author: "Math Department", available: false, cover: "images/books/g4-fractions.jpg", category: "Mathematics", isbn: "978-4234567904", overview: "Explore equivalent fractions, comparing fractions, and basic decimal operations. Learn to convert between fractions and decimals with visual representations." },
+                { title: "Geometry and Shapes", author: "Shape Experts", available: true, cover: "images/books/g4-geometry.jpg", category: "Mathematics", isbn: "978-4234567905", overview: "Study geometric shapes, angles, perimeter, and area. Identify and classify polygons while understanding their properties and real-world applications." },
+                { title: "Word Problems 4", author: "Problem Solvers", available: true, cover: "images/books/g4-word-problems.jpg", category: "Mathematics", isbn: "978-4234567906", overview: "Solve complex word problems using multiple operations. Develop critical thinking and analytical skills through real-life mathematical scenarios." },
+                { title: "Measurement and Data", author: "Math Skills", available: true, cover: "images/books/g4-measurement.jpg", category: "Mathematics", isbn: "978-4234567907", overview: "Learn about units of measurement, converting units, and interpreting data through graphs and charts. Apply measurement skills to practical situations." }
+            ],
+            science: [
+                { title: "Our Living World 4", author: "Science Department", available: true, cover: "images/books/g4-living-world.jpg", category: "Science", isbn: "978-4234567908", overview: "Explore ecosystems, food webs, and biodiversity. Understand how living organisms interact with their environment and depend on each other for survival." },
+                { title: "Matter and Energy", author: "Physics Team", available: true, cover: "images/books/g4-matter.jpg", category: "Science", isbn: "978-4234567909", overview: "Investigate properties of matter, chemical and physical changes, and forms of energy. Conduct experiments to understand energy transfer and transformation." },
+                { title: "Ecosystems and Habitats", author: "Biology Center", available: true, cover: "images/books/g4-ecosystems.jpg", category: "Science", isbn: "978-4234567910", overview: "Study different ecosystems from rainforests to deserts. Learn how organisms adapt to their habitats and the importance of environmental conservation." },
+                { title: "Earth and Space Science", author: "Astronomy Lab", available: false, cover: "images/books/g4-earth-space.jpg", category: "Science", isbn: "978-4234567911", overview: "Discover Earth's place in the solar system, moon phases, and seasonal changes. Learn about rocks, minerals, and the water cycle." },
+                { title: "Science Experiments 4", author: "Lab Researchers", available: true, cover: "images/books/g4-experiments.jpg", category: "Science", isbn: "978-4234567912", overview: "Hands-on experiments covering various science topics. Follow the scientific method to observe, hypothesize, and draw conclusions from investigations." },
+                { title: "Weather and Climate", author: "Meteorology Team", available: true, cover: "images/books/g4-weather.jpg", category: "Science", isbn: "978-4234567913", overview: "Understand weather patterns, climate zones, and atmospheric phenomena. Learn how to read weather maps and predict weather conditions." }
+            ],
+            ap: [
+                { title: "Kasaysayan ng Pilipinas 4", author: "History Scholars", available: true, cover: "images/books/g4-kasaysayan.jpg", category: "Araling Panlipunan", isbn: "978-4234567914", overview: "Malalim na pag-aaral ng kasaysayan ng Pilipinas mula sa panahon ng Espanyol hanggang sa Amerikanong pananakop. Alamin ang mga mahalagang kaganapan at personalidad." },
+                { title: "Heograpiya ng Bansa", author: "Geography Team", available: true, cover: "images/books/g4-geography.jpg", category: "Araling Panlipunan", isbn: "978-4234567915", overview: "Pag-aralan ang heograpikal na katangian ng Pilipinas, mga rehiyon, likas na yaman, at kapaligiran. Unawain ang ugnayan ng tao at kalikasan." },
+                { title: "Mga Bayani at Kabayanihan", author: "National Heroes", available: true, cover: "images/books/g4-bayani.jpg", category: "Araling Panlipunan", isbn: "978-4234567916", overview: "Kilalaning mabuti ang mga bayaning Pilipino at ang kanilang naging ambag sa kalayaan at pag-unlad ng bansa. Maging inspirado sa kanilang dedikasyon." },
+                { title: "Kultura at Tradisyon", author: "Heritage Center", available: false, cover: "images/books/g4-kultura.jpg", category: "Araling Panlipunan", isbn: "978-4234567917", overview: "Tuklasin ang iba't ibang kultura at tradisyon ng mga Pilipino sa iba't ibang rehiyon. Pahalagahan ang pagkakaiba-iba at pagkakaisa ng bansa." },
+                { title: "Pamayanan at Lipunan", author: "Civic Education", available: true, cover: "images/books/g4-pamayanan.jpg", category: "Araling Panlipunan", isbn: "978-4234567918", overview: "Unawain ang tungkulin ng bawat mamamayan sa lipunan. Matutunan ang tungkol sa pamahalaan, ekonomiya, at pakikilahok sa komunidad." }
+            ],
+            mapeh: [
+                { title: "Music Fundamentals 4", author: "Music Department", available: true, cover: "images/books/g4-music.jpg", category: "MAPEH", isbn: "978-4234567919", overview: "Learn musical notation, rhythm, melody, and harmony. Explore different musical instruments and develop appreciation for various music genres." },
+                { title: "Philippine Folk Songs", author: "Cultural Arts", available: true, cover: "images/books/g4-folk-songs.jpg", category: "MAPEH", isbn: "978-4234567920", overview: "Discover traditional Filipino folk songs from different regions. Learn the history and cultural significance of each song through singing and performance." },
+                { title: "Creative Arts and Crafts", author: "Arts Team", available: true, cover: "images/books/g4-arts-crafts.jpg", category: "MAPEH", isbn: "978-4234567921", overview: "Express creativity through various art forms including drawing, painting, and sculpture. Learn about color theory, composition, and artistic techniques." },
+                { title: "Physical Fitness for Kids", author: "PE Department", available: false, cover: "images/books/g4-fitness.jpg", category: "MAPEH", isbn: "978-4234567922", overview: "Develop physical fitness through exercises, games, and sports activities. Understand the importance of regular exercise and healthy lifestyle habits." },
+                { title: "Health and Hygiene", author: "Health Center", available: true, cover: "images/books/g4-health.jpg", category: "MAPEH", isbn: "978-4234567923", overview: "Learn about personal hygiene, nutrition, disease prevention, and overall wellness. Make informed decisions about health and safety in daily life." },
+                { title: "Sports and Games 4", author: "Athletics Team", available: true, cover: "images/books/g4-sports.jpg", category: "MAPEH", isbn: "978-4234567924", overview: "Master fundamental skills in various sports and traditional Filipino games. Learn sportsmanship, teamwork, and fair play through competitive activities." }
+            ],
+            epp: [
+                { title: "Home Economics 4", author: "Life Skills Team", available: true, cover: "images/books/g4-home-ec.jpg", category: "EPP", isbn: "978-4234567925", overview: "Develop practical life skills including basic cooking, sewing, and household management. Learn the importance of family roles and responsibilities." },
+                { title: "Agriculture Basics", author: "Agri Department", available: true, cover: "images/books/g4-agriculture.jpg", category: "EPP", isbn: "978-4234567926", overview: "Introduction to agriculture, gardening, and plant care. Understand the food production process and the importance of sustainable farming practices." },
+                { title: "Industrial Arts", author: "Tech Education", available: false, cover: "images/books/g4-industrial.jpg", category: "EPP", isbn: "978-4234567927", overview: "Learn basic woodworking, metalworking, and craft skills. Develop hand-eye coordination and problem-solving abilities through practical projects." },
+                { title: "ICT Fundamentals", author: "Computer Lab", available: true, cover: "images/books/g4-ict.jpg", category: "EPP", isbn: "978-4234567928", overview: "Introduction to computers, basic software applications, and internet safety. Develop digital literacy skills essential for modern learning and communication." },
+                { title: "Entrepreneurship for Kids", author: "Business Education", available: true, cover: "images/books/g4-entrepreneur.jpg", category: "EPP", isbn: "978-4234567929", overview: "Learn basic business concepts, money management, and entrepreneurial thinking. Develop creativity and problem-solving skills for future endeavors." }
+            ],
+            gmrc: [
+                { title: "Respect and Responsibility 4", author: "Values Team", available: true, cover: "images/books/g4-respect.jpg", category: "GMRC", isbn: "978-4234567930", overview: "Develop deeper understanding of respect for self, others, and the environment. Learn about personal and social responsibility in school and community." },
+                { title: "Friendship and Teamwork", author: "Social Skills", available: true, cover: "images/books/g4-friendship.jpg", category: "GMRC", isbn: "978-4234567931", overview: "Strengthen interpersonal skills and learn the value of cooperation. Understand how to build positive relationships and work effectively in groups." },
+                { title: "Honesty and Integrity", author: "Character Building", available: true, cover: "images/books/g4-honesty.jpg", category: "GMRC", isbn: "978-4234567932", overview: "Explore the importance of honesty, truthfulness, and integrity in daily life. Learn how to make ethical decisions and stand up for what is right." },
+                { title: "Kindness and Compassion", author: "Moral Education", available: true, cover: "images/books/g4-kindness.jpg", category: "GMRC", isbn: "978-4234567933", overview: "Cultivate empathy and compassion for others. Learn about helping those in need and making positive contributions to society." }
+            ]
+        };
+const grade5Books = {
+        filipino: [
+                { title: "Panitikan ng Pilipinas 4", author: "Literary Team", available: true, cover: "images/books/g4-panitikan.jpg", category: "Filipino", isbn: "978-4234567891", overview: "Pag-aralan ang iba't ibang uri ng panitikan tulad ng tula, maikling kuwento, at dula. Matutunan ang mga elemento ng bawat genre at kung paano bumuo ng sariling akda." },
+                { title: "Mga Tula at Awit", author: "Poets Collective", available: true, cover: "images/books/g4-tula.jpg", category: "Filipino", isbn: "978-4234567892", overview: "Koleksyon ng mga tulang Pilipino na nagpapakita ng iba't ibang temang panlipunan, pampamilya, at pangkalikasan. Alamin ang sining ng pagtula at pagsulat ng orihinal na mga tula." },
+                { title: "Epiko ng Bansa", author: "Cultural Heritage", available: true, cover: "images/books/g4-epiko.jpg", category: "Filipino", isbn: "978-4234567893", overview: "Mga kilalang epiko mula sa iba't ibang rehiyon ng Pilipinas. Tuklasin ang mga bayani at kanilang mga kabayanihan na sumasalamin sa kultura at kaugalian ng mga ninuno." },
+                { title: "Gramatika ng Filipino", author: "Language Department", available: false, cover: "images/books/g4-gramatika.jpg", category: "Filipino", isbn: "978-4234567894", overview: "Mas malalim na pag-aaral ng gramatikang Filipino. Kasama rito ang pangungusap, pandiwa, pang-uri, at wastong paggamit ng mga salita sa pagsulat at pakikipag-usap." },
+                { title: "Maikling Kwento", author: "Story Writers", available: true, cover: "images/books/g4-kwento.jpg", category: "Filipino", isbn: "978-4234567895", overview: "Koleksyon ng mga maikling kuwentong Pilipino mula sa kilalang mga manunulat. Matutunan ang mga elemento ng maikling kuwento at kung paano sumulat ng sariling kwento." },
+                { title: "Sanaysay at Talumpati", author: "Writing Center", available: true, cover: "images/books/g4-sanaysay.jpg", category: "Filipino", isbn: "978-4234567896", overview: "Gabay sa pagsulat ng sanaysay at paghahanda ng talumpati. Alamin ang mga teknik sa paglalahad ng ideya at pagiging epektibo sa pagpapahayag ng saloobin." }
+            ],
+            english: [
+                { title: "English for Young Learners 4", author: "Language Institute", available: true, cover: "images/books/g4-english-learners.jpg", category: "English", isbn: "978-4234567897", overview: "Comprehensive English program focusing on grammar, vocabulary, reading comprehension, and writing skills. Includes engaging activities and real-world applications." },
+                { title: "Reading Comprehension 4", author: "Education Publishers", available: true, cover: "images/books/g4-comprehension.jpg", category: "English", isbn: "978-4234567898", overview: "Enhance reading skills through diverse passages and comprehension questions. Learn to identify themes, make predictions, and analyze character development in stories." },
+                { title: "Grammar Essentials", author: "Teaching Team", available: false, cover: "images/books/g4-grammar.jpg", category: "English", isbn: "978-4234567899", overview: "Master advanced grammar concepts including complex sentences, verb tenses, and proper punctuation. Practice through exercises and real-world writing applications." },
+                { title: "Creative Writing Workshop", author: "Writers Workshop", available: true, cover: "images/books/g4-creative.jpg", category: "English", isbn: "978-4234567900", overview: "Develop creative writing skills through guided activities. Learn to write narratives, descriptive essays, and poetry while expressing your unique voice and ideas." },
+                { title: "Poetry and Literature", author: "Young Poets", available: true, cover: "images/books/g4-poetry.jpg", category: "English", isbn: "978-4234567901", overview: "Explore various forms of poetry and literary works. Understand metaphors, similes, and other literary devices while creating your own poetic compositions." }
+            ],
+            mathematics: [
+                { title: "Advanced Multiplication", author: "Math Wizards", available: true, cover: "images/books/g4-multiplication.jpg", category: "Mathematics", isbn: "978-4234567902", overview: "Master multiplication with multi-digit numbers. Learn efficient strategies, mental math techniques, and real-world applications of multiplication in daily life." },
+                { title: "Division Mastery", author: "Numbers Team", available: true, cover: "images/books/g4-division.jpg", category: "Mathematics", isbn: "978-4234567903", overview: "Develop division skills with remainders and long division. Understand the relationship between multiplication and division through practical problem-solving." },
+                { title: "Fractions and Decimals", author: "Math Department", available: false, cover: "images/books/g4-fractions.jpg", category: "Mathematics", isbn: "978-4234567904", overview: "Explore equivalent fractions, comparing fractions, and basic decimal operations. Learn to convert between fractions and decimals with visual representations." },
+                { title: "Geometry and Shapes", author: "Shape Experts", available: true, cover: "images/books/g4-geometry.jpg", category: "Mathematics", isbn: "978-4234567905", overview: "Study geometric shapes, angles, perimeter, and area. Identify and classify polygons while understanding their properties and real-world applications." },
+                { title: "Word Problems 4", author: "Problem Solvers", available: true, cover: "images/books/g4-word-problems.jpg", category: "Mathematics", isbn: "978-4234567906", overview: "Solve complex word problems using multiple operations. Develop critical thinking and analytical skills through real-life mathematical scenarios." },
+                { title: "Measurement and Data", author: "Math Skills", available: true, cover: "images/books/g4-measurement.jpg", category: "Mathematics", isbn: "978-4234567907", overview: "Learn about units of measurement, converting units, and interpreting data through graphs and charts. Apply measurement skills to practical situations." }
+            ],
+            science: [
+                { title: "Our Living World 4", author: "Science Department", available: true, cover: "images/books/g4-living-world.jpg", category: "Science", isbn: "978-4234567908", overview: "Explore ecosystems, food webs, and biodiversity. Understand how living organisms interact with their environment and depend on each other for survival." },
+                { title: "Matter and Energy", author: "Physics Team", available: true, cover: "images/books/g4-matter.jpg", category: "Science", isbn: "978-4234567909", overview: "Investigate properties of matter, chemical and physical changes, and forms of energy. Conduct experiments to understand energy transfer and transformation." },
+                { title: "Ecosystems and Habitats", author: "Biology Center", available: true, cover: "images/books/g4-ecosystems.jpg", category: "Science", isbn: "978-4234567910", overview: "Study different ecosystems from rainforests to deserts. Learn how organisms adapt to their habitats and the importance of environmental conservation." },
+                { title: "Earth and Space Science", author: "Astronomy Lab", available: false, cover: "images/books/g4-earth-space.jpg", category: "Science", isbn: "978-4234567911", overview: "Discover Earth's place in the solar system, moon phases, and seasonal changes. Learn about rocks, minerals, and the water cycle." },
+                { title: "Science Experiments 4", author: "Lab Researchers", available: true, cover: "images/books/g4-experiments.jpg", category: "Science", isbn: "978-4234567912", overview: "Hands-on experiments covering various science topics. Follow the scientific method to observe, hypothesize, and draw conclusions from investigations." },
+                { title: "Weather and Climate", author: "Meteorology Team", available: true, cover: "images/books/g4-weather.jpg", category: "Science", isbn: "978-4234567913", overview: "Understand weather patterns, climate zones, and atmospheric phenomena. Learn how to read weather maps and predict weather conditions." }
+            ],
+            ap: [
+                { title: "Kasaysayan ng Pilipinas 4", author: "History Scholars", available: true, cover: "images/books/g4-kasaysayan.jpg", category: "Araling Panlipunan", isbn: "978-4234567914", overview: "Malalim na pag-aaral ng kasaysayan ng Pilipinas mula sa panahon ng Espanyol hanggang sa Amerikanong pananakop. Alamin ang mga mahalagang kaganapan at personalidad." },
+                { title: "Heograpiya ng Bansa", author: "Geography Team", available: true, cover: "images/books/g4-geography.jpg", category: "Araling Panlipunan", isbn: "978-4234567915", overview: "Pag-aralan ang heograpikal na katangian ng Pilipinas, mga rehiyon, likas na yaman, at kapaligiran. Unawain ang ugnayan ng tao at kalikasan." },
+                { title: "Mga Bayani at Kabayanihan", author: "National Heroes", available: true, cover: "images/books/g4-bayani.jpg", category: "Araling Panlipunan", isbn: "978-4234567916", overview: "Kilalaning mabuti ang mga bayaning Pilipino at ang kanilang naging ambag sa kalayaan at pag-unlad ng bansa. Maging inspirado sa kanilang dedikasyon." },
+                { title: "Kultura at Tradisyon", author: "Heritage Center", available: false, cover: "images/books/g4-kultura.jpg", category: "Araling Panlipunan", isbn: "978-4234567917", overview: "Tuklasin ang iba't ibang kultura at tradisyon ng mga Pilipino sa iba't ibang rehiyon. Pahalagahan ang pagkakaiba-iba at pagkakaisa ng bansa." },
+                { title: "Pamayanan at Lipunan", author: "Civic Education", available: true, cover: "images/books/g4-pamayanan.jpg", category: "Araling Panlipunan", isbn: "978-4234567918", overview: "Unawain ang tungkulin ng bawat mamamayan sa lipunan. Matutunan ang tungkol sa pamahalaan, ekonomiya, at pakikilahok sa komunidad." }
+            ],
+            mapeh: [
+                { title: "Music Fundamentals 4", author: "Music Department", available: true, cover: "images/books/g4-music.jpg", category: "MAPEH", isbn: "978-4234567919", overview: "Learn musical notation, rhythm, melody, and harmony. Explore different musical instruments and develop appreciation for various music genres." },
+                { title: "Philippine Folk Songs", author: "Cultural Arts", available: true, cover: "images/books/g4-folk-songs.jpg", category: "MAPEH", isbn: "978-4234567920", overview: "Discover traditional Filipino folk songs from different regions. Learn the history and cultural significance of each song through singing and performance." },
+                { title: "Creative Arts and Crafts", author: "Arts Team", available: true, cover: "images/books/g4-arts-crafts.jpg", category: "MAPEH", isbn: "978-4234567921", overview: "Express creativity through various art forms including drawing, painting, and sculpture. Learn about color theory, composition, and artistic techniques." },
+                { title: "Physical Fitness for Kids", author: "PE Department", available: false, cover: "images/books/g4-fitness.jpg", category: "MAPEH", isbn: "978-4234567922", overview: "Develop physical fitness through exercises, games, and sports activities. Understand the importance of regular exercise and healthy lifestyle habits." },
+                { title: "Health and Hygiene", author: "Health Center", available: true, cover: "images/books/g4-health.jpg", category: "MAPEH", isbn: "978-4234567923", overview: "Learn about personal hygiene, nutrition, disease prevention, and overall wellness. Make informed decisions about health and safety in daily life." },
+                { title: "Sports and Games 4", author: "Athletics Team", available: true, cover: "images/books/g4-sports.jpg", category: "MAPEH", isbn: "978-4234567924", overview: "Master fundamental skills in various sports and traditional Filipino games. Learn sportsmanship, teamwork, and fair play through competitive activities." }
+            ],
+            epp: [
+                { title: "Home Economics 4", author: "Life Skills Team", available: true, cover: "images/books/g4-home-ec.jpg", category: "EPP", isbn: "978-4234567925", overview: "Develop practical life skills including basic cooking, sewing, and household management. Learn the importance of family roles and responsibilities." },
+                { title: "Agriculture Basics", author: "Agri Department", available: true, cover: "images/books/g4-agriculture.jpg", category: "EPP", isbn: "978-4234567926", overview: "Introduction to agriculture, gardening, and plant care. Understand the food production process and the importance of sustainable farming practices." },
+                { title: "Industrial Arts", author: "Tech Education", available: false, cover: "images/books/g4-industrial.jpg", category: "EPP", isbn: "978-4234567927", overview: "Learn basic woodworking, metalworking, and craft skills. Develop hand-eye coordination and problem-solving abilities through practical projects." },
+                { title: "ICT Fundamentals", author: "Computer Lab", available: true, cover: "images/books/g4-ict.jpg", category: "EPP", isbn: "978-4234567928", overview: "Introduction to computers, basic software applications, and internet safety. Develop digital literacy skills essential for modern learning and communication." },
+                { title: "Entrepreneurship for Kids", author: "Business Education", available: true, cover: "images/books/g4-entrepreneur.jpg", category: "EPP", isbn: "978-4234567929", overview: "Learn basic business concepts, money management, and entrepreneurial thinking. Develop creativity and problem-solving skills for future endeavors." }
+            ],
+            gmrc: [
+                { title: "Respect and Responsibility 4", author: "Values Team", available: true, cover: "images/books/g4-respect.jpg", category: "GMRC", isbn: "978-4234567930", overview: "Develop deeper understanding of respect for self, others, and the environment. Learn about personal and social responsibility in school and community." },
+                { title: "Friendship and Teamwork", author: "Social Skills", available: true, cover: "images/books/g4-friendship.jpg", category: "GMRC", isbn: "978-4234567931", overview: "Strengthen interpersonal skills and learn the value of cooperation. Understand how to build positive relationships and work effectively in groups." },
+                { title: "Honesty and Integrity", author: "Character Building", available: true, cover: "images/books/g4-honesty.jpg", category: "GMRC", isbn: "978-4234567932", overview: "Explore the importance of honesty, truthfulness, and integrity in daily life. Learn how to make ethical decisions and stand up for what is right." },
+                { title: "Kindness and Compassion", author: "Moral Education", available: true, cover: "images/books/g4-kindness.jpg", category: "GMRC", isbn: "978-4234567933", overview: "Cultivate empathy and compassion for others. Learn about helping those in need and making positive contributions to society." }
+            ]
+        };
+const grade6Books = {
+    filipino: [
+                { title: "Panitikan ng Pilipinas 6", author: "Literary Masters", available: true, cover: "images/books/g6-panitikan.jpg", category: "Filipino", isbn: "978-6234567891", overview: "Pag-aralan ang pinakamahusay na mga akdang pampanitikan ng Pilipinas. Mula sa mga klasikong tula hanggang sa modernong nobela, tuklasin ang ganda at lalim ng wikang Filipino sa panitikan." },
+                { title: "Masining na Pagpapahayag", author: "Writers Guild", available: true, cover: "images/books/g6-masining.jpg", category: "Filipino", isbn: "978-6234567892", overview: "Linangin ang kasanayan sa masining na pagsulat at pagpapahayag. Matuto ng iba't ibang estilo ng pagsulat mula sa sanaysay hanggang sa talumpati, at mapalawak ang bokabularyo." },
+                { title: "Mga Akdang Pampanitikan", author: "Literary Collection", available: true, cover: "images/books/g6-akda.jpg", category: "Filipino", isbn: "978-6234567893", overview: "Koleksyon ng mga pambansang panitikan na sumasalamin sa kultura at kasaysayan ng bansa. Kasama ang mga epiko, dula, at maikling kuwento mula sa iba't ibang rehiyon." },
+                { title: "Retorika at Pag-unawa", author: "Language Experts", available: false, cover: "images/books/g6-retorika.jpg", category: "Filipino", isbn: "978-6234567894", overview: "Pag-aralan ang sining ng panghihikayat at kritikal na pag-iisip. Matuto ng mga diskursong retorika at kung paano epektibong makipag-ugnayan sa iba't ibang sitwasyon." }
+            ],
+            english: [
+                { title: "Advanced English Grammar", author: "Language Institute", available: true, cover: "images/books/g6-advanced-english.jpg", category: "English", isbn: "978-6234567895", overview: "Master advanced grammar concepts including complex sentences, verb moods, and advanced punctuation. Prepare for high school English with comprehensive exercises." },
+                { title: "Literature and Analysis", author: "Literary Critics", available: true, cover: "images/books/g6-literature.jpg", category: "English", isbn: "978-6234567896", overview: "Explore classic and contemporary literature through critical analysis. Learn literary devices, themes, and how to write thoughtful responses to various literary works." },
+                { title: "Composition and Rhetoric", author: "Writing Experts", available: false, cover: "images/books/g6-composition.jpg", category: "English", isbn: "978-6234567897", overview: "Develop advanced writing skills for essays, research papers, and persuasive compositions. Learn proper citation, argumentation, and how to structure academic writing." },
+                { title: "Critical Reading Skills", author: "Reading Academy", available: true, cover: "images/books/g6-critical-reading.jpg", category: "English", isbn: "978-6234567898", overview: "Enhance reading comprehension and critical thinking skills. Analyze texts, identify author's purpose, evaluate arguments, and draw evidence-based conclusions." }
+            ],
+            mathematics: [
+                { title: "Algebra Fundamentals", author: "Math Scholars", available: true, cover: "images/books/g6-algebra.jpg", category: "Mathematics", isbn: "978-6234567899", overview: "Introduction to algebraic thinking with variables, equations, and expressions. Build a strong foundation for high school algebra through step-by-step lessons and practice problems." },
+                { title: "Geometry and Measurement", author: "Geometry Team", available: true, cover: "images/books/g6-geometry.jpg", category: "Mathematics", isbn: "978-6234567900", overview: "Explore geometric concepts including angles, triangles, circles, and 3D shapes. Learn formulas for area, perimeter, volume, and surface area with real-world applications." },
+                { title: "Statistics and Probability", author: "Data Science", available: true, cover: "images/books/g6-statistics.jpg", category: "Mathematics", isbn: "978-6234567901", overview: "Understand data analysis, graphs, mean, median, mode, and probability. Learn to collect, organize, and interpret data to make informed decisions." },
+                { title: "Ratio, Proportion and Percent", author: "Math Department", available: false, cover: "images/books/g6-ratio.jpg", category: "Mathematics", isbn: "978-6234567902", overview: "Master ratios, proportions, and percentages with practical applications. Solve real-world problems involving discounts, interest rates, and scale drawings." }
+            ],
+            science: [
+                { title: "Earth and Space Systems", author: "Astronomy Lab", available: true, cover: "images/books/g6-earth-space.jpg", category: "Science", isbn: "978-6234567903", overview: "Journey through Earth's systems and explore our solar system. Learn about plate tectonics, weather patterns, celestial bodies, and the universe through engaging activities." },
+                { title: "Force, Motion and Energy", author: "Physics Department", available: true, cover: "images/books/g6-force-motion.jpg", category: "Science", isbn: "978-6234567904", overview: "Discover the laws of physics governing motion and energy. Explore Newton's laws, simple machines, energy transformations, and how forces affect our daily lives." },
+                { title: "Biodiversity and Evolution", author: "Biology Center", available: true, cover: "images/books/g6-biodiversity.jpg", category: "Science", isbn: "978-6234567905", overview: "Study Earth's biodiversity and the theory of evolution. Learn about adaptation, natural selection, classification systems, and the interdependence of living organisms." },
+                { title: "Chemical Reactions", author: "Chemistry Lab", available: false, cover: "images/books/g6-chemistry.jpg", category: "Science", isbn: "978-6234567906", overview: "Introduction to chemistry with atoms, molecules, and chemical reactions. Conduct safe experiments to observe physical and chemical changes in matter." }
+            ],
+            ap: [
+                { title: "Philippine History and Government", author: "History Scholars", available: true, cover: "images/books/g6-history-gov.jpg", category: "Araling Panlipunan", isbn: "978-6234567907", overview: "Pag-aralan ang kumpletong kasaysayan ng Pilipinas at ang sistema ng pamahalaan. Mula sa pre-colonial period hanggang modernong panahon, unawain ang ating pambansang identidad." },
+                { title: "Philippine Economy", author: "Economics Department", available: true, cover: "images/books/g6-economy.jpg", category: "Araling Panlipunan", isbn: "978-6234567908", overview: "Understand the Philippine economic system, industries, and trade. Learn about supply and demand, entrepreneurship, and how economics affects daily life and national development." },
+                { title: "Southeast Asian Studies", author: "Regional Studies", available: true, cover: "images/books/g6-southeast-asia.jpg", category: "Araling Panlipunan", isbn: "978-6234567909", overview: "Explore the geography, culture, and history of Southeast Asian nations. Understand regional cooperation, ASEAN, and the Philippines' role in the international community." },
+                { title: "Contemporary Issues", author: "Current Affairs", available: false, cover: "images/books/g6-contemporary.jpg", category: "Araling Panlipunan", isbn: "978-6234567910", overview: "Examine current social, political, and environmental issues facing the Philippines and the world. Develop critical thinking skills to analyze complex problems." }
+            ],
+            mapeh: [
+                { title: "Music Theory and Appreciation", author: "Music Academy", available: true, cover: "images/books/g6-music-theory.jpg", category: "MAPEH", isbn: "978-6234567911", overview: "Master music fundamentals including scales, chords, and composition. Appreciate different musical genres from classical to contemporary Filipino music." },
+                { title: "Philippine and Asian Arts", author: "Arts Department", available: true, cover: "images/books/g6-asian-arts.jpg", category: "MAPEH", isbn: "978-6234567912", overview: "Explore traditional and contemporary arts of the Philippines and Asia. Learn various art techniques, cultural significance, and create your own artistic masterpieces." },
+                { title: "Sports and Athletics", author: "PE Department", available: true, cover: "images/books/g6-sports.jpg", category: "MAPEH", isbn: "978-6234567913", overview: "Develop athletic skills through team sports, individual activities, and fitness training. Learn sportsmanship, teamwork, and the importance of physical activity." },
+                { title: "Health and Wellness", author: "Health Center", available: false, cover: "images/books/g6-wellness.jpg", category: "MAPEH", isbn: "978-6234567914", overview: "Comprehensive health education covering physical, mental, and social wellness. Learn about puberty, disease prevention, healthy relationships, and making informed choices." }
+            ],
+            makabansa: [
+                { title: "Philippine Constitution", author: "Legal Studies", available: true, cover: "images/books/g6-constitution.jpg", category: "Makabansa", isbn: "978-6234567915", overview: "Pag-aralan ang Saligang Batas ng Pilipinas at ang mga karapatan at tungkulin ng bawat mamamayan. Unawain ang demokratikong proseso at ang kahalagahan ng aktibong pakikilahok." },
+                { title: "National Heroes and Leaders", author: "Historical Society", available: true, cover: "images/books/g6-heroes.jpg", category: "Makabansa", isbn: "978-6234567916", overview: "Kilalanin ang mga bayani at lider na nag-ambag sa pagbuo ng bansang Pilipinas. Mula kay Lapu-Lapu hanggang sa mga modernong bayani, alamin ang kanilang mga sakripisyo." },
+                { title: "Filipino Values and Culture", author: "Cultural Studies", available: true, cover: "images/books/g6-values.jpg", category: "Makabansa", isbn: "978-6234567917", overview: "Malalim na pag-aaral ng mga Filipino values tulad ng bayanihan, pakikipagkapwa-tao, at pagmamahal sa pamilya. Paano ito nakakaapekto sa ating kultura at lipunan." },
+                { title: "Nationalism and Patriotism", author: "Civic Education", available: false, cover: "images/books/g6-nationalism.jpg", category: "Makabansa", isbn: "978-6234567918", overview: "Palakasin ang pambansang pagkakakilanlan at pagmamahal sa bayan. Matuto kung paano maging responsableng mamamayan at mag-ambag sa pag-unlad ng Pilipinas." }
+            ],
+            tle: [
+                { title: "Information and Communication Technology", author: "Tech Department", available: true, cover: "images/books/g6-ict.jpg", category: "TLE", isbn: "978-6234567919", overview: "Learn essential computer skills, internet safety, and basic programming. Explore productivity software, digital citizenship, and how technology shapes our world." },
+                { title: "Home Economics and Family Living", author: "Life Skills", available: true, cover: "images/books/g6-home-ec.jpg", category: "TLE", isbn: "978-6234567920", overview: "Develop practical life skills including cooking, sewing, budgeting, and home management. Learn to make responsible decisions for family and personal well-being." },
+                { title: "Agricultural Arts", author: "Agriculture Center", available: true, cover: "images/books/g6-agriculture.jpg", category: "TLE", isbn: "978-6234567921", overview: "Introduction to agriculture, gardening, and sustainable farming practices. Learn about plant care, soil management, and the importance of agriculture in our society." },
+                { title: "Industrial Arts and Crafts", author: "Technical Education", available: false, cover: "images/books/g6-industrial.jpg", category: "TLE", isbn: "978-6234567922", overview: "Hands-on learning in woodworking, metalworking, and various crafts. Develop technical skills, creativity, and understanding of industrial processes." }
+            ]
+        };
+        
+        const otherBooks = {
+            kwentong: [
+                { title: "Si Juan Tamad", author: "Filipino Folklore", available: true, cover: "images/books/juan-tamad.jpg", category: "Kwentong Pambata", isbn: "978-0234567891", overview: "Isang klasikong kuwentong bayan tungkol kay Juan Tamad at ang kanyang mga karanasan. Matuto ng mga aral sa buhay sa pamamagitan ng masasayang kuwento na puno ng humor at karunungan." },
+                { title: "Ang Kuneho at Pagong", author: "Traditional Tales", available: true, cover: "images/books/kuneho-pagong.jpg", category: "Kwentong Pambata", isbn: "978-0234567892", overview: "Ang sikat na pabula tungkol sa karera ng kuneho at pagong. Itinuuturo nito ang kahalagahan ng pagtitiyaga at hindi pagmamataas kahit gaano ka kagaling." },
+                { title: "Mga Alamat ng Pilipinas", author: "Cultural Heritage", available: true, cover: "images/books/alamat.jpg", category: "Kwentong Pambata", isbn: "978-0234567893", overview: "Koleksyon ng mga alamat mula sa iba't ibang bahagi ng Pilipinas. Tuklasin kung paano nagkaroon ng pangalan ang mga lugar, bundok, at ilog sa ating bansa." },
+                { title: "Kuwentong Bayan", author: "Folk Stories", available: false, cover: "images/books/kuwentong-bayan.jpg", category: "Kwentong Pambata", isbn: "978-0234567894", overview: "Mga tradisyonal na kuwentong bayan na ipinasa mula sa henerasyon patungo sa henerasyon. Kasama ang mga kuwento tungkol sa mga diwata, engkanto, at mga taong may kapangyarihan." }
+            ],
+            comics: [
+                { title: "Darna Adventures", author: "Mars Ravelo", available: true, cover: "images/books/darna.jpg", category: "Comics", isbn: "978-0234567895", overview: "Follow the adventures of Darna, the Philippines' iconic superheroine. Watch as she protects the innocent and fights against evil forces threatening the nation." },
+                { title: "Pugad Baboy", author: "Pol Medina Jr.", available: true, cover: "images/books/pugad-baboy.jpg", category: "Comics", isbn: "978-0234567896", overview: "A hilarious Filipino comic strip featuring Polgas the dog and his friends. Filled with satire, social commentary, and laugh-out-loud humor that appeals to all ages." },
+                { title: "Zsazsa Zaturnnah", author: "Carlo Vergara", available: false, cover: "images/books/zsazsa.jpg", category: "Comics", isbn: "978-0234567897", overview: "An award-winning Filipino graphic novel about a gay beautician who transforms into a superhero. A unique blend of humor, action, and LGBTQ+ themes in Philippine comics." },
+                { title: "Kikomachine", author: "Manix Abrera", available: true, cover: "images/books/kikomachine.jpg", category: "Comics", isbn: "978-0234567898", overview: "Wordless comic strips that tell stories through clever visual narratives. Each panel is a mini-masterpiece that captures everyday Filipino life with humor and heart." }
+            ],
+            horror: [
+                { title: "Mga Multo sa Bahay", author: "Scary Tales PH", available: true, cover: "images/books/multo.jpg", category: "Horror", isbn: "978-0234567899", overview: "Nakakatakot na mga kuwento tungkol sa mga multo at di-pangkaraniwang kaganapan sa mga lumang bahay. Handa ka na bang matakot at hindi makatulog sa gabi?" },
+                { title: "Aswang Chronicles", author: "Horror Writers", available: true, cover: "images/books/aswang.jpg", category: "Horror", isbn: "978-0234567900", overview: "Terrifying tales about aswangs, the shape-shifting monsters of Philippine folklore. Learn about their origins, habits, and the brave souls who dare to confront them." },
+                { title: "White Lady Stories", author: "Urban Legends", available: false, cover: "images/books/white-lady.jpg", category: "Horror", isbn: "978-0234567901", overview: "Chilling encounters with the mysterious White Lady who haunts roads and buildings. Real testimonies and fictional accounts that will make you think twice about traveling alone at night." },
+                { title: "Mga Engkanto", author: "Filipino Folklore", available: true, cover: "images/books/engkanto.jpg", category: "Horror", isbn: "978-0234567902", overview: "Stories about mystical beings and enchanted creatures from Philippine mythology. Discover the engkantos who live in trees, mountains, and hidden realms." }
+            ],
+            fairytales: [
+                { title: "Ang Prinsesa at Pulubi", author: "Classic Tales", available: true, cover: "images/books/prinsesa-pulubi.jpg", category: "Fairy Tales", isbn: "978-0234567903", overview: "Isang romantikong kuwento ng pag-ibig na lumalampas sa estado sa buhay. Itinuuturo nito na ang tunay na pagmamahal ay hindi nakikita sa yaman o kapangyarihan." },
+                { title: "Ibong Adarna", author: "Jose dela Cruz", available: true, cover: "images/books/ibong-adarna.jpg", category: "Fairy Tales", isbn: "978-0234567904", overview: "Ang sikat na epikong Pilipino tungkol sa mahiwagang ibong may pitong kulay. Sumama sa paglalakbay ng tatlong prinsipe upang mahuli ang ibong makapagpapagaling sa kanilang amang hari." },
+                { title: "Maria Makiling", author: "Philippine Mythology", available: true, cover: "images/books/maria-makiling.jpg", category: "Fairy Tales", isbn: "978-0234567905", overview: "The legend of the beautiful diwata who guards Mount Makiling. Learn about her kindness to the villagers and what happened when greed entered human hearts." },
+                { title: "Mariang Sinukuan", author: "Kapampangan Tales", available: false, cover: "images/books/mariang-sinukuan.jpg", category: "Fairy Tales", isbn: "978-0234567906", overview: "Ang alamat ng magandang diwata ng Bundok Arayat. Tuklasin ang kanyang mga himala at kung bakit siya tumutulong sa mga mabubuting tao." }
+            ],
+            picture: [
+                { title: "The Rainbow Fish", author: "Marcus Pfister", available: true, cover: "images/books/rainbow-fish.jpg", category: "Picture Books", isbn: "978-0234567907", overview: "A beautiful story about sharing and friendship featuring the most beautiful fish in the ocean. Learn that true happiness comes from giving and being kind to others." },
+                { title: "Where the Wild Things Are", author: "Maurice Sendak", available: true, cover: "images/books/wild-things.jpg", category: "Picture Books", isbn: "978-0234567908", overview: "Join Max on his imaginative adventure to the land of wild things. A classic tale about childhood imagination, emotions, and the comfort of home." },
+                { title: "Ang Pambihirang Buhok ni Raquel", author: "Adarna House", available: true, cover: "images/books/raquel.jpg", category: "Picture Books", isbn: "978-0234567909", overview: "Isang masayang kuwento tungkol sa batang babae na may natatanging buhok. Matuto ng aral tungkol sa pagtanggap sa sarili at pagmamalaki sa ating kakaiba." },
+                { title: "The Very Hungry Caterpillar", author: "Eric Carle", available: false, cover: "images/books/caterpillar.jpg", category: "Picture Books", isbn: "978-0234567910", overview: "Follow the journey of a tiny caterpillar as it eats its way through various foods before transforming into a beautiful butterfly. A perfect story about growth and transformation." }
+            ],
+            historical: [
+                { title: "Si Lapu-Lapu", author: "History Books PH", available: true, cover: "images/books/lapu-lapu.jpg", category: "Historical", isbn: "978-0234567911", overview: "Ang kuwento ng unang bayaning Pilipino na lumaban sa mga mananakop. Alamin ang tungkol sa Labanan sa Mactan at ang katapangan ni Lapu-Lapu." },
+                { title: "Andres Bonifacio", author: "Heroes Series", available: true, cover: "images/books/bonifacio.jpg", category: "Historical", isbn: "978-0234567912", overview: "The story of the Father of the Philippine Revolution. Discover how Bonifacio founded the Katipunan and fought for Philippine independence from Spanish rule." },
+                { title: "The First Filipino", author: "Leon Ma. Guerrero", available: false, cover: "images/books/first-filipino.jpg", category: "Historical", isbn: "978-0234567913", overview: "A comprehensive biography of Jose Rizal, exploring his life, works, and sacrifice for the Filipino people. Understand why he is considered our national hero." },
+                { title: "Noli Me Tangere", author: "Jose Rizal", available: true, cover: "images/books/noli.jpg", category: "Historical", isbn: "978-0234567914", overview: "Rizal's masterpiece that exposed the abuses of Spanish colonial rule in the Philippines. Follow Crisostomo Ibarra's story of love, betrayal, and social reform." }
+            ],
+            fantasy: [
+                { title: "The Enchanted Kingdom", author: "Fantasy Writers", available: true, cover: "images/books/enchanted-kingdom.jpg", category: "Fantasy", isbn: "978-0234567915", overview: "Enter a magical realm where mythical creatures and humans coexist. Join the quest to save the kingdom from dark forces threatening to destroy the balance of magic." },
+                { title: "Dragons of Maharlika", author: "Epic Tales", available: true, cover: "images/books/dragons.jpg", category: "Fantasy", isbn: "978-0234567916", overview: "Ancient dragons once protected the islands of pre-colonial Philippines. Discover their legends and the brave warriors who fought alongside them." },
+                { title: "The Magic Tree", author: "Wonder Stories", available: false, cover: "images/books/magic-tree.jpg", category: "Fantasy", isbn: "978-0234567917", overview: "A mysterious tree grants wishes to those pure of heart. But be careful what you wish for, as magic always comes with unexpected consequences." },
+                { title: "Ang Mahiwagang Bato", author: "Magical Adventures", available: true, cover: "images/books/mahiwagang-bato.jpg", category: "Fantasy", isbn: "978-0234567918", overview: "Isang ordinaryong bato na may kakaibang kapangyarihan. Sumama sa pakikipagsapalaran ng mga bata na nakatagpo nito at natutunan ang kahalagahan ng responsibilidad." }
+            ],
+            mystery: [
+                { title: "The Missing Book Case", author: "Detective Kids", available: true, cover: "images/books/missing-book.jpg", category: "Mystery", isbn: "978-0234567919", overview: "Books are disappearing from the school library! Join the young detectives as they solve clues, interview suspects, and uncover the truth behind the mysterious thefts." },
+                { title: "Secret of the Old Library", author: "Mystery Club", available: true, cover: "images/books/secret-library.jpg", category: "Mystery", isbn: "978-0234567920", overview: "An abandoned library holds a century-old secret. Can a group of curious students decode the hidden messages and discover what's been locked away all these years?" },
+                { title: "Who Took the Trophy?", author: "School Mysteries", available: false, cover: "images/books/trophy.jpg", category: "Mystery", isbn: "978-0234567921", overview: "The championship trophy has vanished before the awards ceremony! Race against time to find the culprit and return the trophy before the event begins." },
+                { title: "The Hidden Treasure", author: "Adventure Seekers", available: true, cover: "images/books/hidden-treasure.jpg", category: "Mystery", isbn: "978-0234567922", overview: "An old map leads to a treasure hidden somewhere in the school grounds. Follow the clues, solve riddles, and outsmart those who also seek the prize." }
+            ]
+        };
         let currentBook = null;
 
-        function renderBooks(grade) {
-            const books = allBooks[grade];
-            const container = document.getElementById(`${grade}-books`);
+        function renderBooks(grade, category) {
+    let books = [];
+    if (grade === 'grade1') {
+        books = grade1Books[category] || [];
+    } else if (grade === 'grade2') {
+        books = grade2Books[category] || [];
+    } else if (grade === 'grade3') {
+        books = grade3Books[category] || [];
+    } else if (grade === 'grade4') {
+        books = grade4Books[category] || [];
+    } else if (grade === 'grade5') {
+        books = grade5Books[category] || [];
+    } else if (grade === 'grade6') {
+        books = grade6Books[category] || [];
+    } else if (grade === 'other') {
+        books = otherBooks[category] || [];  
+    }
+            
+            const container = document.getElementById(`${grade}-${category}-books`);
+            if (!container) return;
+            
             container.innerHTML = books.map(book => `
                 <div class="book-card">
                     <div class="book-cover">
@@ -690,7 +1135,43 @@
                         </p>
                     </div>
                     <div class="book-actions">
-                        <button class="btn btn-view" onclick='openModal(${JSON.stringify(book).replace(/'/g, "&#39;")})'>
+                        <button class="btn btn-view" onclick='openModal(${JSON.stringify(book).replace(/'/g, "&#39;")}, "${grade}")'>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSimpleBooks(grade) {
+            const books = simpleBooks[grade] || [];
+            const container = document.getElementById(`${grade}-books`);
+            if (!container) return;
+            
+            container.innerHTML = books.map(book => `
+                <div class="book-card">
+                    <div class="book-cover">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                        </svg>
+                        <span class="availability-badge ${book.available ? 'available' : 'borrowed'}">
+                            ${book.available ? 'Available' : 'Borrowed'}
+                        </span>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            ${book.author}
+                        </p>
+                    </div>
+                    <div class="book-actions">
+                        <button class="btn btn-view" onclick='openModal(${JSON.stringify(book).replace(/'/g, "&#39;")}, "${grade}")'>
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
                                 <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
                             </svg>
@@ -703,17 +1184,26 @@
 
         function showGrade(grade) {
             document.querySelectorAll('.grade-section').forEach(section => section.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.grade-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`${grade}-section`).classList.add('active');
             event.target.classList.add('active');
         }
 
-        function openModal(book) {
+        function showCategory(grade, category) {
+            const gradeSection = document.getElementById(`${grade}-section`);
+            gradeSection.querySelectorAll('.category-section').forEach(section => section.classList.remove('active'));
+            gradeSection.querySelectorAll('.category-tab').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`${grade}-${category}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function openModal(book, grade) {
             currentBook = book;
+            const gradeNum = grade.replace('grade', '');
             document.getElementById('modalBookTitle').textContent = book.title;
             document.getElementById('modalAuthor').textContent = book.author;
             document.getElementById('modalCategory').textContent = book.category;
-            document.getElementById('modalGrade').textContent = book.grade;
+            document.getElementById('modalGrade').textContent = `Grade ${gradeNum}`;
             document.getElementById('modalISBN').textContent = book.isbn;
             document.getElementById('modalOverview').textContent = book.overview;
 
@@ -750,12 +1240,62 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            renderBooks('grade1');
-            renderBooks('grade2');
-            renderBooks('grade3');
-            renderBooks('grade4');
-            renderBooks('grade5');
-            renderBooks('grade6');
+            
+            renderBooks('grade1', 'language');
+            renderBooks('grade1', 'reading');
+            renderBooks('grade1', 'mathematics');
+            renderBooks('grade1', 'makabansa');
+            renderBooks('grade1', 'gmrc');
+            
+            renderBooks('grade2', 'filipino');
+            renderBooks('grade2', 'english');
+            renderBooks('grade2', 'mathematics');
+            renderBooks('grade2', 'makabansa');
+            renderBooks('grade2', 'gmrc');
+            
+            renderBooks('grade3', 'filipino');
+            renderBooks('grade3', 'english');
+            renderBooks('grade3', 'science');
+            renderBooks('grade3', 'mathematics');
+            renderBooks('grade3', 'makabansa');
+            renderBooks('grade3', 'gmrc');
+
+            renderBooks('grade4', 'filipino');
+            renderBooks('grade4', 'english');
+            renderBooks('grade4', 'science');
+            renderBooks('grade4', 'mathematics');
+            renderBooks('grade4', 'ap');
+            renderBooks('grade4', 'mapeh');
+            renderBooks('grade4', 'epp');
+            renderBooks('grade4', 'gmrc');
+            
+            
+            renderBooks('grade5', 'filipino');
+            renderBooks('grade5', 'english');
+            renderBooks('grade5', 'science');
+            renderBooks('grade5', 'mathematics');
+            renderBooks('grade5', 'ap');
+            renderBooks('grade5', 'mapeh');
+            renderBooks('grade5', 'epp');
+            renderBooks('grade5', 'gmrc');
+
+            renderBooks('grade6', 'filipino');
+            renderBooks('grade6', 'english');
+            renderBooks('grade6', 'science');
+            renderBooks('grade6', 'mathematics');
+            renderBooks('grade6', 'ap');
+            renderBooks('grade6', 'mapeh');
+            renderBooks('grade6', 'tle');
+            renderBooks('grade6', 'makabansa');
+            
+            renderBooks('other', 'kwentong');
+            renderBooks('other', 'comics');
+            renderBooks('other', 'horror');
+            renderBooks('other', 'fairytales');
+            renderBooks('other', 'picture');
+            renderBooks('other', 'historical');
+            renderBooks('other', 'fantasy');
+            renderBooks('other', 'mystery');
         });
     </script>
 </body>
