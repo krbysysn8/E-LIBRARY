@@ -248,7 +248,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="username">Username (Auto-generated) *</label>
-                                <input type="text" id="username" placeholder="Format: KMCS" required readonly>
+                                <input type="text" id="username" required readonly>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password *</label>
@@ -295,19 +295,15 @@
     </footer>
 
     <script>
-        function updateUsername() {
+         function updateUsername() {
             const lastName = document.getElementById('lastName').value.trim();
             const firstName = document.getElementById('firstName').value.trim();
-            const middleName = document.getElementById('middleName').value.trim();
             
             if (lastName && firstName) {
-                const firstNameParts = firstName.split(' ').filter(part => part.length > 0);
-                const firstInitials = firstNameParts.map(part => part.charAt(0).toUpperCase()).join('');
-                const middleInitial = middleName ? middleName.charAt(0).toUpperCase() : '';
+                const cleanFirstName = firstName.replace(/\s+/g, '').toLowerCase();
+                const cleanLastName = lastName.replace(/\s+/g, '').toLowerCase();
                 
-                const lastInitial = lastName.charAt(0).toUpperCase();
-                
-                const username = middleInitial ? `${firstInitials}${middleInitial}${lastInitial}` : `${firstInitials}${lastInitial}`;
+                const username = cleanFirstName + cleanLastName;
                 document.getElementById('username').value = username;
             }
         }
