@@ -26,7 +26,7 @@
             <li><a href="#home">HOMEPAGE</a></li>
             <li><a href="about.html">ABOUT US</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            
+            <li><a href="generalbooks.html">BOOKS</a></li>
         </ul>
     </nav>
 
@@ -34,13 +34,27 @@
         <div class="hero">
             <div class="hero-section">
                 <h3>MISSION</h3>
-                <p>To provide quality education and nurture young minds through accessible digital resources and innovative learning solutions.</p>
+                <p>To protect and promote the right of every Filipino to quality, equitable, culture-based, and complete basic education where:
+
+Students learn in a child-friendly, gender-sensitive, safe, and motivating environment.
+Teachers facilitate learning and constantly nurture every learner.
+Administrators and staff, as stewards of the institution, ensure an enabling and supportive environment for effective learning to happen.
+Family, community, and other stakeholders are actively engaged and share responsibility for developing life-long learners.</p>
             </div>
             <div class="hero-section">
                 <h3>VISION</h3>
-                <p>To be a leading educational institution that empowers students to become responsible, digitally-literate global citizens.</p>
+                <p>We dream of Filipinos
+who passionately love their country
+and whose values and competencies
+enable them to realize their full potential
+and contribute meaningfully to building the nation.
+
+As a learner-centered public institution,
+the Department of Education
+continuously improves itself
+to better serve its stakeholders.</p>
             </div>
-            <div class="login-button">
+            <div class="login-button" id="actionButton">
                 <a href="log-in dashboard.html">Click Here to Log In</a>
             </div>
         </div>
@@ -53,7 +67,6 @@
         <div class="footer-links">
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms-of-use.html">Terms of Use</a>
-
         </div>
         <div class="social-icons">
             <a href="https://www.facebook.com/pedroguevaramanila" title="Facebook">
@@ -68,7 +81,32 @@
             </a>
         </div>
     </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') || sessionStorage.getItem('isLoggedIn');
+            const userType = localStorage.getItem('userType') || sessionStorage.getItem('userType');
+            const actionButton = document.getElementById('actionButton');
+
+            if (isLoggedIn === 'true' && userType) {
+                
+                let dashboardUrl = '';
+                
+                if (userType === 'student') {
+                    dashboardUrl = 'studentdashboard.html';
+                } else if (userType === 'faculty') {
+                    dashboardUrl = 'facultydashboard.html';
+                } else if (userType === 'admin') {
+                    dashboardUrl = 'admindashboard.html';
+                }
+
+                if (dashboardUrl) {
+                    actionButton.innerHTML = `<a href="${dashboardUrl}">Back to Dashboard</a>`;
+                }
+            } else {
+                actionButton.innerHTML = '<a href="log-in dashboard.html">Click Here to Log In</a>';
+            }
+        });
+    </script>
 </body>
 </html>
-
-

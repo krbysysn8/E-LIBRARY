@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Currently Borrowed Books | Pedro Guevara Elementary School E-Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Fredoka', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fa;
+        }
+        header {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 144px;
+        }
+        .logo img {
+            width: 180px;
+            height: 150px;
+            border-radius: 100%;
+            box-shadow: 0 4px 24px rgba(74,95,157,0.18);
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 5px;
+        }
+        .header-text h1 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 8px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .header-text h2 {
+            font-size: 29px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .header-text p {
+            font-size: 18px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        nav {
+            background: white;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        nav a {
+            display: block;
+            padding: 14px 0;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        nav a:hover {
+            color: #4a5f9d;
+        }
+        .logout-btn {
+            background: #4a5f9d;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .logout-btn:hover {
+            background: #6b82c5;
+        }
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .page-header {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.12);
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-header h1 {
+            font-size: 2.2rem;
+            color: #4a5f9d;
+        }
+        .back-btn {
+            background: #95a5a6;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .back-btn:hover {
+            background: #7f8c8d;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        .stat-box {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.1);
+            text-align: center;
+        }
+        .stat-box h3 {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        .stat-box p {
+            color: #666;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .stat-box.total h3 { color: #4a5f9d; }
+        .stat-box.warning h3 { color: #f39c12; }
+        .stat-box.danger h3 { color: #e74c3c; }
+        .controls {
+            background: white;
+            padding: 24px 32px;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.12);
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 12px;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid #4a5f9d;
+            background: white;
+            color: #4a5f9d;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .filter-btn.active {
+            background: #4a5f9d;
+            color: white;
+        }
+        .search-area {
+            display: flex;
+            gap: 8px;
+        }
+        .search-area input {
+            padding: 10px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            min-width: 250px;
+        }
+        .search-area input:focus {
+            outline: none;
+            border-color: #4a5f9d;
+        }
+        .search-area button {
+            background: #4a5f9d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .books-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .book-item {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(74,95,157,0.1);
+            border-left: 4px solid #27ae60;
+        }
+        .book-item.warning {
+            border-left-color: #f39c12;
+        }
+        .book-item.danger {
+            border-left-color: #e74c3c;
+        }
+        .book-item:hover {
+            box-shadow: 0 4px 16px rgba(74,95,157,0.15);
+        }
+        .book-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .book-details h3 {
+            font-size: 1.4rem;
+            color: #4a5f9d;
+            margin-bottom: 8px;
+        }
+        .book-details p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 4px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .status-tag {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            height: fit-content;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .status-tag.ok {
+            background: #d4edda;
+            color: #27ae60;
+        }
+        .status-tag.warning {
+            background: #fff3cd;
+            color: #f39c12;
+        }
+        .status-tag.danger {
+            background: #f8d7da;
+            color: #e74c3c;
+        }
+        .book-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .return-btn {
+            background: #3498db;
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .return-btn:hover {
+            background: #2980b9;
+        }
+        .no-books {
+            background: white;
+            padding: 80px 20px;
+            border-radius: 20px;
+            text-align: center;
+            color: #999;
+        }
+        .no-books svg {
+            width: 100px;
+            height: 100px;
+            fill: #ccc;
+            margin-bottom: 20px;
+        }
+        .no-books h3 {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        footer {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .footer-links {
+            display: flex;
+            gap: 139px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-icons a:hover {
+            background: white;
+        }
+        .social-icons svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .social-icons a:hover svg {
+            fill: #4a5f9d;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+        }
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-box {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+        }
+        .modal-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .modal-top h3 {
+            font-size: 1.6rem;
+            color: #4a5f9d;
+        }
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+        .close-modal:hover {
+            color: #e74c3c;
+        }
+        .book-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        .book-summary h4 {
+            color: #4a5f9d;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .book-summary p {
+            color: #666;
+            margin-bottom: 6px;
+        }
+        .condition-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .condition-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        .condition-item:hover {
+            border-color: #4a5f9d;
+            background: #f8f9fa;
+        }
+        .condition-item input {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+        }
+        .condition-text {
+            flex: 1;
+        }
+        .condition-text strong {
+            display: block;
+            color: #333;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .condition-text span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .notes-area {
+            margin-bottom: 24px;
+        }
+        .notes-area label {
+            display: block;
+            font-weight: 600;
+            color: #4a5f9d;
+            margin-bottom: 8px;
+        }
+        .notes-area textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            resize: vertical;
+            min-height: 80px;
+        }
+        .notes-area textarea:focus {
+            outline: none;
+            border-color: #4a5f9d;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-confirm {
+            background: #27ae60;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 1;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .btn-confirm:hover {
+            background: #229954;
+        }
+        .btn-cancel {
+            background: #95a5a6;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 1;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .btn-cancel:hover {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="homepage.html">
+                <img src="images/school/logo.png" alt="PGES Logo"/>
+            </a>
+        </div>
+        <div class="header-text">
+            <h1>Republic of the Philippines</h1>
+            <h2>Pedro Guevara Elementary School E-Library</h2>
+            <p>San Nicolas, Manila</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="homepage.html">HOMEPAGE</a></li>
+            <li><a href="homepage.html">ABOUT US</a></li>
+            <li><a href="admindashboard.html">ADMIN DASHBOARD</a></li>
+            <li style="flex:1;"></li>
+            <li>
+                <button class="logout-btn" onclick="logout()">Log Out</button>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="page-header">
+            <h1>Borrowed Books Management</h1>
+            <a href="admindashboard.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box total">
+                <h3 id="totalCount">0</h3>
+                <p>Total Borrowed</p>
+            </div>
+            <div class="stat-box warning">
+                <h3 id="dueSoonCount">0</h3>
+                <p>Due Soon (3 days)</p>
+            </div>
+            <div class="stat-box danger">
+                <h3 id="overdueCount">0</h3>
+                <p>Overdue</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="filter-tabs">
+                <button class="filter-btn active" onclick="setFilter('all')">All Books</button>
+                <button class="filter-btn" onclick="setFilter('ok')">On Time</button>
+                <button class="filter-btn" onclick="setFilter('warning')">Due Soon</button>
+                <button class="filter-btn" onclick="setFilter('danger')">Overdue</button>
+            </div>
+            <div class="search-area">
+                <input type="text" id="searchInput" placeholder="Search by title, student, or author...">
+                <button onclick="applySearch()">Search</button>
+            </div>
+        </div>
+
+        <div class="books-list" id="booksList"></div>
+    </main>
+
+    <footer>
+        <div>
+            <p>2025 PGES All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-use.html">Terms of Use</a>
+        </div>
+        <div class="social-icons">
+            <a href="#facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <a href="#instagram" title="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <div class="modal" id="returnModal">
+        <div class="modal-box">
+            <div class="modal-top">
+                <h3>Mark Book as Returned</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="book-summary" id="bookInfo"></div>
+            <label style="display: block; font-weight: 600; color: #4a5f9d; margin-bottom: 12px;">Select Book Condition:</label>
+            <div class="condition-list">
+                <label class="condition-item">
+                    <input type="radio" name="condition" value="good" checked>
+                    <div class="condition-text">
+                        <strong>Good Condition</strong>
+                        <span>Book returned in excellent state with no damage</span>
+                    </div>
+                </label>
+                <label class="condition-item">
+                    <input type="radio" name="condition" value="minor">
+                    <div class="condition-text">
+                        <strong>Minor Damage Noted</strong>
+                        <span>Small wear and tear, bent pages, or light markings</span>
+                    </div>
+                </label>
+                <label class="condition-item">
+                    <input type="radio" name="condition" value="major">
+                    <div class="condition-text">
+                        <strong>Major Damage Noted</strong>
+                        <span>Significant damage, torn pages, or water damage</span>
+                    </div>
+                </label>
+            </div>
+            <div class="notes-area">
+                <label>Additional Notes (Optional)</label>
+                <textarea id="notesInput" placeholder="Add any additional details about the book condition..."></textarea>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-confirm" onclick="processReturn()">Confirm Return</button>
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allBooksData = [];
+        let activeFilter = 'all';
+        let searchQuery = '';
+        let currentBook = null;
+
+        function init() {
+            loadBooks();
+            updateStatistics();
+            displayBooks();
+
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') applySearch();
+            });
+        }
+
+        function loadBooks() {
+            allBooksData = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+        }
+
+        function calculateDays(dueDate) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const due = new Date(dueDate);
+            due.setHours(0, 0, 0, 0);
+            return Math.ceil((due - today) / (1000 * 60 * 60 * 24));
+        }
+
+        function getStatus(book) {
+            const days = calculateDays(book.dueDate);
+            
+            if (days < 0) {
+                return {
+                    type: 'danger',
+                    text: `Overdue by ${Math.abs(days)} day${Math.abs(days) !== 1 ? 's' : ''}`
+                };
+            } else if (days === 0) {
+                return { type: 'warning', text: 'Due Today' };
+            } else if (days === 1) {
+                return { type: 'warning', text: 'Due Tomorrow' };
+            } else if (days <= 3) {
+                return { type: 'warning', text: `Due in ${days} days` };
+            } else {
+                return { type: 'ok', text: `${days} days remaining` };
+            }
+        }
+
+        function updateStatistics() {
+            const total = allBooksData.length;
+            let dueSoon = 0;
+            let overdue = 0;
+
+            allBooksData.forEach(book => {
+                const days = calculateDays(book.dueDate);
+                if (days < 0) overdue++;
+                else if (days <= 3) dueSoon++;
+            });
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('dueSoonCount').textContent = dueSoon;
+            document.getElementById('overdueCount').textContent = overdue;
+        }
+
+        function getFilteredBooks() {
+            let result = [...allBooksData];
+
+            if (activeFilter !== 'all') {
+                result = result.filter(book => {
+                    const status = getStatus(book);
+                    return status.type === activeFilter;
+                });
+            }
+
+            if (searchQuery) {
+                const search = searchQuery.toLowerCase();
+                result = result.filter(book => {
+                    const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+                    const user = users.find(u => u.id.toString() === book.userId) || {};
+                    
+                    return book.title.toLowerCase().includes(search) ||
+                           book.author.toLowerCase().includes(search) ||
+                           (user.name && user.name.toLowerCase().includes(search));
+                });
+            }
+
+            return result;
+        }
+
+        function displayBooks() {
+            const container = document.getElementById('booksList');
+            const books = getFilteredBooks();
+
+            if (books.length === 0) {
+                let message = 'No books found.';
+                if (searchQuery) {
+                    message = `No books matching "${searchQuery}"`;
+                } else if (activeFilter !== 'all') {
+                    message = `No ${activeFilter === 'ok' ? 'on-time' : activeFilter} books found`;
+                }
+
+                container.innerHTML = `
+                    <div class="no-books">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                        </svg>
+                        <h3>No Books Found</h3>
+                        <p>${message}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = books.map(book => {
+                const status = getStatus(book);
+                const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+                const user = users.find(u => u.id.toString() === book.userId) || {};
+
+                return `
+                    <div class="book-item ${status.type}">
+                        <div class="book-top">
+                            <div class="book-details">
+                                <h3>${book.title}</h3>
+                                <p><strong>Borrowed by:</strong> ${user.name || 'Unknown'}</p>
+                                <p><strong>Grade:</strong> ${user.grade || 'N/A'}</p>
+                                <p><strong>Author:</strong> ${book.author}</p>
+                                <p><strong>Borrowed:</strong> ${formatDate(book.borrowDate)}</p>
+                                <p><strong>Due Date:</strong> ${formatDate(book.dueDate)}</p>
+                            </div>
+                            <span class="status-tag ${status.type}">${status.text}</span>
+                        </div>
+                        <div class="book-actions">
+                            <button class="return-btn" onclick="openReturnModal(${book.id}, '${book.userId}')">
+                                Mark as Returned
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { 
+                month: 'long', 
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        function setFilter(type) {
+            activeFilter = type;
+            
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            displayBooks();
+        }
+
+        function applySearch() {
+            searchQuery = document.getElementById('searchInput').value.trim();
+            displayBooks();
+        }
+
+        function openReturnModal(bookId, userId) {
+            const book = allBooksData.find(b => b.id === bookId && b.userId === userId);
+            if (!book) return;
+
+            currentBook = { bookId, userId, book };
+
+            const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+            const user = users.find(u => u.id.toString() === book.userId) || {};
+
+            document.getElementById('bookInfo').innerHTML = `
+                <h4>${book.title}</h4>
+                <p><strong>Borrowed by:</strong> ${user.name || 'Unknown'}</p>
+                <p><strong>Grade:</strong> ${user.grade || 'N/A'}</p>
+                <p><strong>Author:</strong> ${book.author}</p>
+                <p><strong>Borrowed:</strong> ${formatDate(book.borrowDate)}</p>
+                <p><strong>Due:</strong> ${formatDate(book.dueDate)}</p>
+            `;
+
+            document.querySelector('input[name="condition"][value="good"]').checked = true;
+            document.getElementById('notesInput').value = '';
+
+            document.getElementById('returnModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('returnModal').classList.remove('show');
+            currentBook = null;
+        }
+
+        function processReturn() {
+            if (!currentBook) return;
+
+            const { bookId, userId, book } = currentBook;
+            const condition = document.querySelector('input[name="condition"]:checked').value;
+            const notes = document.getElementById('notesInput').value;
+
+            let conditionText = '';
+            if (condition === 'good') conditionText = 'Good Condition';
+            else if (condition === 'minor') conditionText = 'Minor Damage Noted';
+            else if (condition === 'major') conditionText = 'Major Damage Noted';
+
+            if (!confirm(`Confirm return of "${book.title}"?\n\nCondition: ${conditionText}`)) {
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+            const user = users.find(u => u.id.toString() === book.userId) || {};
+
+            const returnRecords = JSON.parse(localStorage.getItem('returnRecords') || '[]');
+            returnRecords.push({
+                id: Date.now(),
+                bookId: bookId,
+                userId: userId,
+                studentName: user.name || 'Unknown',
+                grade: user.grade || 'N/A',
+                bookTitle: book.title,
+                author: book.author,
+                borrowDate: book.borrowDate,
+                dueDate: book.dueDate,
+                returnDate: new Date().toISOString(),
+                condition: condition,
+                conditionText: conditionText,
+                notes: notes,
+                wasOverdue: calculateDays(book.dueDate) < 0
+            });
+            localStorage.setItem('returnRecords', JSON.stringify(returnRecords));
+            
+            const borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+            const updated = borrowedBooks.filter(b => !(b.id === bookId && b.userId === userId));
+            localStorage.setItem('borrowedBooks', JSON.stringify(updated));
+
+            const libraryBooks = JSON.parse(localStorage.getItem('libraryBooks') || '[]');
+            const libraryBook = libraryBooks.find(lb => lb.title === book.title && lb.author === book.author);
+            if (libraryBook && libraryBook.available < libraryBook.copies) {
+                libraryBook.available++;
+                localStorage.setItem('libraryBooks', JSON.stringify(libraryBooks));
+            }
+
+            const renewals = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
+            const updatedRenewals = renewals.filter(r => !(r.bookId === bookId && r.userId === userId));
+            localStorage.setItem('renewalRequests', JSON.stringify(updatedRenewals));
+
+            closeModal();
+            init();
+
+            let msg = `Book returned successfully!\n\nCondition: ${conditionText}`;
+            if (condition === 'major') {
+                msg += '\n\n⚠️ Major damage noted. Please follow up.';
+            } else if (condition === 'minor') {
+                msg += '\n\n⚠️ Minor damage noted.';
+            }
+            alert(msg);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to log out?')) {
+                localStorage.removeItem('isAdminLoggedIn');
+                alert('You have been logged out successfully!');
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        window.onclick = function(e) {
+            const modal = document.getElementById('returnModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
+            if (!isLoggedIn) {
+                alert('Please log in as admin to access this page.');
+                window.location.href = 'admin-login.html';
+                return;
+            }
+            init();
+        });
+    </script>
+</body>
+</html>

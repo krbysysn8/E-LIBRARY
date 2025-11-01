@@ -198,6 +198,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 60px;
         }
         .book-cover img {
             width: 100%;
@@ -256,6 +258,10 @@
             background: #d4edda;
             color: #155724;
         }
+        .status-pending-renew {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
         .book-actions {
             display: flex;
             flex-direction: column;
@@ -270,6 +276,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
+            text-align: center;
         }
         .btn-renew {
             background: #4a5f9d;
@@ -279,13 +286,10 @@
             background: #6b82c5;
             transform: translateY(-2px);
         }
-        .btn-return {
-            background: #27ae60;
-            color: white;
-        }
-        .btn-return:hover {
-            background: #2ecc71;
-            transform: translateY(-2px);
+        .btn-renew:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
         }
         .empty-state {
             text-align: center;
@@ -315,6 +319,7 @@
             justify-content: space-between;
             align-items: center;
             font-family: 'Open Sans', Arial, sans-serif;
+            margin-top: 40px;
         }
         .footer-links {
             display: flex;
@@ -391,7 +396,7 @@
             <li><a onclick="goToDashboard()">DASHBOARD</a></li>
             <li style="flex: 1;"></li>
             <li>
-<button class="back-btn" onclick="goBackToDashboard()">← Back to Dashboard</button>
+                <button class="back-btn" onclick="goBackToDashboard()">← Back to Dashboard</button>
             </li>
         </ul>
     </nav>
@@ -413,6 +418,7 @@
                     <option value="all">All Books</option>
                     <option value="due-soon">Due Soon</option>
                     <option value="overdue">Overdue</option>
+                    <option value="pending-renew">Pending Renewal</option>
                 </select>
                 <input type="text" id="searchInput" placeholder="Search borrowed books..." onkeyup="filterBooks()">
             </div>
@@ -431,12 +437,12 @@
             <a href="terms-of-use.html">Terms of Use</a>
         </div>
         <div class="social-icons">
-            <a href="https://www.facebook.com/pedroguevaramanila" title="Facebook">
+            <a href="#facebook" title="Facebook">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
             </a>
-            <a href="https://www.instagram.com/pedroguevaraelementaryschool/" title="Instagram">
+            <a href="#instagram" title="Instagram">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
@@ -445,57 +451,92 @@
     </footer>
 
     <script>
-         function goBackToDashboard() {
-    const userType = sessionStorage.getItem('userType') || localStorage.getItem('userType');
-    if (userType === 'faculty') {
-        window.location.href = 'facultydashboard.html';
-    } else {
-        window.location.href = 'studentdashboard.html';
-    }
-}
-        // Sample borrowed books data
-        const borrowedBooks = [
-            {
-                id: 1,
-                title: "Pedro Guevara: A Hero's Life",
-                author: "Maria Santos",
-                borrowDate: "2025-10-15",
-                dueDate: "2025-11-05",
-                cover: "images/school/pedro.png"
-            },
-            {
-                id: 2,
-                title: "Math for Kids",
-                author: "John Doe",
-                borrowDate: "2025-10-20",
-                dueDate: "2025-11-03",
-                cover: "images/school/pedro.png"
-            },
-            {
-                id: 3,
-                title: "Science Wonders",
-                author: "Jane Smith",
-                borrowDate: "2025-10-10",
-                dueDate: "2025-10-29",
-                cover: "images/school/pedro.png"
+        function goBackToDashboard() {
+            const userType = sessionStorage.getItem('userType') || localStorage.getItem('userType');
+            if (userType === 'faculty') {
+                window.location.href = 'facultydashboard.html';
+            } else {
+                window.location.href = 'studentdashboard.html';
             }
-        ];
+        }
+
+        function goToDashboard() {
+            goBackToDashboard();
+        }
+
+        // Initialize demo borrowed books if not exists
+        function initializeBorrowedBooks() {
+            if (!localStorage.getItem('borrowedBooks')) {
+                const demoBooks = [
+                    {
+                        id: 1,
+                        userId: 'current-user',
+                        title: "Pedro Guevara: A Hero's Life",
+                        author: "Maria Santos",
+                        borrowDate: "2025-10-15",
+                        dueDate: "2025-11-12",
+                        cover: null,
+                        renewStatus: null
+                    },
+                    {
+                        id: 2,
+                        userId: 'current-user',
+                        title: "Math for Kids",
+                        author: "John Doe",
+                        borrowDate: "2025-10-20",
+                        dueDate: "2025-11-03",
+                        cover: null,
+                        renewStatus: null
+                    },
+                    {
+                        id: 3,
+                        userId: 'current-user',
+                        title: "Science Wonders",
+                        author: "Jane Smith",
+                        borrowDate: "2025-10-10",
+                        dueDate: "2025-10-30",
+                        cover: null,
+                        renewStatus: null
+                    }
+                ];
+                localStorage.setItem('borrowedBooks', JSON.stringify(demoBooks));
+            }
+        }
+
+        function getBorrowedBooks() {
+            const books = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+            return books.filter(book => book.userId === 'current-user');
+        }
+
+        function saveBorrowedBooks(books) {
+            const allBooks = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+            const otherBooks = allBooks.filter(book => book.userId !== 'current-user');
+            localStorage.setItem('borrowedBooks', JSON.stringify([...otherBooks, ...books]));
+        }
 
         function getDaysUntilDue(dueDate) {
             const today = new Date();
+            today.setHours(0, 0, 0, 0);
             const due = new Date(dueDate);
+            due.setHours(0, 0, 0, 0);
             const diffTime = due - today;
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             return diffDays;
         }
 
-        function getStatusClass(daysUntilDue) {
+        function getStatusClass(book) {
+            if (book.renewStatus === 'pending') return 'status-pending-renew';
+            
+            const daysUntilDue = getDaysUntilDue(book.dueDate);
             if (daysUntilDue < 0) return 'status-overdue';
             if (daysUntilDue <= 3) return 'status-due-soon';
             return 'status-ok';
         }
 
-        function getStatusText(daysUntilDue) {
+        function getStatusText(book) {
+            if (book.renewStatus === 'pending') return 'Renewal Pending';
+            
+            const daysUntilDue = getDaysUntilDue(book.dueDate);
             if (daysUntilDue < 0) return `Overdue by ${Math.abs(daysUntilDue)} days`;
             if (daysUntilDue === 0) return 'Due Today';
             if (daysUntilDue === 1) return 'Due Tomorrow';
@@ -508,7 +549,7 @@
             return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
         }
 
-        function renderBooks(books = borrowedBooks) {
+        function renderBooks(books = getBorrowedBooks()) {
             const bookList = document.getElementById('bookList');
             
             if (books.length === 0) {
@@ -525,14 +566,15 @@
             }
 
             bookList.innerHTML = books.map(book => {
+                const statusClass = getStatusClass(book);
+                const statusText = getStatusText(book);
+                const canRenew = book.renewStatus !== 'pending';
                 const daysUntilDue = getDaysUntilDue(book.dueDate);
-                const statusClass = getStatusClass(daysUntilDue);
-                const statusText = getStatusText(daysUntilDue);
 
                 return `
                     <div class="book-item">
                         <div class="book-cover">
-                            <img src="${book.cover}" alt="${book.title}">
+                            ${book.cover ? `<img src="${book.cover}" alt="${book.title}">` : '📚'}
                         </div>
                         <div class="book-details">
                             <div class="book-title">${book.title}</div>
@@ -554,8 +596,11 @@
                             </div>
                         </div>
                         <div class="book-actions">
-                            <button class="btn btn-renew" onclick="renewBook(${book.id})">Renew Book</button>
-                            <button class="btn btn-return" onclick="returnBook(${book.id})">Return Book</button>
+                            <button class="btn btn-renew" 
+                                    onclick="requestRenewal(${book.id})" 
+                                    ${!canRenew ? 'disabled' : ''}>
+                                ${book.renewStatus === 'pending' ? 'Renewal Requested' : 'Request Renewal'}
+                            </button>
                         </div>
                     </div>
                 `;
@@ -565,12 +610,17 @@
         function filterBooks() {
             const sortFilter = document.getElementById('sortFilter').value;
             const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const allBooks = getBorrowedBooks();
 
-            let filtered = borrowedBooks.filter(book => {
+            let filtered = allBooks.filter(book => {
                 const matchesSearch = book.title.toLowerCase().includes(searchInput) || 
                                     book.author.toLowerCase().includes(searchInput);
                 
                 if (sortFilter === 'all') return matchesSearch;
+                
+                if (sortFilter === 'pending-renew') {
+                    return matchesSearch && book.renewStatus === 'pending';
+                }
                 
                 const daysUntilDue = getDaysUntilDue(book.dueDate);
                 if (sortFilter === 'overdue') return matchesSearch && daysUntilDue < 0;
@@ -582,36 +632,93 @@
             renderBooks(filtered);
         }
 
-        function renewBook(bookId) {
-            const book = borrowedBooks.find(b => b.id === bookId);
-            if (book) {
-                if (confirm(`Renew "${book.title}"? This will extend your borrowing period by 7 days.`)) {
-                    const newDueDate = new Date(book.dueDate);
-                    newDueDate.setDate(newDueDate.getDate() + 7);
-                    book.dueDate = newDueDate.toISOString().split('T')[0];
-                    renderBooks();
-                    alert('Book renewed successfully!');
-                }
+        function requestRenewal(bookId) {
+            const books = getBorrowedBooks();
+            const book = books.find(b => b.id === bookId);
+            
+            if (!book) return;
+            
+            if (book.renewStatus === 'pending') {
+                alert('You already have a pending renewal request for this book.');
+                return;
+            }
+
+            if (confirm(`Request renewal for "${book.title}"?\n\nYour request will be sent to the admin for approval. If approved, your borrowing period will be extended by 7 days.`)) {
+                book.renewStatus = 'pending';
+                saveBorrowedBooks(books);
+                
+                // Create renewal request for admin
+                const renewalRequests = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
+                const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser') || '{}');
+                
+                const newRequest = {
+                    id: Date.now(),
+                    bookId: book.id,
+                    userId: book.userId,
+                    studentName: currentUser.name || 'Student Name',
+                    grade: currentUser.grade || 'Grade N/A',
+                    email: currentUser.email || 'email@student.pges.edu.ph',
+                    bookTitle: book.title,
+                    author: book.author,
+                    currentDueDate: book.dueDate,
+                    requestDate: new Date().toISOString(),
+                    status: 'pending'
+                };
+                
+                renewalRequests.push(newRequest);
+                localStorage.setItem('renewalRequests', JSON.stringify(renewalRequests));
+                
+                // Add notification for admin
+                const adminNotifications = JSON.parse(localStorage.getItem('adminNotifications') || '[]');
+                adminNotifications.unshift({
+                    id: Date.now(),
+                    title: 'New Renewal Request',
+                    message: `${newRequest.studentName} requested to renew "${book.title}"`,
+                    timestamp: new Date().toISOString(),
+                    read: false
+                });
+                localStorage.setItem('adminNotifications', JSON.stringify(adminNotifications));
+                
+                renderBooks();
+                alert('Renewal request submitted successfully!\n\nPlease wait for admin approval. You will be notified once your request is processed.');
             }
         }
 
-        function returnBook(bookId) {
-            const book = borrowedBooks.find(b => b.id === bookId);
-            if (book) {
-                if (confirm(`Return "${book.title}"?`)) {
-                    const index = borrowedBooks.findIndex(b => b.id === bookId);
-                    borrowedBooks.splice(index, 1);
-                    renderBooks();
-                    alert('Book returned successfully!');
+        // Check for approved/rejected renewal requests and update books
+        function checkRenewalUpdates() {
+            const books = getBorrowedBooks();
+            const renewalRequests = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
+            let updated = false;
+
+            books.forEach(book => {
+                const request = renewalRequests.find(r => r.bookId === book.id && r.userId === book.userId);
+                
+                if (request) {
+                    if (request.status === 'approved' && book.renewStatus === 'pending') {
+                        // Update due date by adding 7 days
+                        const newDueDate = new Date(book.dueDate);
+                        newDueDate.setDate(newDueDate.getDate() + 7);
+                        book.dueDate = newDueDate.toISOString().split('T')[0];
+                        book.renewStatus = null;
+                        updated = true;
+                    } else if (request.status === 'rejected' && book.renewStatus === 'pending') {
+                        book.renewStatus = null;
+                        updated = true;
+                    }
                 }
+            });
+
+            if (updated) {
+                saveBorrowedBooks(books);
             }
         }
 
         // Initialize
         window.addEventListener('DOMContentLoaded', () => {
+            initializeBorrowedBooks();
+            checkRenewalUpdates();
             renderBooks();
         });
     </script>
 </body>
-
-</html> 
+</html>

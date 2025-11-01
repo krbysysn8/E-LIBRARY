@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <title>Grade 2 Books | Pedro Guevara Elementary School E-Library</title>
+    <title>Books Collection | Pedro Guevara Elementary School E-Library</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -31,7 +31,6 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-
         .back-button-container {
             position: relative;
             margin-left: 31.5px;
@@ -63,8 +62,6 @@
             height: 20px;
             fill: white;
         }
-
-        /* Page Header */
         .page-header {
             text-align: center;
             margin-bottom: 32px;
@@ -83,8 +80,7 @@
             color: #666;
             font-family: 'Open Sans', Arial, sans-serif;
         }
-
-        .category-tabs {
+        .grade-tabs {
             display: flex;
             justify-content: center;
             gap: 12px;
@@ -112,10 +108,10 @@
             color: white;
             box-shadow: 0 4px 15px rgba(74, 95, 157, 0.3);
         }
-        .category-section {
+        .grade-section {
             display: none;
         }
-        .category-section.active {
+        .grade-section.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
@@ -145,7 +141,6 @@
             color: #666;
             font-family: 'Open Sans', Arial, sans-serif;
         }
-
         .books-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -167,7 +162,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
         .book-card {
             background: white;
             border-radius: 20px;
@@ -179,7 +173,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            min-height: 520px; /* fixed min height to keep cards uniform */
+            min-height: 480px;
             box-sizing: border-box;
         }
         .book-card::before {
@@ -201,7 +195,6 @@
         .book-card:hover::before {
             transform: scaleX(1);
         }
-
         .book-cover {
             width: 100%;
             height: 280px;
@@ -213,7 +206,7 @@
             justify-content: center;
             overflow: hidden;
             position: relative;
-            flex: 0 0 auto; /* keep cover at natural size */
+            flex: 0 0 auto;
         }
         .book-cover img {
             width: 100%;
@@ -247,7 +240,7 @@
         }
         .book-info {
             margin-bottom: 20px;
-            flex: 1 1 auto; /* allow info area to grow so cards stay even */
+            flex: 1 1 auto;
         }
         .book-title {
             font-size: 1.4rem;
@@ -270,23 +263,22 @@
             vertical-align: middle;
             margin-right: 6px;
         }
-
         .book-actions {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin-top: auto; /* push actions to the bottom of the card */
+            margin-top: auto;
             flex: 0 0 auto;
         }
         .btn {
             flex: 1;
-            min-width: 80px;
-            padding: 10px 16px;
+            min-width: 100%;
+            padding: 12px 16px;
             border: none;
             border-radius: 10px;
             font-family: 'Open Sans', Arial, sans-serif;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -306,28 +298,6 @@
             background: #2980b9;
             transform: translateY(-2px);
         }
-        .btn-borrow {
-            background: #2ecc71;
-            color: white;
-        }
-        .btn-borrow:hover {
-            background: #27ae60;
-            transform: translateY(-2px);
-        }
-        .btn-borrow:disabled {
-            background: #bdc3c7;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .btn-read {
-            background: #9b59b6;
-            color: white;
-        }
-        .btn-read:hover {
-            background: #8e44ad;
-            transform: translateY(-2px);
-        }
-
         .modal {
             display: none;
             position: fixed;
@@ -385,13 +355,13 @@
             color: #999;
             cursor: pointer;
             line-height: 1;
-            transition: all 0.3s;
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            transition: all 0.3s;
         }
         .close-btn:hover {
             color: #333;
@@ -485,23 +455,35 @@
             line-height: 1.8;
             font-size: 1rem;
         }
-        .modal-actions {
+        .login-notice {
             padding: 25px 30px;
             border-top: 2px solid #e8f0ff;
-            display: flex;
-            gap: 15px;
             background: #f8faff;
+            text-align: center;
         }
-        .modal-actions .btn {
-            padding: 14px 30px;
+        .login-notice p {
+            color: #666;
+            margin-bottom: 15px;
             font-size: 1rem;
         }
-
+        .login-notice .btn {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+        .login-notice .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 95, 157, 0.3);
+        }
         @media (max-width: 768px) {
             .page-header h1 {
                 font-size: 2rem;
             }
-            .category-tabs {
+            .grade-tabs {
                 gap: 8px;
             }
             .tab-btn {
@@ -518,12 +500,6 @@
             .back-button-container {
                 margin-left: 0;
             }
-            .book-actions {
-                flex-direction: column;
-            }
-            .btn {
-                width: 100%;
-            }
             .book-details {
                 grid-template-columns: 1fr;
             }
@@ -536,22 +512,9 @@
             }
             .modal-header,
             .modal-body,
-            .modal-actions {
+            .login-notice {
                 padding: 20px;
             }
-            .modal-actions {
-                flex-direction: column;
-            }
-            .modal-actions .btn {
-                width: 100%;
-            }
-        }
-        .dropdown {
-            position: relative;
-        }
-        .dropdown-menu {
-            position: absolute;
-            z-index: 100;
         }
     </style>
 </head>
@@ -567,55 +530,52 @@
     <nav>
         <ul>
             <li><a href="homepage.html">HOMEPAGE</a></li>
-            <li><a href="javascript:void(0)" onclick="goToDashboard()">DASHBOARD</a></li>            
-            <li class="dropdown">
-                <a class="dropdown-toggle" onclick="toggleDropdown()">BOOKS <span class="arrow">▼</span></a>
-                <div class="dropdown-menu" id="booksMenu">
-                    <a href="grade1books.html">Grade 1</a>
-                    <a href="grade2books.html">Grade 2</a>
-                    <a href="grade3books.html">Grade 3</a>
-                    <a href="grade4books.html">Grade 4</a>
-                    <a href="grade5books.html">Grade 5</a>
-                    <a href="grade6books.html">Grade 6</a>
-                    <a href="otherbooks.html">Other Books</a>
-                </div>
-            </li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="faq.html">FAQ</a></li>
         </ul>
     </nav>
     <div class="back-button-container">
-        <a href="javascript:void(0)" onclick="goToDashboard()" class="back-btn">
+        <a href="homepage.html" class="back-btn">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-            Back to Dashboard
+            Back to Homepage
         </a>
     </div>
     <main>
-        <div class="page-header"><h1>Grade 2 Books</h1><p>Browse all books by category</p></div>
-        <div class="category-tabs">
-            <button class="tab-btn active" onclick="showCategory('filipino')">Filipino</button>
-            <button class="tab-btn" onclick="showCategory('english')">English</button>
-            <button class="tab-btn" onclick="showCategory('mathematics')">Mathematics</button>
-            <button class="tab-btn" onclick="showCategory('makabansa')">Makabansa</button>
-            <button class="tab-btn" onclick="showCategory('gmrc')">GMRC</button>
+        <div class="page-header">
+            <h1>Books Collection</h1>
+            <p>Browse our complete library collection by grade level</p>
         </div>
-        <div class="category-section active" id="filipino-section">
-            <div class="section-header"><h2>Filipino Books</h2><p>Wikang Filipino at panitikan</p></div>
-            <div class="books-grid" id="filipino-books"></div>
+        <div class="grade-tabs">
+            <button class="tab-btn active" onclick="showGrade('grade1')">Grade 1</button>
+            <button class="tab-btn" onclick="showGrade('grade2')">Grade 2</button>
+            <button class="tab-btn" onclick="showGrade('grade3')">Grade 3</button>
+            <button class="tab-btn" onclick="showGrade('grade4')">Grade 4</button>
+            <button class="tab-btn" onclick="showGrade('grade5')">Grade 5</button>
+            <button class="tab-btn" onclick="showGrade('grade6')">Grade 6</button>
         </div>
-        <div class="category-section" id="english-section">
-            <div class="section-header"><h2>English Books</h2><p>English language and literature</p></div>
-            <div class="books-grid" id="english-books"></div>
+        <div class="grade-section active" id="grade1-section">
+            <div class="section-header"><h2>Grade 1 Books</h2><p>Educational books for Grade 1 students</p></div>
+            <div class="books-grid" id="grade1-books"></div>
         </div>
-        <div class="category-section" id="mathematics-section">
-            <div class="section-header"><h2>Mathematics Books</h2><p>Addition, subtraction, and problem solving</p></div>
-            <div class="books-grid" id="mathematics-books"></div>
+        <div class="grade-section" id="grade2-section">
+            <div class="section-header"><h2>Grade 2 Books</h2><p>Educational books for Grade 2 students</p></div>
+            <div class="books-grid" id="grade2-books"></div>
         </div>
-        <div class="category-section" id="makabansa-section">
-            <div class="section-header"><h2>Makabansa Books</h2><p>Philippine culture and civic values</p></div>
-            <div class="books-grid" id="makabansa-books"></div>
+        <div class="grade-section" id="grade3-section">
+            <div class="section-header"><h2>Grade 3 Books</h2><p>Educational books for Grade 3 students</p></div>
+            <div class="books-grid" id="grade3-books"></div>
         </div>
-        <div class="category-section" id="gmrc-section">
-            <div class="section-header"><h2>GMRC Books</h2><p>Good manners and right conduct</p></div>
-            <div class="books-grid" id="gmrc-books"></div>
+        <div class="grade-section" id="grade4-section">
+            <div class="section-header"><h2>Grade 4 Books</h2><p>Educational books for Grade 4 students</p></div>
+            <div class="books-grid" id="grade4-books"></div>
+        </div>
+        <div class="grade-section" id="grade5-section">
+            <div class="section-header"><h2>Grade 5 Books</h2><p>Educational books for Grade 5 students</p></div>
+            <div class="books-grid" id="grade5-books"></div>
+        </div>
+        <div class="grade-section" id="grade6-section">
+            <div class="section-header"><h2>Grade 6 Books</h2><p>Educational books for Grade 6 students</p></div>
+            <div class="books-grid" id="grade6-books"></div>
         </div>
     </main>
     <div id="bookModal" class="modal">
@@ -634,76 +594,86 @@
                         </div>
                         <span class="status" id="modalStatus">Available</span>
                         <div class="info-row"><strong>Category:</strong> <span id="modalCategory">Category</span></div>
-                        <div class="info-row"><strong>Grade Level:</strong> <span id="modalGrade">Grade 2</span></div>
+                        <div class="info-row"><strong>Grade Level:</strong> <span id="modalGrade">Grade Level</span></div>
                         <div class="info-row"><strong>ISBN:</strong> <span id="modalISBN">N/A</span></div>
                     </div>
                 </div>
                 <div class="overview-section"><h4>Overview</h4><p id="modalOverview">Book overview will be displayed here.</p></div>
             </div>
-            <div class="modal-actions">
-                <button class="btn btn-borrow" id="modalBorrowBtn" onclick="borrowFromModal()">Borrow This Book</button>
-                <button class="btn btn-read" onclick="readFromModal()">Read Online</button>
+            <div class="login-notice">
+                <p>Want to borrow or read this book? Please log in to access borrowing features.</p>
+                <a href="log-in dashboard.html" class="btn">Log In to Borrow</a>
             </div>
         </div>
     </div>
     <footer>
         <div><p>2025 PGES All rights reserved.</p></div>
-        <div class="footer-links"><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Use</a></div>
+        <div class="footer-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a></div>
         <div class="social-icons">
             <a href="https://www.facebook.com/pedroguevaramanila" title="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
             <a href="https://www.instagram.com/pedroguevaraelementaryschool/" title="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
         </div>
     </footer>
-    <script>  
-        document.addEventListener('DOMContentLoaded', function() {
-            const userType = sessionStorage.getItem('userType');
-            const dashboardUrl = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html';
-            document.querySelectorAll('a[href*="dashboard"]').forEach(link => { if (link.href.includes('studentdashboard.html')) link.href = dashboardUrl; });
-            document.querySelectorAll('nav a').forEach(link => { if (link.textContent.trim() === 'DASHBOARD') link.href = dashboardUrl; });
-            renderBooks('filipino'); renderBooks('english'); renderBooks('mathematics'); renderBooks('makabansa'); renderBooks('gmrc');
-        });
-        function goToDashboard() { const userType = sessionStorage.getItem('userType'); window.location.href = userType === 'faculty' ? 'facultydashboard.html' : 'studentdashboard.html'; }
-        const booksDatabase = {
-            filipino: [
-                { title: "Mga Kuwentong Bayan", author: "Filipino Writers", available: true, cover: "images/books/g2-kuwentong-bayan.jpg", category: "Filipino", isbn: "978-2234567891", overview: "Koleksyon ng mga tradisyonal na kuwentong bayan ng Pilipinas na puno ng aral at kaalaman. Kasama rito ang mga alamat, pabula, at maikling kuwento na naglalahad ng kultura at tradisyon ng ating bansa." },
-                { title: "Alamat ng Sampaguita", author: "Traditional", available: true, cover: "images/books/g2-sampaguita.jpg", category: "Filipino", isbn: "978-2234567892", overview: "Isang magandang alamat tungkol sa pambansang bulaklak ng Pilipinas. Itinuuturo nito ang kahalagahan ng kabutihan at kagandahan ng loob na lumalampas sa pisikal na anyo." },
-                { title: "Pagbasa at Pagsulat", author: "Maria Gonzales", available: true, cover: "images/books/g2-pagbasa.jpg", category: "Filipino", isbn: "978-2234567893", overview: "Gabay sa pagpapaunlad ng kasanayan sa pagbasa at pagsulat ng mga mag-aaral ng Grade 2. May mga aktibidad at ehersisyo upang mapahusay ang komunikasyon sa Filipino." },
-                { title: "Tula Para sa Bata", author: "Jose Santos", available: true, cover: "images/books/g2-tula.jpg", category: "Filipino", isbn: "978-2234567894", overview: "Koleksyon ng mga tulang pambata na madaling unawain at puno ng imahinasyon. Nakatutulong ito sa pagpapaunlad ng pagmamahal sa wika at panitikan." }
+    <script>
+        const allBooks = {
+            grade1: [
+                { title: "Ang Aking Pamilya", author: "Maria Santos", available: true, category: "Language - Filipino", grade: "Grade 1", isbn: "978-1234567891", overview: "Ang 'Ang Aking Pamilya' ay isang masayang aklat na naglalahad ng iba't ibang uri ng pamilya sa Pilipinas. Natututo ang mga bata tungkol sa pagmamahal, paggalang, at pakikipag-ugnayan sa loob ng pamilya." },
+                { title: "My First English Words", author: "Jennifer Cruz", available: true, category: "Language - English", grade: "Grade 1", isbn: "978-1234567892", overview: "A colorful introduction to basic English vocabulary for Grade 1 students. Features common words with illustrations, helping children build their English vocabulary through fun pictures and simple sentences." },
+                { title: "Mga Kuwentong Pambata", author: "Ana Garcia", available: true, category: "Reading & Literacy", grade: "Grade 1", isbn: "978-1234567895", overview: "Koleksyon ng mga maikling kuwento na angkop sa Grade 1. Bawat kuwento ay may aral at mga tanong upang mapaunlad ang kakayahan sa pagbasa at pag-unawa ng mga bata." },
+                { title: "Counting with Fun", author: "Robert Chen", available: true, category: "Mathematics", grade: "Grade 1", isbn: "978-1234567899", overview: "Learn numbers from 1 to 100 with fun exercises and colorful illustrations. Includes counting games, basic addition, and number recognition activities." },
+                { title: "Ang Ating Bansa", author: "Jose Dela Cruz", available: false, category: "Makabansa", grade: "Grade 1", isbn: "978-1234567903", overview: "Alamin ang tungkol sa ating bansang Pilipinas - ang mga bayani, kultura, at tradisyon. Naglalaman ng mga larawan ng ating watawat, pambansang sagisag, at mga tanyag na lugar." },
+                { title: "Mabuting Asal", author: "Angela Martinez", available: true, category: "GMRC", grade: "Grade 1", isbn: "978-1234567907", overview: "Matuto ng mabubuting asal at ugali na dapat sundin sa bahay, eskwela, at komunidad. May mga halimbawa at larawan ng tamang kilos at pag-uugali." }
             ],
-            english: [
-                { title: "Read and Learn", author: "Education Team", available: true, cover: "images/books/g2-read-learn.jpg", category: "English", isbn: "978-2234567895", overview: "A comprehensive reading program designed for Grade 2 students. Features engaging stories and activities that build reading fluency and comprehension skills." },
-                { title: "English Grammar for Kids", author: "Teaching Staff", available: true, cover: "images/books/g2-grammar.jpg", category: "English", isbn: "978-2234567896", overview: "Learn basic English grammar through fun exercises and examples. Covers parts of speech, sentence construction, and proper punctuation in an engaging way." },
-                { title: "Stories for Grade 2", author: "Children's Library", available: true, cover: "images/books/g2-stories.jpg", category: "English", isbn: "978-2234567897", overview: "A collection of age-appropriate stories that capture children's imagination while teaching valuable lessons. Includes comprehension questions and vocabulary builders." },
-                { title: "My English Workbook", author: "Language Center", available: false, cover: "images/books/g2-workbook.jpg", category: "English", isbn: "978-2234567898", overview: "Interactive workbook filled with writing exercises, grammar practice, and creative activities. Helps students develop strong English language foundations." }
+            grade2: [
+                { title: "Mga Kuwentong Bayan", author: "Filipino Writers", available: true, category: "Filipino", grade: "Grade 2", isbn: "978-2234567891", overview: "Koleksyon ng mga tradisyonal na kuwentong bayan ng Pilipinas na puno ng aral at kaalaman. Kasama rito ang mga alamat, pabula, at maikling kuwento." },
+                { title: "Read and Learn", author: "Education Team", available: true, category: "English", grade: "Grade 2", isbn: "978-2234567895", overview: "A comprehensive reading program designed for Grade 2 students. Features engaging stories and activities that build reading fluency and comprehension skills." },
+                { title: "Math Adventures", author: "Math Department", available: false, category: "Mathematics", grade: "Grade 2", isbn: "978-2234567899", overview: "Exciting mathematical adventures that make learning numbers fun! Explore addition, subtraction, and basic problem-solving through colorful illustrations and games." },
+                { title: "Mga Simbolo ng Pilipinas", author: "Cultural Studies", available: true, category: "Makabansa", grade: "Grade 2", isbn: "978-2234567903", overview: "Alamin ang tungkol sa mga pambansang sagisag ng Pilipinas - ang watawat, opisyal na awit, bulaklak, at ibon." },
+                { title: "Values for Children", author: "Character Education", available: true, category: "GMRC", grade: "Grade 2", isbn: "978-2234567907", overview: "Matuto ng mahahalagang pagpapahalaga tulad ng katapatan, kagandahang-loob, at paggalang." }
             ],
-            mathematics: [
-                { title: "Math Adventures", author: "Math Department", available: true, cover: "images/books/g2-math-adventures.jpg", category: "Mathematics", isbn: "978-2234567899", overview: "Exciting mathematical adventures that make learning numbers fun! Explore addition, subtraction, and basic problem-solving through colorful illustrations and games." },
-                { title: "Addition and Subtraction", author: "Numbers Team", available: true, cover: "images/books/g2-addition.jpg", category: "Mathematics", isbn: "978-2234567900", overview: "Master the fundamentals of addition and subtraction with hundreds of practice problems. Includes step-by-step guides and visual aids for better understanding." },
-                { title: "Word Problems", author: "Problem Solving", available: true, cover: "images/books/g2-word-problems.jpg", category: "Mathematics", isbn: "978-2234567901", overview: "Develop critical thinking skills through real-world word problems. Learn to translate written scenarios into mathematical equations and find solutions." },
-                { title: "Measurement Basics", author: "Teaching Staff", available: true, cover: "images/books/g2-measurement.jpg", category: "Mathematics", isbn: "978-2234567902", overview: "Introduction to measurement concepts including length, weight, capacity, and time. Hands-on activities help students understand practical applications of measurement." }
+            grade3: [
+                { title: "Panitikan ng Pilipinas", author: "Literary Team", available: true, category: "Filipino", grade: "Grade 3", isbn: "978-3234567891", overview: "Tuklasin ang mayamang panitikan ng Pilipinas mula sa sinaunang panahon hanggang sa kasalukuyan." },
+                { title: "English for Young Learners", author: "Language Institute", available: true, category: "English", grade: "Grade 3", isbn: "978-3234567895", overview: "A comprehensive English language course designed for Grade 3 students. Covers reading, writing, speaking, and listening skills." },
+                { title: "Our Living World", author: "Science Department", available: true, category: "Science", grade: "Grade 3", isbn: "978-3234567899", overview: "Explore the fascinating world of living organisms. Learn about ecosystems, food chains, habitats, and how plants and animals adapt to their environment." },
+                { title: "Multiplication Mastery", author: "Math Experts", available: false, category: "Mathematics", grade: "Grade 3", isbn: "978-3234567903", overview: "Master multiplication tables from 1 to 10 with fun strategies and tricks. Learn the relationship between multiplication and division." },
+                { title: "Kasaysayan ng Pilipinas", author: "History Department", available: true, category: "Makabansa", grade: "Grade 3", isbn: "978-3234567907", overview: "Tuklasin ang mahalagang kaganapan sa kasaysayan ng Pilipinas mula sa sinaunang panahon hanggang sa kasalukuyan." },
+                { title: "Mabuting Asal sa Tahanan", author: "Values Education", available: true, category: "GMRC", grade: "Grade 3", isbn: "978-3234567911", overview: "Matutunan ang mga mabubuting gawi sa bahay at pamilya. Alamin ang kahalagahan ng paggalang at pagtulong sa gawaing bahay." }
             ],
-            makabansa: [
-                { title: "Mga Simbolo ng Pilipinas", author: "Cultural Studies", available: true, cover: "images/books/g2-simbolo.jpg", category: "Makabansa", isbn: "978-2234567903", overview: "Alamin ang tungkol sa mga pambansang sagisag ng Pilipinas - ang watawat, opisyal na awit, bulaklak, at ibon. Nakatutulong ito sa pagpapalalim ng pagmamahal sa bayan." },
-                { title: "Our Filipino Heroes", author: "History Department", available: true, cover: "images/books/g2-heroes.jpg", category: "Makabansa", isbn: "978-2234567904", overview: "Learn about the brave Filipino heroes who fought for our freedom. Discover their stories of courage, sacrifice, and love for the Philippines through engaging narratives." },
-                { title: "Philippine Festivals", author: "Culture Center", available: true, cover: "images/books/g2-festivals.jpg", category: "Makabansa", isbn: "978-2234567905", overview: "Tuklasin ang iba't ibang pista at pagdiriwang sa Pilipinas. Mula sa Sinulog hanggang Pahiyas, matutunan ang kultura at tradisyon ng bawat rehiyon." },
-                { title: "Community Helpers", author: "Social Studies", available: false, cover: "images/books/g2-helpers.jpg", category: "Makabansa", isbn: "978-2234567906", overview: "Meet the people who help our community every day - doctors, teachers, firefighters, and more. Learn how they contribute to making our society better." }
+            grade4: [
+                { title: "Ang Dakilang Panitikan", author: "Literature Department", available: true, category: "Filipino", grade: "Grade 4", isbn: "978-4234567891", overview: "Pag-aralan ang mga dakilang akda ng panitikang Filipino. Mga tula, sanaysay, at kwentong naglalarawan ng kultura at kasaysayan ng bansa." },
+                { title: "Advanced English", author: "Language Center", available: true, category: "English", grade: "Grade 4", isbn: "978-4234567895", overview: "Develop advanced English skills through reading comprehension, grammar exercises, and creative writing activities." },
+                { title: "Science Explorer", author: "Science Team", available: false, category: "Science", grade: "Grade 4", isbn: "978-4234567899", overview: "Discover the wonders of science through experiments and investigations. Learn about matter, energy, forces, and earth science." },
+                { title: "Mathematics in Action", author: "Math Institute", available: true, category: "Mathematics", grade: "Grade 4", isbn: "978-4234567903", overview: "Apply mathematical concepts to real-world situations. Learn fractions, decimals, geometry, and problem-solving strategies." },
+                { title: "Kasaysayan at Kultura", author: "History Team", available: true, category: "Araling Panlipunan", grade: "Grade 4", isbn: "978-4234567907", overview: "Pag-aralan ang kasaysayan at kultura ng Pilipinas at ng ibang bansa. Matutunan ang kahalagahan ng pag-unawa sa iba't ibang kultura." },
+                { title: "Building Character", author: "Values Team", available: true, category: "EsP", grade: "Grade 4", isbn: "978-4234567911", overview: "Develop strong moral character through stories and activities. Learn about honesty, responsibility, and respect for others." }
             ],
-            gmrc: [
-                { title: "Values for Children", author: "Character Education", available: true, cover: "images/books/g2-values.jpg", category: "GMRC", isbn: "978-2234567907", overview: "Matuto ng mahahalagang pagpapahalaga tulad ng katapatan, kagandahang-loob, at paggalang. Bawat aralin ay may kuwento at aktibidad na madaling maunawaan." },
-                { title: "Being Responsible", author: "Moral Values", available: true, cover: "images/books/g2-responsible.jpg", category: "GMRC", isbn: "978-2234567908", overview: "Learn the importance of taking responsibility for your actions. Stories demonstrate how being responsible helps build trust and strong character." },
-                { title: "Helping Others", author: "Community Values", available: true, cover: "images/books/g2-helping.jpg", category: "GMRC", isbn: "978-2234567909", overview: "Discover the joy of helping others through acts of kindness and service. Real-life examples show how small gestures can make a big difference in people's lives." },
-                { title: "Honesty and Truth", author: "Character Building", available: true, cover: "images/books/g2-honesty.jpg", category: "GMRC", isbn: "978-2234567910", overview: "Understand why honesty is an important value in building relationships and trust. Learn through stories how telling the truth leads to better outcomes." }
+            grade5: [
+                { title: "Mga Dakilang Pilipino", author: "Biography Team", available: true, category: "Filipino", grade: "Grade 5", isbn: "978-5234567891", overview: "Makilala ang mga dakilang Pilipino na nag-ambag sa lipunan. Mga bayani, siyentipiko, at mga taong nagsilbi sa bayan." },
+                { title: "English Literature", author: "Literary Arts", available: true, category: "English", grade: "Grade 5", isbn: "978-5234567895", overview: "Explore classic and contemporary English literature. Analyze stories, poems, and plays while developing critical thinking skills." },
+                { title: "Life Science", author: "Biology Department", available: true, category: "Science", grade: "Grade 5", isbn: "978-5234567899", overview: "Study the human body, plants, animals, and ecosystems. Learn how living things interact and depend on each other." },
+                { title: "Advanced Mathematics", author: "Math Academy", available: false, category: "Mathematics", grade: "Grade 5", isbn: "978-5234567903", overview: "Master advanced mathematical concepts including ratios, percentages, statistics, and algebraic thinking." },
+                { title: "Heograpiya ng Pilipinas", author: "Geography Team", available: true, category: "Araling Panlipunan", grade: "Grade 5", isbn: "978-5234567907", overview: "Pag-aralan ang heograpiya ng Pilipinas - ang mga rehiyon, likas na yaman, at kapaligiran. Matutunan ang kahalagahan ng pag-aalaga sa kalikasan." },
+                { title: "Values in Action", author: "Ethics Department", available: true, category: "EsP", grade: "Grade 5", isbn: "978-5234567911", overview: "Put values into practice through community service and social responsibility. Learn how to make ethical decisions." }
+            ],
+            grade6: [
+                { title: "Filipino sa Piling Larangan", author: "Language Arts", available: true, category: "Filipino", grade: "Grade 6", isbn: "978-6234567891", overview: "Pag-aralan ang Filipino sa iba't ibang larangan tulad ng agham, sining, at teknolohiya. Pagyamanin ang bokabularyo at kasanayan sa komunikasyon." },
+                { title: "English Mastery", author: "Language Experts", available: true, category: "English", grade: "Grade 6", isbn: "978-6234567895", overview: "Achieve English language mastery through comprehensive lessons in grammar, composition, and literature analysis." },
+                { title: "Physical Science", author: "Physics and Chemistry", available: false, category: "Science", grade: "Grade 6", isbn: "978-6234567899", overview: "Explore the physical world through chemistry and physics. Learn about atoms, molecules, energy, and the laws of nature." },
+                { title: "Problem Solving Mathematics", author: "Math Masters", available: true, category: "Mathematics", grade: "Grade 6", isbn: "978-6234567903", overview: "Develop advanced problem-solving skills using mathematical reasoning. Prepare for higher level mathematics with algebra and geometry." },
+                { title: "Kasaysayan ng Daigdig", author: "World History", available: true, category: "Araling Panlipunan", grade: "Grade 6", isbn: "978-6234567907", overview: "Pag-aralan ang kasaysayan ng daigdig at kung paano ito nakaapekto sa Pilipinas. Mula sa sinaunang sibilisasyon hanggang sa modernong panahon." },
+                { title: "Leadership and Service", author: "Character Formation", available: true, category: "EsP", grade: "Grade 6", isbn: "978-6234567911", overview: "Develop leadership skills and learn the importance of service to community. Prepare to be responsible citizens and future leaders." }
             ]
         };
-        let currentBookData = null;
-        function renderBooks(category) {
-            const books = booksDatabase[category];
-            const container = document.getElementById(`${category}-books`);
+
+        let currentBook = null;
+
+        function renderBooks(grade) {
+            const books = allBooks[grade];
+            const container = document.getElementById(`${grade}-books`);
             container.innerHTML = books.map(book => `
                 <div class="book-card">
                     <div class="book-cover">
-                        ${book.cover ? `<img src="${book.cover}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="${book.cover ? 'display:none;' : ''}">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
                         </svg>
                         <span class="availability-badge ${book.available ? 'available' : 'borrowed'}">
@@ -724,95 +694,69 @@
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
                                 <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
                             </svg>
-                            View
-                        </button>
-                        <button class="btn btn-borrow" ${!book.available ? 'disabled' : ''} onclick='borrowBook("${book.title}")'>
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
-                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                            </svg>
-                            Borrow
+                            View Details
                         </button>
                     </div>
                 </div>
             `).join('');
         }
-        function showCategory(category) {
-            document.querySelectorAll('.category-section').forEach(section => section.classList.remove('active'));
+
+        function showGrade(grade) {
+            document.querySelectorAll('.grade-section').forEach(section => section.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`${category}-section`).classList.add('active');
+            document.getElementById(`${grade}-section`).classList.add('active');
             event.target.classList.add('active');
         }
+
         function openModal(book) {
-            currentBookData = book;
+            currentBook = book;
             document.getElementById('modalBookTitle').textContent = book.title;
             document.getElementById('modalAuthor').textContent = book.author;
             document.getElementById('modalCategory').textContent = book.category;
-            document.getElementById('modalGrade').textContent = 'Grade 2';
+            document.getElementById('modalGrade').textContent = book.grade;
             document.getElementById('modalISBN').textContent = book.isbn;
             document.getElementById('modalOverview').textContent = book.overview;
+
             const statusElement = document.getElementById('modalStatus');
             statusElement.textContent = book.available ? 'Available' : 'Borrowed';
             statusElement.className = book.available ? 'status' : 'status borrowed';
+
             const thumbnailDiv = document.getElementById('modalThumbnail');
-            if (book.cover) {
-                thumbnailDiv.innerHTML = `<img src="${book.cover}" alt="${book.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
-                        <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
-                    </svg>`;
-            } else {
-                thumbnailDiv.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
-                </svg>`;
-            }
-            const borrowBtn = document.getElementById('modalBorrowBtn');
-            borrowBtn.disabled = !book.available;
+            thumbnailDiv.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+            </svg>`;
+
             document.getElementById('bookModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+
         function closeModal() {
             document.getElementById('bookModal').classList.remove('active');
             document.body.style.overflow = 'auto';
-            currentBookData = null;
+            currentBook = null;
         }
-        function borrowFromModal() {
-            if (currentBookData && currentBookData.available) {
-                borrowBook(currentBookData.title);
-                closeModal();
-            }
-        }
-        function readFromModal() {
-            if (currentBookData) {
-                readBook(currentBookData.title);
-            }
-        }
-        function borrowBook(title) {
-            alert(`Borrowing request sent for: ${title}\n\nPlease visit the library to complete your borrowing transaction.`);
-        }
-        function readBook(title) {
-            alert(`Opening online reader for: ${title}\n\nThis feature will be available soon!`);
-        }
+
         window.onclick = function(event) {
-            if (!event.target.matches('.dropdown-toggle')) {
-                const dropdowns = document.getElementsByClassName('dropdown-menu');
-                for (let i = 0; i < dropdowns.length; i++) {
-                    dropdowns[i].style.display = 'none';
-                }
-            }
             const modal = document.getElementById('bookModal');
             if (event.target === modal) {
                 closeModal();
             }
         }
+
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
         });
-        function toggleDropdown() {
-            const menu = document.getElementById('booksMenu');
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderBooks('grade1');
+            renderBooks('grade2');
+            renderBooks('grade3');
+            renderBooks('grade4');
+            renderBooks('grade5');
+            renderBooks('grade6');
+        });
     </script>
 </body>
-
 </html>

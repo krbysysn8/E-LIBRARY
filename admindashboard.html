@@ -104,42 +104,6 @@
         nav a:hover::after {
             width: 100%;
         }
-        .notif-btn, .logout-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-            font-family: 'Open Sans', Arial, sans-serif;
-        }
-        .notif-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .notif-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: #4a5f9d;
-            transition: fill 0.3s ease;
-        }
-        .notif-btn:hover svg {
-            fill: #6b82c5;
-        }
-        .notif-badge {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            background: #e74c3c;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 10px;
-            min-width: 18px;
-            text-align: center;
-        }
         .logout-btn {
             background: #4a5f9d;
             color: white;
@@ -147,65 +111,14 @@
             border-radius: 20px;
             font-weight: 600;
             font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Open Sans', Arial, sans-serif;
         }
         .logout-btn:hover {
             background: #6b82c5;
             transform: translateY(-2px);
-        }
-        .notification-panel {
-            display: none;
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 20px;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            border-radius: 12px;
-            width: 350px;
-            max-height: 400px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-        .notification-panel.show {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .notif-header {
-            padding: 16px 20px;
-            border-bottom: 1px solid #e0e0e0;
-            font-weight: 700;
-            color: #4a5f9d;
-            font-size: 16px;
-            font-family: 'Fredoka', Arial, sans-serif;
-        }
-        .notif-item {
-            padding: 16px 20px;
-            border-bottom: 1px solid #f0f0f0;
-            transition: background 0.2s;
-        }
-        .notif-item:hover {
-            background: #f8f9fa;
-        }
-        .notif-item:last-child {
-            border-bottom: none;
-        }
-        .notif-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 4px;
-            font-size: 14px;
-        }
-        .notif-message {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 4px;
-        }
-        .notif-time {
-            font-size: 11px;
-            color: #999;
         }
         main {
             flex: 1;
@@ -291,12 +204,16 @@
         .stat-icon.red {
             background: rgba(231, 76, 60, 0.1);
         }
+        .stat-icon.green {
+            background: rgba(39, 174, 96, 0.1);
+        }
         .stat-icon svg {
             width: 35px;
             height: 35px;
         }
         .stat-icon.blue svg { fill: #4a5f9d; }
         .stat-icon.red svg { fill: #e74c3c; }
+        .stat-icon.green svg { fill: #27ae60; }
         .stat-info h3 {
             font-size: 2.5rem;
             font-weight: 700;
@@ -322,6 +239,7 @@
         .section-tabs {
             display: flex;
             gap: 12px;
+            flex-wrap: wrap;
         }
         .tab-btn {
             padding: 8px 20px;
@@ -372,6 +290,9 @@
         .request-card.rejected {
             border-left: 4px solid #e74c3c;
         }
+        .request-card.renewal {
+            border-left: 4px solid #3498db;
+        }
         .request-header {
             display: flex;
             justify-content: space-between;
@@ -409,6 +330,10 @@
             background: #f8d7da;
             color: #e74c3c;
         }
+        .request-status.renewal {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
         .request-actions {
             display: flex;
             gap: 12px;
@@ -437,6 +362,14 @@
         }
         .reject-btn:hover {
             background: #c0392b;
+            transform: translateY(-2px);
+        }
+        .return-btn {
+            background: #3498db;
+            color: white;
+        }
+        .return-btn:hover {
+            background: #2980b9;
             transform: translateY(-2px);
         }
         footer {
@@ -504,6 +437,207 @@
             fill: #ccc;
             margin-bottom: 16px;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .modal-header h3 {
+            font-size: 1.6rem;
+            color: #4a5f9d;
+            font-family: 'Fredoka', Arial, sans-serif;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            line-height: 1;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .close-btn:hover {
+            color: #e74c3c;
+        }
+        .modal-body {
+            margin-bottom: 24px;
+        }
+        .book-info-display {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        .book-info-display h4 {
+            color: #4a5f9d;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-family: 'Fredoka', Arial, sans-serif;
+        }
+        .book-info-display p {
+            color: #666;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .condition-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .condition-option {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .condition-option:hover {
+            border-color: #4a5f9d;
+            background: #f8f9fa;
+        }
+        .condition-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+        .condition-label {
+            flex: 1;
+        }
+        .condition-label strong {
+            display: block;
+            color: #333;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+            font-family: 'Fredoka', Arial, sans-serif;
+        }
+        .condition-label span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .condition-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        .condition-option.good .condition-icon {
+            background: rgba(39, 174, 96, 0.1);
+        }
+        .condition-option.minor .condition-icon {
+            background: rgba(243, 156, 18, 0.1);
+        }
+        .condition-option.major .condition-icon {
+            background: rgba(231, 76, 60, 0.1);
+        }
+        .condition-option input[type="radio"]:checked ~ .condition-label strong {
+            color: #4a5f9d;
+        }
+        .condition-option.good input[type="radio"]:checked {
+            accent-color: #27ae60;
+        }
+        .condition-option.minor input[type="radio"]:checked {
+            accent-color: #f39c12;
+        }
+        .condition-option.major input[type="radio"]:checked {
+            accent-color: #e74c3c;
+        }
+        .notes-section {
+            margin-top: 20px;
+        }
+        .notes-section label {
+            display: block;
+            font-weight: 600;
+            color: #4a5f9d;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .notes-section textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            resize: vertical;
+            min-height: 80px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .notes-section textarea:focus {
+            border-color: #4a5f9d;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-confirm {
+            background: #27ae60;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .btn-confirm:hover {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+        .btn-cancel-modal {
+            background: #95a5a6;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .btn-cancel-modal:hover {
+            background: #7f8c8d;
+        }
         @media (max-width: 768px) {
             .stats-grid {
                 grid-template-columns: 1fr;
@@ -532,24 +666,9 @@
             <li><a href="admindashboard.html">ADMIN DASHBOARD</a></li>
             <li style="flex:1;"></li>
             <li>
-                <button class="notif-btn" onclick="toggleNotifications()">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
-                    </svg>
-                    <span class="notif-badge" id="notifBadge">0</span>
-                </button>
-            </li>
-            <li>
                 <button class="logout-btn" onclick="handleLogout()">Log Out</button>
             </li>
         </ul>
-
-        <div class="notification-panel" id="notificationPanel">
-            <div class="notif-header">Admin Notifications</div>
-            <div id="notificationList">
-                <div class="no-notifications">No notifications yet</div>
-            </div>
-        </div>
     </nav>
 
     <main>
@@ -589,11 +708,23 @@
                     <p>Total Books</p>
                 </div>
             </a>
+
+            <a href="currentlyborrowed.html" class="stat-card">
+                <div class="stat-icon green">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <h3 id="borrowedBooks">0</h3>
+                    <p>Currently Borrowed</p>
+                </div>
+            </a>
         </section>
 
         <section class="content-section">
             <div class="section-header">
-                <h3>Book Requests</h3>
+                <h3>Book Borrow Requests</h3>
                 <div class="section-tabs">
                     <button class="tab-btn active" onclick="filterRequests('all')">All</button>
                     <button class="tab-btn" onclick="filterRequests('pending')">Pending</button>
@@ -610,6 +741,45 @@
                 </div>
             </div>
         </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h3>Renewal Requests</h3>
+                <div class="section-tabs">
+                    <button class="tab-btn active" onclick="filterRenewals('all')">All</button>
+                    <button class="tab-btn" onclick="filterRenewals('pending')">Pending</button>
+                    <button class="tab-btn" onclick="filterRenewals('approved')">Approved</button>
+                    <button class="tab-btn" onclick="filterRenewals('rejected')">Rejected</button>
+                </div>
+            </div>
+            <div class="requests-container" id="renewalsContainer">
+                <div class="empty-state">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <p>No renewal requests yet</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h3>Borrowed Books Management</h3>
+                <div class="section-tabs">
+                    <button class="tab-btn active" onclick="filterBorrowed('all')">All</button>
+                    <button class="tab-btn" onclick="filterBorrowed('due-soon')">Due Soon</button>
+                    <button class="tab-btn" onclick="filterBorrowed('overdue')">Overdue</button>
+                </div>
+            </div>
+            <div class="requests-container" id="borrowedContainer">
+                <div class="empty-state">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                    </svg>
+                    <p>No borrowed books</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -621,12 +791,12 @@
             <a href="terms-of-use.html">Terms of Use</a>
         </div>
         <div class="social-icons">
-            <a href="https://www.facebook.com/pedroguevaramanila" title="Facebook">
+            <a href="#facebook" title="Facebook">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
             </a>
-            <a href="https://www.instagram.com/pedroguevaraelementaryschool/" title="Instagram">
+            <a href="#instagram" title="Instagram">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
@@ -634,15 +804,62 @@
         </div>
     </footer>
 
+    <div class="modal" id="returnModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Mark Book as Returned</h3>
+                <button class="close-btn" onclick="closeReturnModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="book-info-display" id="returnBookInfo">
+                </div>
+                <label style="display: block; font-weight: 600; color: #4a5f9d; margin-bottom: 12px; font-size: 16px;">Select Book Condition:</label>
+                <div class="condition-options">
+                    <label class="condition-option good">
+                        <input type="radio" name="bookCondition" value="good" checked>
+                        <div class="condition-label">
+                            <strong>Good Condition</strong>
+                            <span>Book returned in excellent state with no damage</span>
+                        </div>
+                        <div class="condition-icon">✓</div>
+                    </label>
+                    <label class="condition-option minor">
+                        <input type="radio" name="bookCondition" value="minor">
+                        <div class="condition-label">
+                            <strong>Minor Damage Noted</strong>
+                            <span>Small wear and tear, bent pages, or light markings</span>
+                        </div>
+                        <div class="condition-icon">⚠</div>
+                    </label>
+                    <label class="condition-option major">
+                        <input type="radio" name="bookCondition" value="major">
+                        <div class="condition-label">
+                            <strong>Major Damage Noted</strong>
+                            <span>Significant damage, torn pages, or water damage</span>
+                        </div>
+                        <div class="condition-icon">✕</div>
+                    </label>
+                </div>
+                <div class="notes-section">
+                    <label>Additional Notes (Optional)</label>
+                    <textarea id="returnNotes" placeholder="Add any additional details about the book condition..."></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-confirm" onclick="confirmReturn()">Confirm Return</button>
+                <button class="btn-cancel-modal" onclick="closeReturnModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        
         const DataManager = {
             init() {
                 this.loadDemoData();
                 this.loadRequests();
-                this.loadUsers();
+                this.loadRenewals();
+                this.loadBorrowedBooks();
                 this.updateStatistics();
-                this.checkForNewRequests();
             },
 
             loadDemoData() {
@@ -651,6 +868,7 @@
                         {
                             id: 1,
                             studentName: 'Juan Dela Cruz',
+                            studentId: 1,
                             grade: 'Grade 6 - Section A',
                             bookTitle: 'Pedro Guevara: A Hero\'s Life',
                             author: 'Maria Santos',
@@ -661,6 +879,7 @@
                         {
                             id: 2,
                             studentName: 'Maria Garcia',
+                            studentId: 2,
                             grade: 'Grade 5 - Section B',
                             bookTitle: 'Science Wonders',
                             author: 'Jane Smith',
@@ -671,11 +890,12 @@
                         {
                             id: 3,
                             studentName: 'Pedro Santos',
+                            studentId: 3,
                             grade: 'Grade 4 - Section A',
                             bookTitle: 'Math for Kids',
                             author: 'John Doe',
-                            requestDate: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-                            status: 'approved',
+                            requestDate: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(),
+                            status: 'pending',
                             email: 'pedro.santos@student.pges.edu.ph'
                         }
                     ];
@@ -710,33 +930,6 @@
                             email: 'pedro.santos@student.pges.edu.ph',
                             booksBorrowed: 2,
                             joinDate: '2024-08-17'
-                        },
-                        {
-                            id: 4,
-                            name: 'Ana Reyes',
-                            type: 'teacher',
-                            grade: 'Mathematics Department',
-                            email: 'ana.reyes@teacher.pges.edu.ph',
-                            booksBorrowed: 8,
-                            joinDate: '2024-06-01'
-                        },
-                        {
-                            id: 5,
-                            name: 'Carlos Fernandez',
-                            type: 'teacher',
-                            grade: 'Science Department',
-                            email: 'carlos.fernandez@teacher.pges.edu.ph',
-                            booksBorrowed: 6,
-                            joinDate: '2024-06-01'
-                        },
-                        {
-                            id: 6,
-                            name: 'Lisa Mendoza',
-                            type: 'student',
-                            grade: 'Grade 3 - Section C',
-                            email: 'lisa.mendoza@student.pges.edu.ph',
-                            booksBorrowed: 1,
-                            joinDate: '2024-09-01'
                         }
                     ];
                     localStorage.setItem('systemUsers', JSON.stringify(demoUsers));
@@ -758,7 +951,7 @@
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                             </svg>
-                            <p>No ${filter === 'all' ? '' : filter} requests found</p>
+                            <p>No ${filter === 'all' ? '' : filter} book requests found</p>
                         </div>
                     `;
                     return;
@@ -794,20 +987,41 @@
                 const requests = JSON.parse(localStorage.getItem('bookRequests') || '[]');
                 const request = requests.find(r => r.id === id);
                 
-                if (request && confirm(`Approve book request for "${request.bookTitle}" by ${request.studentName}?`)) {
+                if (request && confirm(`Approve book request for "${request.bookTitle}" by ${request.studentName}?\n\nThis will add the book to their borrowed books list.`)) {
                     request.status = 'approved';
                     request.approvedDate = new Date().toISOString();
+                    
+                    const borrowDate = new Date();
+                    const dueDate = new Date();
+                    dueDate.setDate(dueDate.getDate() + 7);
+                    
+                    const borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+                    const newBorrowedBook = {
+                        id: Date.now(),
+                        userId: request.studentId.toString(),
+                        title: request.bookTitle,
+                        author: request.author,
+                        borrowDate: borrowDate.toISOString().split('T')[0],
+                        dueDate: dueDate.toISOString().split('T')[0],
+                        cover: null,
+                        renewStatus: null
+                    };
+                    borrowedBooks.push(newBorrowedBook);
+                    localStorage.setItem('borrowedBooks', JSON.stringify(borrowedBooks));
+                    
+                    const libraryBooks = JSON.parse(localStorage.getItem('libraryBooks') || '[]');
+                    const libraryBook = libraryBooks.find(lb => lb.title === request.bookTitle && lb.author === request.author);
+                    if (libraryBook && libraryBook.available > 0) {
+                        libraryBook.available--;
+                        localStorage.setItem('libraryBooks', JSON.stringify(libraryBooks));
+                    }
+                    
                     localStorage.setItem('bookRequests', JSON.stringify(requests));
                     
-                    NotificationManager.addNotification(
-                        'Request Approved',
-                        `Book request for "${request.bookTitle}" by ${request.studentName} has been approved.`,
-                        new Date()
-                    );
-                    
                     this.loadRequests();
+                    this.loadBorrowedBooks();
                     this.updateStatistics();
-                    alert('Request approved successfully!');
+                    alert(`Request approved successfully!\n\n"${request.bookTitle}" has been added to ${request.studentName}'s borrowed books.\nDue date: ${dueDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`);
                 }
             },
 
@@ -820,115 +1034,241 @@
                     request.rejectedDate = new Date().toISOString();
                     localStorage.setItem('bookRequests', JSON.stringify(requests));
                     
-                    NotificationManager.addNotification(
-                        'Request Rejected',
-                        `Book request for "${request.bookTitle}" by ${request.studentName} has been rejected.`,
-                        new Date()
-                    );
-                    
                     this.loadRequests();
                     this.updateStatistics();
                     alert('Request rejected.');
                 }
             },
 
-            loadUsers() {
-                const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
-                this.renderUsers(users);
+            loadRenewals() {
+                const renewals = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
+                this.renderRenewals(renewals);
             },
 
-            renderUsers(users) {
-                const tbody = document.getElementById('usersTableBody');
-                
-                if (users.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: #999;">No users found</td></tr>';
+            renderRenewals(renewals, filter = 'all') {
+                const container = document.getElementById('renewalsContainer');
+                const filteredRenewals = filter === 'all' ? renewals : renewals.filter(r => r.status === filter);
+
+                if (filteredRenewals.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                            </svg>
+                            <p>No ${filter === 'all' ? '' : filter} renewal requests found</p>
+                        </div>
+                    `;
                     return;
                 }
 
-                tbody.innerHTML = users.map(user => `
-                    <tr>
-                        <td>
-                            <div class="user-avatar">${user.name.charAt(0).toUpperCase()}</div>
-                        </td>
-                        <td>${user.name}</td>
-                        <td>${user.type === 'student' ? 'Student' : 'Teacher'}</td>
-                        <td>${user.grade}</td>
-                        <td>${user.email}</td>
-                        <td>${user.booksBorrowed}</td>
-                        <td>
-                            <button class="view-btn" onclick="DataManager.viewUserDetails(${user.id})">View</button>
-                        </td>
-                    </tr>
+                container.innerHTML = filteredRenewals.map(req => `
+                    <div class="request-card renewal ${req.status}">
+                        <div class="request-header">
+                            <div class="request-info">
+                                <h4>${req.bookTitle}</h4>
+                                <p><strong>Student:</strong> ${req.studentName}</p>
+                                <p><strong>Grade:</strong> ${req.grade}</p>
+                                <p><strong>Author:</strong> ${req.author}</p>
+                                <p><strong>Current Due Date:</strong> ${this.formatDate(req.currentDueDate)}</p>
+                                <p><strong>Requested:</strong> ${this.formatTimestamp(req.requestDate)}</p>
+                            </div>
+                            <span class="request-status ${req.status}">${req.status.toUpperCase()}</span>
+                        </div>
+                        ${req.status === 'pending' ? `
+                            <div class="request-actions">
+                                <button class="action-btn approve-btn" onclick="DataManager.approveRenewal(${req.id})">
+                                    Approve Renewal
+                                </button>
+                                <button class="action-btn reject-btn" onclick="DataManager.rejectRenewal(${req.id})">
+                                    Reject
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
                 `).join('');
             },
 
-            viewUserDetails(id) {
-                const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
-                const user = users.find(u => u.id === id);
+            approveRenewal(id) {
+                const renewals = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
+                const renewal = renewals.find(r => r.id === id);
                 
-                if (!user) return;
+                if (renewal && confirm(`Approve renewal for "${renewal.bookTitle}"?\n\nThis will extend the due date by 7 days.`)) {
+                    renewal.status = 'approved';
+                    renewal.approvedDate = new Date().toISOString();
+                    
+                    const borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+                    const book = borrowedBooks.find(b => b.id === renewal.bookId && b.userId === renewal.userId);
+                    
+                    if (book) {
+                        const newDueDate = new Date(book.dueDate);
+                        newDueDate.setDate(newDueDate.getDate() + 7);
+                        book.dueDate = newDueDate.toISOString().split('T')[0];
+                        book.renewStatus = null;
+                        localStorage.setItem('borrowedBooks', JSON.stringify(borrowedBooks));
+                    }
+                    
+                    localStorage.setItem('renewalRequests', JSON.stringify(renewals));
+                    
+                    this.loadRenewals();
+                    this.loadBorrowedBooks();
+                    this.updateStatistics();
+                    alert('Renewal approved successfully! The due date has been extended by 7 days.');
+                }
+            },
 
-                const modal = document.getElementById('userModal');
-                const content = document.getElementById('userDetailsContent');
+            rejectRenewal(id) {
+                const renewals = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
+                const renewal = renewals.find(r => r.id === id);
                 
-                content.innerHTML = `
-                    <div class="user-detail">
-                        <label>Full Name</label>
-                        <p>${user.name}</p>
-                    </div>
-                    <div class="user-detail">
-                        <label>User Type</label>
-                        <p>${user.type === 'student' ? 'Student' : 'Teacher'}</p>
-                    </div>
-                    <div class="user-detail">
-                        <label>${user.type === 'student' ? 'Grade & Section' : 'Department'}</label>
-                        <p>${user.grade}</p>
-                    </div>
-                    <div class="user-detail">
-                        <label>Email Address</label>
-                        <p>${user.email}</p>
-                    </div>
-                    <div class="user-detail">
-                        <label>Books Currently Borrowed</label>
-                        <p>${user.booksBorrowed}</p>
-                    </div>
-                    <div class="user-detail">
-                        <label>Member Since</label>
-                        <p>${new Date(user.joinDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
-                    </div>
+                if (renewal && confirm(`Reject renewal for "${renewal.bookTitle}"?`)) {
+                    renewal.status = 'rejected';
+                    renewal.rejectedDate = new Date().toISOString();
+                    
+                    const borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+                    const book = borrowedBooks.find(b => b.id === renewal.bookId && b.userId === renewal.userId);
+                    
+                    if (book) {
+                        book.renewStatus = null;
+                        localStorage.setItem('borrowedBooks', JSON.stringify(borrowedBooks));
+                    }
+                    
+                    localStorage.setItem('renewalRequests', JSON.stringify(renewals));
+                    
+                    this.loadRenewals();
+                    this.loadBorrowedBooks();
+                    this.updateStatistics();
+                    alert('Renewal rejected.');
+                }
+            },
+
+            loadBorrowedBooks() {
+                const books = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+                this.renderBorrowedBooks(books);
+            },
+
+            getDaysUntilDue(dueDate) {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const due = new Date(dueDate);
+                due.setHours(0, 0, 0, 0);
+                const diffTime = due - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays;
+            },
+
+            renderBorrowedBooks(books, filter = 'all') {
+                const container = document.getElementById('borrowedContainer');
+                
+                let filteredBooks = books;
+                if (filter === 'due-soon') {
+                    filteredBooks = books.filter(b => {
+                        const days = this.getDaysUntilDue(b.dueDate);
+                        return days >= 0 && days <= 3;
+                    });
+                } else if (filter === 'overdue') {
+                    filteredBooks = books.filter(b => this.getDaysUntilDue(b.dueDate) < 0);
+                }
+
+                if (filteredBooks.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                            </svg>
+                            <p>No ${filter === 'all' ? '' : filter} borrowed books</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = filteredBooks.map(book => {
+                    const daysUntilDue = this.getDaysUntilDue(book.dueDate);
+                    let statusClass = 'status-ok';
+                    let statusText = `${daysUntilDue} days remaining`;
+                    
+                    if (daysUntilDue < 0) {
+                        statusClass = 'status-overdue';
+                        statusText = `Overdue by ${Math.abs(daysUntilDue)} days`;
+                    } else if (daysUntilDue === 0) {
+                        statusClass = 'status-due-soon';
+                        statusText = 'Due Today';
+                    } else if (daysUntilDue === 1) {
+                        statusClass = 'status-due-soon';
+                        statusText = 'Due Tomorrow';
+                    } else if (daysUntilDue <= 3) {
+                        statusClass = 'status-due-soon';
+                        statusText = `Due in ${daysUntilDue} days`;
+                    }
+
+                    const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+                    const user = users.find(u => u.id.toString() === book.userId) || {};
+
+                    return `
+                        <div class="request-card ${statusClass}">
+                            <div class="request-header">
+                                <div class="request-info">
+                                    <h4>${book.title}</h4>
+                                    <p><strong>Borrowed by:</strong> ${user.name || 'Unknown User'}</p>
+                                    <p><strong>Grade:</strong> ${user.grade || 'N/A'}</p>
+                                    <p><strong>Author:</strong> ${book.author}</p>
+                                    <p><strong>Borrowed:</strong> ${this.formatDate(book.borrowDate)}</p>
+                                    <p><strong>Due:</strong> ${this.formatDate(book.dueDate)}</p>
+                                </div>
+                                <span class="request-status ${statusClass}">${statusText}</span>
+                            </div>
+                            <div class="request-actions">
+                                <button class="action-btn return-btn" onclick="DataManager.markAsReturned(${book.id}, '${book.userId}')">
+                                    Mark as Returned
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            },
+
+            markAsReturned(bookId, userId) {
+                const borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+                const book = borrowedBooks.find(b => b.id === bookId && b.userId === userId);
+                
+                if (!book) return;
+
+                window.currentReturnBook = { bookId, userId, book };
+
+                const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+                const user = users.find(u => u.id.toString() === book.userId) || {};
+
+                document.getElementById('returnBookInfo').innerHTML = `
+                    <h4>${book.title}</h4>
+                    <p><strong>Borrowed by:</strong> ${user.name || 'Unknown User'}</p>
+                    <p><strong>Grade:</strong> ${user.grade || 'N/A'}</p>
+                    <p><strong>Author:</strong> ${book.author}</p>
+                    <p><strong>Borrowed:</strong> ${this.formatDate(book.borrowDate)}</p>
+                    <p><strong>Due:</strong> ${this.formatDate(book.dueDate)}</p>
                 `;
-                
-                modal.classList.add('show');
+
+                document.querySelector('input[name="bookCondition"][value="good"]').checked = true;
+                document.getElementById('returnNotes').value = '';
+
+                document.getElementById('returnModal').classList.add('show');
             },
 
             updateStatistics() {
                 const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
-                const requests = JSON.parse(localStorage.getItem('bookRequests') || '[]');
+                const books = JSON.parse(localStorage.getItem('libraryBooks') || '[]');
+                const borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
                 
                 document.getElementById('totalUsers').textContent = users.length;
-                document.getElementById('pendingRequests').textContent = requests.filter(r => r.status === 'pending').length;
-                document.getElementById('approvedRequests').textContent = requests.filter(r => r.status === 'approved').length;
-                document.getElementById('totalBooks').textContent = '156'; 
+                document.getElementById('totalBooks').textContent = books.length || '156';
+                document.getElementById('borrowedBooks').textContent = borrowedBooks.length;
             },
 
-            checkForNewRequests() {
-                const lastCheck = localStorage.getItem('adminLastCheck');
-                const now = new Date().getTime();
-                
-                if (!lastCheck || now - parseInt(lastCheck) > 60000) {
-                    const requests = JSON.parse(localStorage.getItem('bookRequests') || '[]');
-                    const pendingCount = requests.filter(r => r.status === 'pending').length;
-                    
-                    if (pendingCount > 0) {
-                        NotificationManager.addNotification(
-                            'New Book Requests',
-                            `You have ${pendingCount} pending book request${pendingCount > 1 ? 's' : ''} to review.`,
-                            new Date()
-                        );
-                    }
-                    
-                    localStorage.setItem('adminLastCheck', now.toString());
-                }
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    day: 'numeric',
+                    year: 'numeric'
+                });
             },
 
             formatTimestamp(timestamp) {
@@ -954,75 +1294,88 @@
             }
         };
 
-        const NotificationManager = {
-            init() {
-                this.loadNotifications();
-                this.updateBadge();
-            },
+        function closeReturnModal() {
+            document.getElementById('returnModal').classList.remove('show');
+            window.currentReturnBook = null;
+        }
 
-            loadNotifications() {
-                const stored = localStorage.getItem('adminNotifications');
-                return stored ? JSON.parse(stored) : [];
-            },
+        function confirmReturn() {
+            if (!window.currentReturnBook) return;
 
-            saveNotifications(notifications) {
-                localStorage.setItem('adminNotifications', JSON.stringify(notifications));
-            },
+            const { bookId, userId, book } = window.currentReturnBook;
+            const selectedCondition = document.querySelector('input[name="bookCondition"]:checked').value;
+            const notes = document.getElementById('returnNotes').value;
 
-            addNotification(title, message, timestamp) {
-                const notifications = this.loadNotifications();
-                const newNotif = {
-                    id: Date.now(),
-                    title: title,
-                    message: message,
-                    timestamp: timestamp.toISOString(),
-                    read: false
-                };
-                notifications.unshift(newNotif);
-                
-                if (notifications.length > 50) {
-                    notifications.pop();
-                }
-                
-                this.saveNotifications(notifications);
-                this.renderNotifications();
-                this.updateBadge();
-            },
-
-            renderNotifications() {
-                const notifications = this.loadNotifications();
-                const notifList = document.getElementById('notificationList');
-                
-                if (notifications.length === 0) {
-                    notifList.innerHTML = '<div class="no-notifications">No notifications yet</div>';
-                    return;
-                }
-
-                notifList.innerHTML = notifications.slice(0, 10).map(notif => `
-                    <div class="notif-item">
-                        <div class="notif-title">${notif.title}</div>
-                        <div class="notif-message">${notif.message}</div>
-                        <div class="notif-time">${DataManager.formatTimestamp(notif.timestamp)}</div>
-                    </div>
-                `).join('');
-            },
-
-            updateBadge() {
-                const notifications = this.loadNotifications();
-                const unreadCount = notifications.filter(n => !n.read).length;
-                const badge = document.getElementById('notifBadge');
-                badge.textContent = unreadCount;
-                badge.style.display = unreadCount > 0 ? 'block' : 'none';
+            let conditionText = '';
+            switch(selectedCondition) {
+                case 'good':
+                    conditionText = 'Good Condition';
+                    break;
+                case 'minor':
+                    conditionText = 'Minor Damage Noted';
+                    break;
+                case 'major':
+                    conditionText = 'Major Damage Noted';
+                    break;
             }
-        };
 
-        function toggleNotifications() {
-            const panel = document.getElementById('notificationPanel');
-            panel.classList.toggle('show');
+            if (confirm(`Confirm return of "${book.title}"?\n\nCondition: ${conditionText}`)) {
+                const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+                const user = users.find(u => u.id.toString() === book.userId) || {};
+
+                const returnRecords = JSON.parse(localStorage.getItem('returnRecords') || '[]');
+                const returnRecord = {
+                    id: Date.now(),
+                    bookId: bookId,
+                    userId: userId,
+                    studentName: user.name || 'Unknown User',
+                    grade: user.grade || 'N/A',
+                    bookTitle: book.title,
+                    author: book.author,
+                    borrowDate: book.borrowDate,
+                    dueDate: book.dueDate,
+                    returnDate: new Date().toISOString(),
+                    condition: selectedCondition,
+                    conditionText: conditionText,
+                    notes: notes,
+                    wasOverdue: DataManager.getDaysUntilDue(book.dueDate) < 0
+                };
+                returnRecords.push(returnRecord);
+                localStorage.setItem('returnRecords', JSON.stringify(returnRecords));
+
+                const borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+                const updatedBooks = borrowedBooks.filter(b => !(b.id === bookId && b.userId === userId));
+                localStorage.setItem('borrowedBooks', JSON.stringify(updatedBooks));
+                
+                const libraryBooks = JSON.parse(localStorage.getItem('libraryBooks') || '[]');
+                const libraryBook = libraryBooks.find(lb => lb.title === book.title && lb.author === book.author);
+                if (libraryBook && libraryBook.available < libraryBook.copies) {
+                    libraryBook.available++;
+                    localStorage.setItem('libraryBooks', JSON.stringify(libraryBooks));
+                }
+                
+                const renewals = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
+                const updatedRenewals = renewals.filter(r => !(r.bookId === bookId && r.userId === userId));
+                localStorage.setItem('renewalRequests', JSON.stringify(updatedRenewals));
+
+                DataManager.loadRenewals();
+                DataManager.loadBorrowedBooks();
+                DataManager.updateStatistics();
+                
+                closeReturnModal();
+                
+                let alertMessage = `Book returned successfully!\n\nCondition: ${conditionText}`;
+                if (selectedCondition === 'major') {
+                    alertMessage += '\n\n⚠️ Major damage has been noted. Please follow up with appropriate action.';
+                } else if (selectedCondition === 'minor') {
+                    alertMessage += '\n\n⚠️ Minor damage has been noted.';
+                }
+                alert(alertMessage);
+            }
         }
 
         function filterRequests(status) {
-            const buttons = document.querySelectorAll('.tab-btn');
+            const buttons = document.querySelectorAll('#requestsContainer').previousElementSibling.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
@@ -1030,33 +1383,22 @@
             DataManager.renderRequests(requests, status);
         }
 
-        function searchUsers() {
-            const searchTerm = document.getElementById('userSearch').value.toLowerCase();
-            const filterType = document.getElementById('userFilter').value;
-            const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+        function filterRenewals(status) {
+            const buttons = document.querySelectorAll('#renewalsContainer').previousElementSibling.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
             
-            let filtered = users;
-            
-            if (searchTerm) {
-                filtered = filtered.filter(user => 
-                    user.name.toLowerCase().includes(searchTerm) ||
-                    user.email.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            if (filterType !== 'all') {
-                filtered = filtered.filter(user => user.type === filterType);
-            }
-            
-            DataManager.renderUsers(filtered);
+            const renewals = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
+            DataManager.renderRenewals(renewals, status);
         }
 
-        function filterUsers() {
-            searchUsers();
-        }
-
-        function closeUserModal() {
-            document.getElementById('userModal').classList.remove('show');
+        function filterBorrowed(status) {
+            const buttons = document.querySelectorAll('#borrowedContainer').previousElementSibling.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const books = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
+            DataManager.renderBorrowedBooks(books, status);
         }
 
         function handleLogout() {
@@ -1068,15 +1410,9 @@
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('userModal');
+            const modal = document.getElementById('returnModal');
             if (event.target === modal) {
-                closeUserModal();
-            }
-            
-            const notifPanel = document.getElementById('notificationPanel');
-            const notifBtn = event.target.closest('.notif-btn');
-            if (!notifBtn && notifPanel) {
-                notifPanel.classList.remove('show');
+                closeReturnModal();
             }
         };
 
@@ -1089,9 +1425,7 @@
             }
 
             DataManager.init();
-            NotificationManager.init();
         });
     </script>
 </body>
-
 </html>
