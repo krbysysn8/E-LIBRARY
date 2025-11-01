@@ -762,24 +762,7 @@
             </div>
         </section>
 
-        <section class="content-section">
-            <div class="section-header">
-                <h3>Borrowed Books Management</h3>
-                <div class="section-tabs">
-                    <button class="tab-btn active" onclick="filterBorrowed('all')">All</button>
-                    <button class="tab-btn" onclick="filterBorrowed('due-soon')">Due Soon</button>
-                    <button class="tab-btn" onclick="filterBorrowed('overdue')">Overdue</button>
-                </div>
-            </div>
-            <div class="requests-container" id="borrowedContainer">
-                <div class="empty-state">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
-                    </svg>
-                    <p>No borrowed books</p>
-                </div>
-            </div>
-        </section>
+
     </main>
 
     <footer>
@@ -858,7 +841,6 @@
                 this.loadDemoData();
                 this.loadRequests();
                 this.loadRenewals();
-                this.loadBorrowedBooks();
                 this.updateStatistics();
             },
 
@@ -1019,7 +1001,6 @@
                     localStorage.setItem('bookRequests', JSON.stringify(requests));
                     
                     this.loadRequests();
-                    this.loadBorrowedBooks();
                     this.updateStatistics();
                     alert(`Request approved successfully!\n\n"${request.bookTitle}" has been added to ${request.studentName}'s borrowed books.\nDue date: ${dueDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`);
                 }
@@ -1110,7 +1091,6 @@
                     localStorage.setItem('renewalRequests', JSON.stringify(renewals));
                     
                     this.loadRenewals();
-                    this.loadBorrowedBooks();
                     this.updateStatistics();
                     alert('Renewal approved successfully! The due date has been extended by 7 days.');
                 }
@@ -1135,7 +1115,6 @@
                     localStorage.setItem('renewalRequests', JSON.stringify(renewals));
                     
                     this.loadRenewals();
-                    this.loadBorrowedBooks();
                     this.updateStatistics();
                     alert('Renewal rejected.');
                 }
@@ -1390,15 +1369,6 @@
             
             const renewals = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
             DataManager.renderRenewals(renewals, status);
-        }
-
-        function filterBorrowed(status) {
-            const buttons = document.querySelectorAll('#borrowedContainer').previousElementSibling.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            const books = JSON.parse(localStorage.getItem('borrowedBooks') || '[]');
-            DataManager.renderBorrowedBooks(books, status);
         }
 
         function handleLogout() {
