@@ -722,7 +722,15 @@
             </a>
         </section>
 
-        <section class="content-section">
+       <section style="background: white; padding: 20px 32px; border-radius: 20px; box-shadow: 0 2px 12px rgba(74,95,157,0.12); margin-bottom: 24px;">
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <span style="font-weight: 600; color: #4a5f9d; margin-right: 8px; font-family: 'Open Sans', Arial, sans-serif;">View:</span>
+                <button class="tab-btn active" onclick="switchMainView('borrow')">Book Borrow Requests</button>
+                <button class="tab-btn" onclick="switchMainView('renewal')">Renewal Requests</button>
+            </div>
+        </section>
+
+        <section class="content-section" id="borrowRequestsSection">
             <div class="section-header">
                 <h3>Book Borrow Requests</h3>
                 <div class="section-tabs">
@@ -742,7 +750,7 @@
             </div>
         </section>
 
-        <section class="content-section">
+        <section class="content-section" id="renewalRequestsSection" style="display: none;">
             <div class="section-header">
                 <h3>Renewal Requests</h3>
                 <div class="section-tabs">
@@ -1353,20 +1361,57 @@
             }
         }
 
+        function switchMainView(view) {
+            // Get sections
+            const borrowSection = document.getElementById('borrowRequestsSection');
+            const renewalSection = document.getElementById('renewalRequestsSection');
+            
+            // Get tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn[onclick^="switchMainView"]');
+            
+            // Update view visibility
+            if (view === 'borrow') {
+                borrowSection.style.display = 'block';
+                renewalSection.style.display = 'none';
+            } else if (view === 'renewal') {
+                borrowSection.style.display = 'none';
+                renewalSection.style.display = 'block';
+            }
+            
+            // Update active state of tabs
+            tabButtons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(view)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
         function filterRequests(status) {
-            const buttons = document.querySelectorAll('#requestsContainer').previousElementSibling.querySelectorAll('.tab-btn');
+            // Find all tab buttons in the borrow requests section
+            const buttons = document.querySelector('#borrowRequestsSection .section-tabs')
+                .querySelectorAll('.tab-btn');
+            
+            // Update active states
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
+            // Filter and render requests
             const requests = JSON.parse(localStorage.getItem('bookRequests') || '[]');
             DataManager.renderRequests(requests, status);
         }
 
         function filterRenewals(status) {
-            const buttons = document.querySelectorAll('#renewalsContainer').previousElementSibling.querySelectorAll('.tab-btn');
+            // Find all tab buttons in the renewal requests section
+            const buttons = document.querySelector('#renewalRequestsSection .section-tabs')
+                .querySelectorAll('.tab-btn');
+            
+            // Update active states
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
+            // Filter and render renewals
             const renewals = JSON.parse(localStorage.getItem('renewalRequests') || '[]');
             DataManager.renderRenewals(renewals, status);
         }
