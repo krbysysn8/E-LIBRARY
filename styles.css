@@ -62,102 +62,98 @@ main {
     display: flex;
     flex-direction: column;
 }
-header {
-    background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-    color: white;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 0;
-    height: 144px;
-    position: relative;
-    z-index: 100;
-}
+ header {
+            background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+            color: white;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 144px;
+        }
+         .logo img {
+            width: 180px;
+            height: 150px;
+            border-radius: 100%;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
 
-.logo img {
-    width: 180px;
-    height: 150px;
-    border-radius: 100%;
-    box-shadow: 0 4px 24px rgba(74,95,157,0.18);
-    object-fit: cover;
-    cursor: pointer;
-}
-.header-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    margin-left: 5px;
-}
-.header-text h1 {
-    font-size: 18px;
-    font-weight: normal;
-    margin-bottom: 8px;
-    margin-top: 12px;
-    margin-left: -29px;
-    font-family: 'Open Sans', Arial, sans-serif;
-}
-.header-text h2 {
-    font-size: 29px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    margin-left: -29px;
-    font-family: 'Open Sans', Arial, sans-serif;
-}
-.header-text p {
-    font-size: 18px;
-    margin-bottom: 12px;
-    margin-left: -29px;
-    font-family: 'Open Sans', Arial, sans-serif;
-}
-nav {
-    background: white;
-    padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-top: 0; 
-    position: relative;
-    z-index: 10;
-}
-nav, nav a {
-    font-family: 'Open Sans', Arial, sans-serif;
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-}
-nav a {
-    display: block;
-    padding: 14px 0;
-    color: #333;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    transition: color 0.3s ease;
-    position: relative;
-}
-nav a:hover {
-    color: #4a5f9d;
-}
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: #4a5f9d;
-    transition: width 0.3s ease;
-}
-nav a:hover::after {
-    width: 100%;
-}
+        .logo img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 5px;
+        }
+        .header-text h1 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 8px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .header-text h2 {
+            font-size: 29px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .header-text p {
+            font-size: 18px;
+            margin-left: -29px;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        nav {
+            background: white;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        nav li {
+            position: relative;
+        }
+        nav a {
+            display: block;
+            padding: 14px 0;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            position: relative;
+            font-family: 'Open Sans', Arial, sans-serif;
+            cursor: pointer;
+        }
+        nav a:hover {
+            color: #4a5f9d;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #4a5f9d;
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
 nav li.dropdown {
     position: relative;
 }
