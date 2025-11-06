@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="styles.css">
     <style>
 body {
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #e8f0ff 0%, #f0f7ff 50%, #faf8ff 100%);
   position: relative;
+  overflow-x: hidden;
 }
 body::before {
   content: '';
@@ -23,6 +24,23 @@ body::before {
   opacity: 0.05;
   z-index: 0;
   pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(74, 95, 157, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -250px;
+  right: -250px;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-30px, 30px) rotate(180deg); }
 }
 main {
   position: relative;
@@ -66,30 +84,81 @@ main {
   text-align: center;
   margin-bottom: 32px;
   padding-top: 0;
+  position: relative;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(107, 130, 197, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
 }
 .page-header h1 {
-  font-size: 3rem;
-  color: #4a5f9d;
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 50%, #8b9fd8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-family: 'Fredoka', Arial, sans-serif;
   font-weight: 700;
   margin-bottom: 12px;
-  text-shadow: 2px 2px 4px rgba(74, 95, 157, 0.1);
+  text-shadow: none;
+  position: relative;
+  display: inline-block;
+}
+.page-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #6b82c5, transparent);
+  border-radius: 2px;
 }
 .page-header p {
   font-size: 1.2rem;
   color: #666;
   font-family: 'Open Sans', Arial, sans-serif;
+  margin-top: 20px;
 }
 .category-tabs {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   flex-wrap: wrap;
+  position: relative;
+  padding: 15px;
+}
+.category-tabs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 60px;
+  z-index: -1;
+  box-shadow: 0 8px 32px rgba(74, 95, 157, 0.1);
 }
 .tab-btn {
-  padding: 12px 28px;
-  background: white;
+  padding: 14px 32px;
+  background: #fff;
   border: 2px solid #4a5f9d;
   border-radius: 50px;
   font-family: 'Open Sans', Arial, sans-serif;
@@ -97,16 +166,25 @@ main {
   font-size: 1rem;
   color: #4a5f9d;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(74, 95, 157, 0.08);
+  z-index: 1;
 }
 .tab-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(74, 95, 157, 0.2);
+  border-color: #4a5f9d;
   background: #e8f0ff;
-  transform: translateY(-2px);
+  color: #3a4f8d;
 }
 .tab-btn.active {
   background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(74, 95, 157, 0.3);
+  color: #fff;
+  border-color: #4a5f9d;
+  box-shadow: 0 6px 20px rgba(74, 95, 157, 0.3);
+  z-index: 2;
 }
 .category-section {
   display: none;
@@ -162,7 +240,7 @@ main {
     grid-template-columns: 1fr;
   }
 }
-        .book-card {
+.book-card {
   background: white;
   border-radius: 20px;
   padding: 24px;
@@ -173,7 +251,7 @@ main {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 520px; /* fixed min height to keep cards uniform */
+  min-height: 520px; 
   box-sizing: border-box;
 }
 .book-card::before {
@@ -238,9 +316,9 @@ main {
   background: #e74c3c;
   color: white;
 }
-        .book-info {
+  .book-info {
   margin-bottom: 20px;
-  flex: 1 1 auto; /* allow info area to grow so cards stay even */
+  flex: 1 1 auto; 
 }
 .book-title {
   font-size: 1.4rem;
@@ -267,7 +345,7 @@ main {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: auto; /* push actions to the bottom of the card */
+  margin-top: auto; 
   flex: 0 0 auto;
 }
 .btn {
@@ -632,7 +710,6 @@ main {
             </div>
             <div class="modal-actions">
                 <button class="btn btn-borrow" id="modalBorrowBtn" onclick="borrowFromModal()">Borrow This Book</button>
-                <button class="btn btn-read" onclick="readFromModal()">Read Online</button>
             </div>
         </div>
     </div>
@@ -770,17 +847,11 @@ main {
                 closeModal();
             }
         }
-        function readFromModal() {
-            if (currentBookData) {
-                readBook(currentBookData.title);
-            }
-        }
+    
         function borrowBook(title) {
             alert(`Borrowing request sent for: ${title}\n\nPlease visit the library to complete your borrowing transaction.`);
         }
-        function readBook(title) {
-            alert(`Opening online reader for: ${title}\n\nThis feature will be available soon!`);
-        }
+
         window.onclick = function(event) {
             if (!event.target.matches('.dropdown-toggle')) {
                 const dropdowns = document.getElementsByClassName('dropdown-menu');
