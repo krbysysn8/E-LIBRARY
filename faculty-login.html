@@ -43,7 +43,7 @@
         <ul>
             <li><a href="homepage.html">HOMEPAGE</a></li>
             <li><a href="about.html">ABOUT US</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+      <li><a href="#" id="openFaqBtn">FAQ</a></li>
         </ul>
     </nav>
     <main class="login-main">
@@ -85,6 +85,54 @@
                 <img src="images/school/school.jpg" alt="Pedro Guevara Elementary School" />
             </div>
         </div>
+<div id="faqModal" class="faq-modal">
+    <div class="faq-popup">
+        <button id="closeFaqModal" class="faq-close-btn" title="Close FAQ">&times;</button>
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq">
+                <div class="question"><span>Who can access the E-Library?</span><span>+</span></div>
+                <div class="answer">Only registered students and teachers of Pedro Guevara Elementary School are authorized to access the e-library website.</div>
+            </div>
+            <div class="faq">
+                <div class="question"><span>How do I borrow books through the e-library?</span><span>+</span></div>
+                <div class="answer">
+                    To borrow a book:
+                    <ol>
+                        <li>Log in to the e-library system.</li>
+                        <li>Click the "Borrow" button next to your chosen book.</li>
+                        <li>Present your school ID to the librarian to receive the physical copy.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="faq">
+                <div class="question"><span>How long can I borrow books?</span><span>+</span></div>
+                <div class="answer">
+                    <ul>
+                        <li>Students may borrow books for up to <strong>7 days</strong> from the date of borrowing.</li>
+                        <li>Teachers may borrow books for up to <strong>14 days</strong> from the date of borrowing.</li>
+                    </ul>
+                    <p>Please borrow and return books responsibly.</p>
+                </div>
+            </div>
+            <div class="faq">
+                <div class="question"><span>Are there online copies of books available?</span><span>+</span></div>
+                <div class="answer">Yes, some books have digital versions that can be accessed directly through the website. Others are available only in physical format.</div>
+            </div>
+            <div class="faq">
+                <div class="question"><span>How can I contact the library for help?</span><span>+</span></div>
+                <div class="answer">
+                    You can reach out in two ways:
+                    <ol>
+                        <li>Message us via our official Facebook page: <a href="https://www.facebook.com/pedroguevaramanila" target="_blank">[Facebook Page Link]</a></li>
+                        <li>Visit the library and speak with the librarian during library hours (8 AM - 3 PM).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     </main>
     <footer>
         <div>
@@ -96,12 +144,12 @@
 
         </div>
         <div class="social-icons">
-            <a href="#facebook" title="Facebook">
+            <a href="https://www.facebook.com/pedroguevaramanila" title="Facebook">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
             </a>
-            <a href="#instagram" title="Instagram">
+            <a href="https://www.instagram.com/pedroguevaraelementaryschool/" title="Instagram">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
@@ -147,6 +195,102 @@
             alert('Invalid Faculty ID or Password. Please try again.');
         }
     }
+    document.addEventListener('DOMContentLoaded', function() {
+            const faqBtn = document.getElementById('openFaqBtn');
+            const faqModal = document.getElementById('faqModal');
+            const faqClose = document.getElementById('closeFaqModal');
+            const faqPopup = faqModal ? faqModal.querySelector('.faq-popup') : null;
+            if (!faqBtn || !faqModal || !faqClose || !faqPopup) {
+                console.error('FAQ elements not found');
+                return;
+            }
+
+            function adjustFaqModalPosition() {
+                const nav = document.querySelector('nav');
+                const footer = document.querySelector('footer');
+                if (!nav || !footer) return;
+
+                const navRect = nav.getBoundingClientRect();
+                const footerRect = footer.getBoundingClientRect();
+
+                const topPosition = navRect.bottom;
+                const bottomPosition = window.innerHeight - footerRect.top;
+                const availableHeight = footerRect.top - navRect.bottom;
+
+                faqPopup.style.top = topPosition + 'px';
+                faqPopup.style.bottom = bottomPosition + 'px';
+                faqPopup.style.maxHeight = availableHeight + 'px';
+                faqPopup.style.height = availableHeight + 'px';
+            }
+
+            faqBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                faqModal.classList.add('show');
+                setTimeout(() => {
+                    faqModal.classList.add('slide-in');
+                    adjustFaqModalPosition();
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            });
+
+            function closeFaqModal() {
+                faqModal.classList.remove('slide-in');
+                setTimeout(() => {
+                    faqModal.classList.remove('show');
+                    document.body.style.overflow = '';
+                }, 350);
+            }
+
+            faqClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeFaqModal();
+            });
+
+            faqModal.addEventListener('click', function(e) {
+                if (e.target === faqModal) {
+                    closeFaqModal();
+                }
+            });
+
+            if (faqPopup) {
+                faqPopup.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && faqModal.classList.contains('show')) {
+                    closeFaqModal();
+                }
+            });
+
+            const faqItems = document.querySelectorAll('.faq-popup .faq');
+            faqItems.forEach(faq => {
+                const question = faq.querySelector('.question');
+                if (question) {
+                    question.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        faqItems.forEach(otherFaq => {
+                            if (otherFaq !== faq && otherFaq.classList.contains('active')) {
+                                otherFaq.classList.remove('active');
+                            }
+                        });
+                        faq.classList.toggle('active');
+                    });
+                }
+            });
+
+            window.addEventListener('scroll', function() {
+                if (faqModal.classList.contains('show')) {
+                    adjustFaqModalPosition();
+                }
+            });
+            window.addEventListener('resize', function() {
+                if (faqModal.classList.contains('show')) {
+                    adjustFaqModalPosition();
+                }
+            });
+        });
 </script>
 </body>
 </html>

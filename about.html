@@ -12,15 +12,314 @@
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-  
+    .title-wrapper {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+      background: linear-gradient(135deg, #5a6b8f 0%, #6b7fa8 100%);
+      padding: 38px 0 28px 0;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 32px rgba(74,95,157,0.12);
+      color: #fff;
+    }
+    .title-wrapper h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.7rem;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(74,95,157,0.18);
+    }
+    .title-wrapper p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      margin: 0;
+    }
+    .sections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 36px;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto 40px auto;
+      padding: 0 32px;
+    }
+    .creative-section {
+      position: relative;
+      background: linear-gradient(135deg, #f8f9fa 60%, #e8edff 100%);
+      padding: 38px 32px 38px 32px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(74,95,157,0.10);
+      transition: transform 0.2s, box-shadow 0.2s, border-left 0.2s;
+      overflow: hidden;
+      border-left: 10px solid #5a6b8f;
+      min-height: 220px;
+      z-index: 1;
+    }
+    .creative-section:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 16px 48px rgba(74,95,157,0.18);
+      border-left: 10px solid #6b7fa8;
+    }
+    .section-icon {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      opacity: 0.13;
+      font-size: 5.5rem;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .creative-section h2 {
+      color: #5a6b8f;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-family: 'Fredoka', Arial, sans-serif;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 1px;
+    }
+    .creative-section p, .creative-section ul {
+      position: relative;
+      z-index: 1;
+      font-size: 1.05rem;
+    }
+    .creative-section ul {
+      padding-left: 22px;
+      margin-bottom: 15px;
+    }
     main {
-      flex: 1;
+      flex: 1 0 auto;
       max-width: 900px;
-      margin: 40px auto;
+      margin: 0 auto;
       padding: 0 20px;
       color: #333;
       line-height: 1.8;
     }
+    .faq-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 62, 80, 0.5);
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+.faq-modal.show {
+    display: block;
+}
+.faq-popup {
+    background: linear-gradient(135deg, #f8faff 0%, #e8f2ff 100%);
+    width: 450px;
+    max-width: 95vw;
+    position: fixed;
+    right: 0;
+    transform: translateX(100%);
+    box-shadow: -8px 0 32px rgba(74, 95, 157, 0.25);
+    border-top-left-radius: 32px;
+    border-bottom-left-radius: 32px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+    overflow: hidden;
+    min-height: 200px;
+}
+.faq-modal.slide-in .faq-popup {
+    transform: translateX(0);
+}
+.faq-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #4a5f9d;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(74, 95, 157, 0.3);
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.faq-close-btn:hover {
+    background: #6b82c5;
+    transform: rotate(90deg) scale(1.1);
+}
+.faq-title {
+    font-family: 'Fredoka', Arial, sans-serif;
+    font-size: 1.8rem;
+    color: #4a5f9d;
+    font-weight: 800;
+    text-align: center;
+    margin: 0;
+    padding: 30px 60px 20px 30px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    border-bottom: 2px solid rgba(74, 95, 157, 0.1);
+}
+.faq-list {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px 30px 30px 30px;
+}
+.faq-list::-webkit-scrollbar {
+    width: 8px;
+}
+.faq-list::-webkit-scrollbar-track {
+    background: rgba(74, 95, 157, 0.05);
+    border-radius: 10px;
+}
+.faq-list::-webkit-scrollbar-thumb {
+    background: rgba(74, 95, 157, 0.3);
+    border-radius: 10px;
+}
+.faq-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(74, 95, 157, 0.5);
+}
+.faq-popup .faq {
+    border-bottom: 1px solid #e0e7ff;
+    padding: 18px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.faq-popup .faq:last-child {
+    border-bottom: none;
+}
+.faq-popup .faq:hover {
+    background: rgba(107, 130, 197, 0.05);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-radius: 8px;
+}
+.faq-popup .question {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    font-weight: bold;
+    color: #4a5f9d;
+    font-size: 1.05rem;
+    font-family: 'Fredoka', Arial, sans-serif;
+}
+.faq-popup .question span:first-child {
+    flex: 1;
+}
+.faq-popup .question span:last-child {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.faq-popup .answer {
+    display: none;
+    padding-top: 12px;
+    padding-left: 5px;
+    color: #444;
+    line-height: 1.7;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 0.95rem;
+}
+.faq-popup .answer ol,
+.faq-popup .answer ul {
+    margin: 10px 0;
+    padding-left: 25px;
+}
+.faq-popup .answer li {
+    margin: 8px 0;
+}
+.faq-popup .answer p {
+    margin: 10px 0;
+}
+.faq-popup .answer strong {
+    color: #4a5f9d;
+    font-weight: 700;
+}
+.faq-popup .answer a {
+    color: #4a5f9d;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+.faq-popup .answer a:hover {
+    color: #6b82c5;
+}
+.faq-popup .faq.active .answer {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+.faq-popup .faq.active .question span:last-child {
+    transform: rotate(45deg);
+    color: #6b82c5;
+}
+@media (max-width: 768px) {
+    .faq-popup {
+        width: 380px;
+        top: 192px;
+    }
+    .faq-title {
+        font-size: 1.5rem;
+        padding: 25px 50px 18px 25px;
+    }
+    .faq-list {
+        padding: 15px 25px 25px 25px;
+    }
+}
+@media (max-width: 600px) {
+    .faq-popup {
+        width: 100vw;
+        max-width: 100vw;
+        border-radius: 0;
+        top: 192px;
+    }
+    .faq-title {
+        font-size: 1.4rem;
+        padding: 20px 50px 15px 20px;
+    }
+    .faq-list {
+        padding: 15px 20px 20px 20px;
+    }
+    .faq-close-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+        top: 15px;
+        right: 15px;
+    }
+    .faq-popup .question {
+        font-size: 1rem;
+    }
+    .faq-popup .answer {
+        font-size: 0.9rem;
+    }
+}
     .sections-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -82,12 +381,13 @@
 
     .title-wrapper {
       text-align: center;
-      margin-bottom: 30px;
-      background: linear-gradient(135deg, rgba(74,95,157,0.95), rgba(107,130,197,0.95));
-      padding: 22px 18px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(74,95,157,0.12);
+      margin: 0 auto 40px auto;
+      background: linear-gradient(135deg, #5a6b8f 0%, #6b7fa8 100%);
+      padding: 38px 0 28px 0;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 32px rgba(74,95,157,0.12);
       color: #fff;
+      max-width: 700px;
     }
 
     .title-wrapper h1 {
@@ -180,16 +480,15 @@
     <ul>
       <li><a href="homepage.html">HOMEPAGE</a></li>
       <li><a href="about.html">ABOUT US</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="generalbooks.html">BOOKS</a></li>
-
+<li><a href="#" id="openFaqBtn">FAQ</a></li>
 
     </ul>
   </nav>
 
-  <main>
+<main style="position: relative;">        
       <div class="title-wrapper">
         <h1>About Our E-Library</h1>
+        <p>Learn more about our mission, objectives, and the team behind the PGES E-Library.</p>
       </div>
       <div class="sections-grid">
         <section class="creative-section">
@@ -230,6 +529,54 @@
           </p>
         </section>
       </div>
+      <div id="faqModal" class="faq-modal">
+  <div class="faq-popup">
+    <button id="closeFaqModal" class="faq-close-btn" title="Close FAQ">&times;</button>
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq">
+        <div class="question"><span>Who can access the E-Library?</span><span>+</span></div>
+        <div class="answer">Only registered students and teachers of Pedro Guevara Elementary School are authorized to access the e-library website.</div>
+      </div>
+      <div class="faq">
+        <div class="question"><span>How do I borrow books through the e-library?</span><span>+</span></div>
+        <div class="answer">
+          To borrow a book:
+          <ol>
+            <li>Log in to the e-library system.</li>
+            <li>Click the "Borrow" button next to your chosen book.</li>
+            <li>Present your school ID to the librarian to receive the physical copy.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="faq">
+        <div class="question"><span>How long can I borrow books?</span><span>+</span></div>
+        <div class="answer">
+          <ul>
+            <li>Students may borrow books for up to <strong>7 days</strong> from the date of borrowing.</li>
+            <li>Teachers may borrow books for up to <strong>14 days</strong> from the date of borrowing.</li>
+          </ul>
+          <p>Please borrow and return books responsibly.</p>
+        </div>
+      </div>
+      <div class="faq">
+        <div class="question"><span>Are there online copies of books available?</span><span>+</span></div>
+        <div class="answer">Yes, some books have digital versions that can be accessed directly through the website. Others are available only in physical format.</div>
+      </div>
+      <div class="faq">
+        <div class="question"><span>How can I contact the library for help?</span><span>+</span></div>
+        <div class="answer">
+          You can reach out in two ways:
+          <ol>
+            <li>Message us via our official Facebook page: <a href="#" target="_blank">[Facebook Page Link]</a></li>
+            <li>Visit the library and speak with the librarian during library hours (8 AM - 3 PM).</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
     </main>
 
   <footer>
@@ -254,6 +601,107 @@
         </div>
     </footer>
 </body>
+
+<script>
+
+ document.addEventListener('DOMContentLoaded', function() {
+            const faqBtn = document.getElementById('openFaqBtn');
+            const faqModal = document.getElementById('faqModal');
+            const faqClose = document.getElementById('closeFaqModal');
+            const faqPopup = faqModal ? faqModal.querySelector('.faq-popup') : null;
+            if (!faqBtn || !faqModal || !faqClose || !faqPopup) {
+                console.error('FAQ elements not found');
+                return;
+            }
+ function adjustFaqModalPosition() {
+                const nav = document.querySelector('nav');
+                const footer = document.querySelector('footer');
+                if (!nav || !footer) return;
+
+                const navRect = nav.getBoundingClientRect();
+                const footerRect = footer.getBoundingClientRect();
+
+                // Calculate available height between nav and footer
+                const topPosition = navRect.bottom;
+                const bottomPosition = window.innerHeight - footerRect.top;
+                const availableHeight = footerRect.top - navRect.bottom;
+
+                // Apply constraints
+                faqPopup.style.top = topPosition + 'px';
+                faqPopup.style.bottom = bottomPosition + 'px';
+                faqPopup.style.maxHeight = availableHeight + 'px';
+                faqPopup.style.height = availableHeight + 'px';
+            }
+
+            faqBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                faqModal.classList.add('show');
+                setTimeout(() => {
+                    faqModal.classList.add('slide-in');
+                    adjustFaqModalPosition();
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            });
+
+            function closeFaqModal() {
+                faqModal.classList.remove('slide-in');
+                setTimeout(() => {
+                    faqModal.classList.remove('show');
+                    document.body.style.overflow = '';
+                }, 350);
+            }
+
+            faqClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeFaqModal();
+            });
+
+            faqModal.addEventListener('click', function(e) {
+                if (e.target === faqModal) {
+                    closeFaqModal();
+                }
+            });
+
+            if (faqPopup) {
+                faqPopup.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && faqModal.classList.contains('show')) {
+                    closeFaqModal();
+                }
+            });
+
+            const faqItems = document.querySelectorAll('.faq-popup .faq');
+            faqItems.forEach(faq => {
+                const question = faq.querySelector('.question');
+                if (question) {
+                    question.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        faqItems.forEach(otherFaq => {
+                            if (otherFaq !== faq && otherFaq.classList.contains('active')) {
+                                otherFaq.classList.remove('active');
+                            }
+                        });
+                        faq.classList.toggle('active');
+                    });
+                }
+            });
+
+            window.addEventListener('scroll', function() {
+                if (faqModal.classList.contains('show')) {
+                    adjustFaqModalPosition();
+                }
+            });
+            window.addEventListener('resize', function() {
+                if (faqModal.classList.contains('show')) {
+                    adjustFaqModalPosition();
+                }
+            });
+        });
+    </script>
 </html>
 
 
