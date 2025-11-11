@@ -776,8 +776,8 @@ main {
                                 <input type="text" id="firstName" placeholder="Enter your firstname" required>
                             </div>
                             <div class="form-group">
-                                <label for="middleName">Middle Name</label>
-                                <input type="text" id="middleName" placeholder="Enter your middlename">
+                                <label for="middleInitial">Middle Initial</label>
+                                <input type="text" id="middleInitial" maxlength="3" placeholder="Enter your M.I">
                             </div>
                         </div>
 
@@ -809,6 +809,25 @@ main {
                             </div>
                         </div>
 
+                            <div class="form-row two-col">
+                                <div class="form-group">
+                                    <label for="securityQuestion">Security Question *</label>
+                                    <select id="securityQuestion" required>
+                                        <option value="" disabled selected>Select a security question</option>
+                                        <option value="nickname">What is the nickname that only your family uses for you?</option>
+                                        <option value="firstcrush">What was the name of your first crush?</option>
+                                        <option value="favoritesong">What is your favorite song?</option>
+                                        <option value="firstpet">What was the name of your first pet?</option>
+                                        <option value="mothermaiden">What is your mother’s maiden name?</option>
+                                        <option value="birthcity">What is the name of the city/town where you were born?</option>
+                                        <option value="childhoodfriend">What is the name of your favorite childhood friend?</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="securityAnswer">Your Answer *</label>
+                                    <input type="text" id="securityAnswer" placeholder="Enter your answer" required>
+                                </div>
+                            </div>
                         <div class="form-row">
     <div class="form-group">
         <label for="username">Username (Auto-generated) *</label>
@@ -916,22 +935,28 @@ main {
     </footer>
 
     <script>
-         function updateUsername() {
+        function updateUsername() {
             const lastName = document.getElementById('lastName').value.trim();
             const firstName = document.getElementById('firstName').value.trim();
-            
+            const middleInitial = document.getElementById('middleInitial').value.trim();
+
             if (lastName && firstName) {
                 const cleanFirstName = firstName.replace(/\s+/g, '').toLowerCase();
                 const cleanLastName = lastName.replace(/\s+/g, '').toLowerCase();
-                
-                const username = cleanFirstName + cleanLastName;
+                let mi = '';
+                if (middleInitial.length > 0) {
+                    mi = middleInitial.replace(/\s+/g, '').charAt(0).toLowerCase();
+                }
+                const username = cleanFirstName + mi + cleanLastName;
                 document.getElementById('username').value = username;
+            } else {
+                document.getElementById('username').value = '';
             }
         }
 
         document.getElementById('lastName').addEventListener('input', updateUsername);
         document.getElementById('firstName').addEventListener('input', updateUsername);
-        document.getElementById('middleName').addEventListener('input', updateUsername);
+        document.getElementById('middleInitial').addEventListener('input', updateUsername);
 
         document.getElementById('password').addEventListener('input', function(e) {
             const password = e.target.value;
@@ -983,7 +1008,14 @@ main {
             const middleName = document.getElementById('middleName').value.trim();
             const fullName = middleName ? `${firstName} ${middleName} ${lastName}` : `${firstName} ${lastName}`;
             const gradeText = `Grade ${gradeLevel} - Section ${section}`;
-            
+            const securityQuestion = document.getElementById('securityQuestion').value;
+            const securityAnswer = document.getElementById('securityAnswer').value.trim();
+
+            if (!securityQuestion || !securityAnswer) {
+                alert('Please select a security question and provide your answer.');
+                return;
+            }
+
             const studentData = {
                 lastName: lastName,
                 firstName: firstName,
@@ -995,6 +1027,8 @@ main {
                 birthdate: document.getElementById('birthdate').value,
                 username: document.getElementById('username').value.trim(),
                 password: password,
+                securityQuestion: securityQuestion,
+                securityAnswer: securityAnswer,
                 registrationDate: new Date().toISOString()
             };
             

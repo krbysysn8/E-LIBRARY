@@ -98,6 +98,302 @@ main {
     0%, 100% { transform: translateX(-50%) translateY(0); }
     50% { transform: translateX(-50%) translateY(-10px); }
 }
+
+.back-btn {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(74, 95, 157, 0.3);
+    transition: all 0.3s ease;
+    z-index: 10;
+    font-family: 'Fredoka', Arial, sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #6b82c5 0%, #7a96d4 100%);
+    transform: scale(1.05) translateX(-3px);
+    box-shadow: 0 8px 25px rgba(74, 95, 157, 0.4);
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 45px;
+    margin-top: 25px;
+}
+
+.register-header h2 {
+    color: #4a5f9d;
+    font-family: 'Fredoka', Arial, sans-serif;
+    font-size: 2.3rem;
+    margin-bottom: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    display: inline-block;
+}
+
+.register-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #6b82c5, transparent);
+    border-radius: 2px;
+}
+
+.register-header p {
+    color: #666;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-top: 18px;
+}
+
+
+.form-section {
+    width: 100%;
+    position: relative;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+.form-row.two-col {
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-group label {
+    color: #4a5f9d;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: 'Fredoka', Arial, sans-serif;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 13px 16px;
+    border: 3px solid #e0e7ff;
+    border-radius: 16px;
+    font-size: 0.98rem;
+    font-family: 'Open Sans', Arial, sans-serif;
+    transition: all 0.3s ease;
+    outline: none;
+    background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #6b82c5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(107, 130, 197, 0.2);
+    background: #fff;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #b8c5e0;
+}
+
+
+.form-group input[readonly] {
+    background: linear-gradient(135deg, #e8eeff 0%, #d4dfff 100%);
+    cursor: not-allowed;
+    font-weight: 600;
+    color: #4a5f9d;
+}
+
+
+.password-strength {
+    margin-top: 8px;
+    font-size: 0.88rem;
+    font-family: 'Fredoka', Arial, sans-serif;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.strength-weak { 
+    color: #e74c3c; 
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.strength-medium { 
+    color: #f39c12;
+    background: rgba(243, 156, 18, 0.1);
+}
+
+.strength-strong { 
+    color: #27ae60;
+    background: rgba(39, 174, 96, 0.1);
+}
+
+.password-match {
+    margin-top: 8px;
+    font-size: 0.88rem;
+    font-family: 'Fredoka', Arial, sans-serif;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.match-error {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.match-success {
+    color: #27ae60;
+    background: rgba(39, 174, 96, 0.1);
+}
+
+
+.password-toggle {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #4a5f9d, #6b82c5);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-family: 'Fredoka', Arial, sans-serif;
+}
+
+.password-toggle:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 4px 12px rgba(107, 130, 197, 0.3);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 80px !important;
+}
+
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 50%, #7a96d4 100%);
+    background-size: 200% 200%;
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: 'Fredoka', Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 8px 25px rgba(74, 95, 157, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.submit-btn:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(74, 95, 157, 0.5);
+    background-position: 100% 50%;
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 28px;
+    color: #666;
+    font-family: 'Fredoka', Arial, sans-serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+}
+
+.login-link a {
+    color: #4a5f9d;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.login-link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4a5f9d, #6b82c5);
+    transition: width 0.3s ease;
+}
+
+.login-link a:hover::after {
+    width: 100%;
+}
+
+.login-link a:hover {
+    color: #6b82c5;
+}
+
 .faq-modal {
     display: none;
     position: fixed;
@@ -322,301 +618,6 @@ main {
     }
 }
 
-.back-btn {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 100%);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(74, 95, 157, 0.3);
-    transition: all 0.3s ease;
-    z-index: 10;
-    font-family: 'Fredoka', Arial, sans-serif;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.back-btn:hover {
-    background: linear-gradient(135deg, #6b82c5 0%, #7a96d4 100%);
-    transform: scale(1.05) translateX(-3px);
-    box-shadow: 0 8px 25px rgba(74, 95, 157, 0.4);
-}
-
-.register-header {
-    text-align: center;
-    margin-bottom: 45px;
-    margin-top: 25px;
-}
-
-.register-header h2 {
-    color: #4a5f9d;
-    font-family: 'Fredoka', Arial, sans-serif;
-    font-size: 2.3rem;
-    margin-bottom: 12px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    position: relative;
-    display: inline-block;
-}
-
-.register-header h2::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #6b82c5, transparent);
-    border-radius: 2px;
-}
-
-.register-header p {
-    color: #666;
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 1.05rem;
-    font-weight: 500;
-    margin-top: 18px;
-}
-
-
-.form-section {
-    width: 100%;
-    position: relative;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 22px;
-    margin-bottom: 22px;
-}
-
-.form-row.two-col {
-    grid-template-columns: 1fr 1fr;
-}
-
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-.form-group label {
-    color: #4a5f9d;
-    font-weight: 700;
-    margin-bottom: 10px;
-    font-family: 'Fredoka', Arial, sans-serif;
-    font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group select {
-    padding: 13px 16px;
-    border: 3px solid #e0e7ff;
-    border-radius: 16px;
-    font-size: 0.98rem;
-    font-family: 'Open Sans', Arial, sans-serif;
-    transition: all 0.3s ease;
-    outline: none;
-    background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    border-color: #6b82c5;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(107, 130, 197, 0.2);
-    background: #fff;
-}
-
-.form-group input:hover,
-.form-group select:hover {
-    border-color: #b8c5e0;
-}
-
-
-.form-group input[readonly] {
-    background: linear-gradient(135deg, #e8eeff 0%, #d4dfff 100%);
-    cursor: not-allowed;
-    font-weight: 600;
-    color: #4a5f9d;
-}
-
-
-.password-strength {
-    margin-top: 8px;
-    font-size: 0.88rem;
-    font-family: 'Fredoka', Arial, sans-serif;
-    font-weight: 600;
-    padding: 5px 12px;
-    border-radius: 12px;
-    display: inline-block;
-    transition: all 0.3s ease;
-}
-
-.strength-weak { 
-    color: #e74c3c; 
-    background: rgba(231, 76, 60, 0.1);
-}
-
-.strength-medium { 
-    color: #f39c12;
-    background: rgba(243, 156, 18, 0.1);
-}
-
-.strength-strong { 
-    color: #27ae60;
-    background: rgba(39, 174, 96, 0.1);
-}
-
-.password-match {
-    margin-top: 8px;
-    font-size: 0.88rem;
-    font-family: 'Fredoka', Arial, sans-serif;
-    font-weight: 600;
-    padding: 5px 12px;
-    border-radius: 12px;
-    display: inline-block;
-    transition: all 0.3s ease;
-}
-
-.match-error {
-    color: #e74c3c;
-    background: rgba(231, 76, 60, 0.1);
-}
-
-.match-success {
-    color: #27ae60;
-    background: rgba(39, 174, 96, 0.1);
-}
-
-
-.password-toggle {
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: linear-gradient(135deg, #4a5f9d, #6b82c5);
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 6px 9px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    font-family: 'Fredoka', Arial, sans-serif;
-}
-
-.password-toggle:hover {
-    transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 4px 12px rgba(107, 130, 197, 0.3);
-}
-
-.password-wrapper {
-    position: relative;
-}
-
-.password-wrapper input {
-    padding-right: 10px !important;
-}
-
-
-.submit-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #4a5f9d 0%, #6b82c5 50%, #7a96d4 100%);
-    background-size: 200% 200%;
-    color: white;
-    padding: 16px;
-    border: none;
-    border-radius: 25px;
-    font-size: 1.25rem;
-    font-weight: 800;
-    font-family: 'Fredoka', Arial, sans-serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 28px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    box-shadow: 0 8px 25px rgba(74, 95, 157, 0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-.submit-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.submit-btn:hover::before {
-    width: 400px;
-    height: 400px;
-}
-
-.submit-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(74, 95, 157, 0.5);
-    background-position: 100% 50%;
-}
-
-.submit-btn:active {
-    transform: translateY(-1px);
-}
-
-.login-link {
-    text-align: center;
-    margin-top: 28px;
-    color: #666;
-    font-family: 'Fredoka', Arial, sans-serif;
-    font-size: 1.02rem;
-    font-weight: 600;
-}
-
-.login-link a {
-    color: #4a5f9d;
-    font-weight: 800;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.login-link a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #4a5f9d, #6b82c5);
-    transition: width 0.3s ease;
-}
-
-.login-link a:hover::after {
-    width: 100%;
-}
-
-.login-link a:hover {
-    color: #6b82c5;
-}
-
 @media (max-width: 900px) {
     .register-container {
         padding: 50px 40px 40px 40px;
@@ -631,6 +632,10 @@ main {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
         margin-bottom: 20px;
+    }
+    
+    .form-row.three-col-mobile-two {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -676,7 +681,8 @@ main {
     }
 
     .form-row,
-    .form-row.two-col {
+    .form-row.two-col,
+    .form-row.three-col-mobile-two {
         grid-template-columns: 1fr;
         gap: 18px;
         margin-bottom: 18px;
@@ -725,11 +731,7 @@ main {
         font-size: 1rem;
         letter-spacing: 1px;
     }
-}    .submit-btn {
-        font-size: 1rem;
-        letter-spacing: 1px;
-    }
-
+}
     </style>
 </head>
 <body>
@@ -749,12 +751,12 @@ main {
         <ul>
             <li><a href="homepage.html">HOMEPAGE</a></li>
             <li><a href="about.html">ABOUT US</a></li>
-      <li><a href="#" id="openFaqBtn">FAQ</a></li>
+            <li><a href="#" id="openFaqBtn">FAQ</a></li>
         </ul>
     </nav>
 
-<main class="register-main">        
-    <div style="max-width:900px;margin:0 auto;padding-top:20px;">
+    <main class="register-main">        
+        <div style="max-width:900px;margin:0 auto;padding-top:20px;">
             <div class="register-container">
                 <button class="back-btn" onclick="window.history.back()">← Back</button>
                 <div class="register-header">
@@ -778,12 +780,21 @@ main {
                                 <input type="text" id="middleInitial" maxlength="2" placeholder="Enter your M.I">
                             </div>
                         </div>
-
-                        <div class="form-row">
+                        <div class="form-row three-col-mobile-two">
+                            <div class="form-group">
+                                <label for="birthday">Birthday *</label>
+                                <input type="date" id="birthday" required>
+                            </div>
                             <div class="form-group">
                                 <label for="facultyId">Faculty ID Number *</label>
                                 <input type="text" id="facultyId" placeholder="Enter your Faculty ID" required>
                             </div>
+                            <div class="form-group">
+                                <label for="username">Username (Faculty ID) *</label>
+                                <input type="text" id="username" placeholder="Will use Faculty ID" required readonly>
+                            </div>
+                        </div>
+                        <div class="form-row two-col">
                             <div class="form-group">
                                 <label for="department">Department *</label>
                                 <select id="department" required>
@@ -815,29 +826,44 @@ main {
                                 </select>
                             </div>
                         </div>
-
-                        <div class="form-row">
-    <div class="form-group">
-        <label for="username">Username (Faculty ID) *</label>
-        <input type="text" id="username" placeholder="Will use Faculty ID" required readonly>
-    </div>
-    <div class="form-group">
-        <label for="password">Password *</label>
-        <div class="password-wrapper">
-            <input type="password" id="password" required>
-            <button type="button" class="password-toggle" onclick="togglePassword('password', this)">Show</button>
-        </div>
-        <div id="password-strength" class="password-strength"></div>
-    </div>
-    <div class="form-group">
-        <label for="confirmPassword">Confirm Password *</label>
-        <div class="password-wrapper">
-            <input type="password" id="confirmPassword" required>
-            <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', this)">Show</button>
-        </div>
-        <div id="password-match" class="password-match"></div>
-    </div>
-</div>
+                        <div class="form-row two-col">
+                            <div class="form-group">
+                                <label for="password">Password *</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="password" placeholder="Enter password" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('password', this)">Show</button>
+                                </div>
+                                <div id="password-strength" class="password-strength"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password *</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', this)">Show</button>
+                                </div>
+                                <div id="password-match" class="password-match"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row two-col">
+                            <div class="form-group">
+                                <label for="securityQuestion">Security Question *</label>
+                                <select id="securityQuestion" required>
+                                    <option value="" disabled selected>Select a security question</option>
+                                    <option value="nickname">What is the nickname that only your family uses for you?</option>
+                                    <option value="firstcity">What city did you first work or study in away from home?</option>
+                                    <option value="favoritesong">What is your favorite song?</option>
+                                    <option value="firstpet">What was the name of your first pet?</option>
+                                    <option value="mothermaiden">What is your mother's maiden name?</option>
+                                    <option value="birthcity">What is the name of the city/town where you were born?</option>
+                                    <option value="foodhate">What food do you hate the most (not just dislike)?</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="securityAnswer">Your Answer *</label>
+                                <input type="text" id="securityAnswer" placeholder="Enter your answer" required>
+                            </div>
+                        </div>
 
                         <button type="submit" class="submit-btn">Create Account</button>
                     </div>
@@ -848,53 +874,54 @@ main {
                 </div>
             </div>
         </div>
+
         <div id="faqModal" class="faq-modal">
-    <div class="faq-popup">
-        <button id="closeFaqModal" class="faq-close-btn" title="Close FAQ">&times;</button>
-        <h2 class="faq-title">Frequently Asked Questions</h2>
-        <div class="faq-list">
-            <div class="faq">
-                <div class="question"><span>Who can access the E-Library?</span><span>+</span></div>
-                <div class="answer">Only registered students and teachers of Pedro Guevara Elementary School are authorized to access the e-library website.</div>
-            </div>
-            <div class="faq">
-                <div class="question"><span>How do I borrow books through the e-library?</span><span>+</span></div>
-                <div class="answer">
-                    To borrow a book:
-                    <ol>
-                        <li>Log in to the e-library system.</li>
-                        <li>Click the "Borrow" button next to your chosen book.</li>
-                        <li>Present your school ID to the librarian to receive the physical copy.</li>
-                    </ol>
-                </div>
-            </div>
-            <div class="faq">
-                <div class="question"><span>How long can I borrow books?</span><span>+</span></div>
-                <div class="answer">
-                    <ul>
-                        <li>Students may borrow books for up to <strong>7 days</strong> from the date of borrowing.</li>
-                        <li>Teachers may borrow books for up to <strong>14 days</strong> from the date of borrowing.</li>
-                    </ul>
-                    <p>Please borrow and return books responsibly.</p>
-                </div>
-            </div>
-            <div class="faq">
-                <div class="question"><span>Are there online copies of books available?</span><span>+</span></div>
-                <div class="answer">Yes, some books have digital versions that can be accessed directly through the website. Others are available only in physical format.</div>
-            </div>
-            <div class="faq">
-                <div class="question"><span>How can I contact the library for help?</span><span>+</span></div>
-                <div class="answer">
-                    You can reach out in two ways:
-                    <ol>
-                        <li>Message us via our official Facebook page: <a href="#" target="_blank">[Facebook Page Link]</a></li>
-                        <li>Visit the library and speak with the librarian during library hours (8 AM - 3 PM).</li>
-                    </ol>
+            <div class="faq-popup">
+                <button id="closeFaqModal" class="faq-close-btn" title="Close FAQ">&times;</button>
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq">
+                        <div class="question"><span>Who can access the E-Library?</span><span>+</span></div>
+                        <div class="answer">Only registered students and teachers of Pedro Guevara Elementary School are authorized to access the e-library website.</div>
+                    </div>
+                    <div class="faq">
+                        <div class="question"><span>How do I borrow books through the e-library?</span><span>+</span></div>
+                        <div class="answer">
+                            To borrow a book:
+                            <ol>
+                                <li>Log in to the e-library system.</li>
+                                <li>Click the "Borrow" button next to your chosen book.</li>
+                                <li>Present your school ID to the librarian to receive the physical copy.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="faq">
+                        <div class="question"><span>How long can I borrow books?</span><span>+</span></div>
+                        <div class="answer">
+                            <ul>
+                                <li>Students may borrow books for up to <strong>7 days</strong> from the date of borrowing.</li>
+                                <li>Teachers may borrow books for up to <strong>14 days</strong> from the date of borrowing.</li>
+                            </ul>
+                            <p>Please borrow and return books responsibly.</p>
+                        </div>
+                    </div>
+                    <div class="faq">
+                        <div class="question"><span>Are there online copies of books available?</span><span>+</span></div>
+                        <div class="answer">Yes, some books have digital versions that can be accessed directly through the website. Others are available only in physical format.</div>
+                    </div>
+                    <div class="faq">
+                        <div class="question"><span>How can I contact the library for help?</span><span>+</span></div>
+                        <div class="answer">
+                            You can reach out in two ways:
+                            <ol>
+                                <li>Message us via our official Facebook page: <a href="https://www.facebook.com/pedroguevaramanila" target="_blank">[Facebook Page Link]</a></li>
+                                <li>Visit the library and speak with the librarian during library hours (8 AM - 3 PM).</li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
     </main>
 
     <footer>
@@ -921,69 +948,35 @@ main {
 
     <script>
         function togglePassword(fieldId, button) {
-    const input = document.getElementById(fieldId);
-    if (input.type === 'password') {
-        input.type = 'text';
-        button.textContent = 'Hide';
-    } else {
-        input.type = 'password';
-        button.textContent = 'Show';
-    }
-}
+            const input = document.getElementById(fieldId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.textContent = 'Hide';
+            } else {
+                input.type = 'password';
+                button.textContent = 'Show';
+            }
+        }
 
-function checkPasswordMatch() {
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    const matchDiv = document.getElementById('password-match');
-    
-    if (confirmPassword.length === 0) {
-        matchDiv.textContent = '';
-        return;
-    }
-    
-    if (password === confirmPassword) {
-        matchDiv.textContent = '✓ Passwords match';
-        matchDiv.className = 'password-match match-success';
-    } else {
-        matchDiv.textContent = '✗ Passwords do not match';
-        matchDiv.className = 'password-match match-error';
-    }
-}
+        function checkPasswordMatch() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const matchDiv = document.getElementById('password-match');
+            
+            if (confirmPassword.length === 0) {
+                matchDiv.textContent = '';
+                return;
+            }
+            
+            if (password === confirmPassword) {
+                matchDiv.textContent = '✓ Passwords match';
+                matchDiv.className = 'password-match match-success';
+            } else {
+                matchDiv.textContent = '✗ Passwords do not match';
+                matchDiv.className = 'password-match match-error';
+            }
+        }
 
-document.getElementById('facultyId').addEventListener('input', function() {
-    document.getElementById('username').value = this.value;
-});
-
-document.getElementById('password').addEventListener('input', function(e) {
-    const password = e.target.value;
-    const strengthDiv = document.getElementById('password-strength');
-    
-    if (password.length === 0) {
-        strengthDiv.textContent = '';
-        return;
-    }
-    
-    let strength = 0;
-    if (password.length >= 8) strength++;
-    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-    if (/\d/.test(password)) strength++;
-    if (/[^a-zA-Z\d]/.test(password)) strength++;
-    
-    if (strength <= 1) {
-        strengthDiv.textContent = 'Weak password';
-        strengthDiv.className = 'password-strength strength-weak';
-    } else if (strength <= 2) {
-        strengthDiv.textContent = 'Medium password';
-        strengthDiv.className = 'password-strength strength-medium';
-    } else {
-        strengthDiv.textContent = 'Strong password';
-        strengthDiv.className = 'password-strength strength-strong';
-    }
-    
-    checkPasswordMatch();
-});
-
-document.getElementById('confirmPassword').addEventListener('input', checkPasswordMatch);
         document.getElementById('facultyId').addEventListener('input', function() {
             document.getElementById('username').value = this.value;
         });
@@ -1013,7 +1006,11 @@ document.getElementById('confirmPassword').addEventListener('input', checkPasswo
                 strengthDiv.textContent = 'Strong password';
                 strengthDiv.className = 'password-strength strength-strong';
             }
+            
+            checkPasswordMatch();
         });
+
+        document.getElementById('confirmPassword').addEventListener('input', checkPasswordMatch);
 
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1035,18 +1032,21 @@ document.getElementById('confirmPassword').addEventListener('input', checkPasswo
             const firstName = document.getElementById('firstName').value.trim();
             const mi = document.getElementById('middleInitial').value.trim();
             const fullName = mi ? `${firstName} ${mi}. ${lastName}` : `${firstName} ${lastName}`;
+            const birthday = document.getElementById('birthday').value;
             
             const facultyData = {
                 lastName: lastName,
                 firstName: firstName,
                 middleInitial: mi,
                 fullName: fullName,
+                birthdate: birthday, 
                 facultyId: document.getElementById('facultyId').value.trim(),
                 department: document.getElementById('department').value,
                 position: document.getElementById('position').value,
-                email: document.getElementById('email').value.trim(),
                 username: document.getElementById('username').value.trim(),
                 password: password,
+                securityQuestion: document.getElementById('securityQuestion').value,
+                securityAnswer: document.getElementById('securityAnswer').value.trim().toLowerCase(),
                 registrationDate: new Date().toISOString()
             };
             
@@ -1057,18 +1057,14 @@ document.getElementById('confirmPassword').addEventListener('input', checkPasswo
                 return;
             }
             
-            if (registeredFaculty.some(f => f.email === facultyData.email)) {
-                alert('This email address is already registered. Please use a different email.');
-                return;
-            }
-            
             registeredFaculty.push(facultyData);
             localStorage.setItem('registeredFaculty', JSON.stringify(registeredFaculty));
             
             alert('Registration successful! You can now login with your credentials.');
             window.location.href = 'faculty-login.html';
         });
-       document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', function() {
             const faqBtn = document.getElementById('openFaqBtn');
             const faqModal = document.getElementById('faqModal');
             const faqClose = document.getElementById('closeFaqModal');
